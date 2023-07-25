@@ -1,5 +1,5 @@
 # Features List
-Sonic is like Discord but faster... well, maybe not while we're on Render. Users can join servers, surf servers, and message channels and users. 
+Sonic is like Discord but faster... well, maybe not while we're on Render. Users can join servers, surf servers, and message channels and users.
 
 ## MVP Features
 
@@ -18,7 +18,7 @@ We're rolling in auth! Users can
 
 ### Channels
 
-* Users can view channels in a server 
+* Users can view channels in a server
 * Users can create channels in their servers
 * Users can update their channels
 * Users can delete their channels
@@ -35,10 +35,8 @@ We're rolling in auth! Users can
 * Users can create reactions to messages
 * Users can delete their reactions to messages
 
-## Stretch Features
+### Stretch Features
 
-### Update Messages
-
-### Direct Messages
-
-### Threads
+* Update Messages
+* Direct Messages
+* Threads
