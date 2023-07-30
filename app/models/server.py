@@ -9,7 +9,7 @@ class Server(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    owner_id = db.Column(db.Integer)
+    owner_id = db.Column(db.Integer, db.ForeignKey("users.id"))
     public = db.Column(db.Boolean)
     description = db.Column(db.String(255), nullable=False)
     name= db.Column(db.String(255), nullable=False, unique=True)
@@ -17,12 +17,9 @@ class Server(db.Model):
     banner_image = db.Column(db.String(250), nullable=False)
 
   #relationship attributes
-    user = db.relationship("User", back_populates="servers")
-    # post_likes = db.relationship(
-    #     "User",
-    #     secondary=likes,
-    #     back_populates="user_likes"
-    # )
+    user = db.relationship("User", back_populates="servers", secondary="users_servers")
+    channels = db.relationship("Channel", back_populates="server")
+
 
 
     def to_dict(self):

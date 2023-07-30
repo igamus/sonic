@@ -15,6 +15,14 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
     profile_picture = db.Column(db.String(250), nullable=False)
     # make sure you add a default url later when user doesn't submit a photo
+    servers = db.relationship("Server", back_populates="user", secondary="users_servers")
+    reactions= db.relationship("Reaction", back_populates="user")
+
+    def __repr__(self):
+        return f"< User: {self.username} ID: {self.id}>"
+
+    def __str__(self):
+        return f"< User: {self.username} ID: {self.id}>"
 
     @property
     def password(self):
