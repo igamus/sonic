@@ -1,11 +1,6 @@
 from app.models import db, Channel, environment, SCHEMA
 from sqlalchemy.sql import text
 
-            # "server_id":
-            # "public":
-            # "description":
-            # "name":
-
 def seed_channels():
     for channel in [
         {
@@ -83,10 +78,10 @@ def seed_channels():
 
     db.session.commit()
 
-    def undo_channels():
-        if environment=='production':
-            db.session.execute(f"TRUNCATE table {SCHEMA}.channels RESTART IDENTITY CASCADE;")
-        else:
-            db.session.execute(text("DELETE FROM channels"))
-        
+def undo_channels():
+    if environment=='production':
+        db.session.execute(f"TRUNCATE table {SCHEMA}.channels RESTART IDENTITY CASCADE;")
+    else:
+        db.session.execute(text("DELETE FROM channels"))
+
     db.session.commit()

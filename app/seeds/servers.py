@@ -1,14 +1,6 @@
 from app.models import db, Server, environment, SCHEMA
 from sqlalchemy.sql import text
 
-# id
-# owner_id
-# public
-# description
-# name
-# server_image
-# banner_image
-
 def seed_servers():
     for server in [
         {
@@ -56,10 +48,10 @@ def seed_servers():
 
     db.session.commit()
 
-    def undo_servers():
-        if environment=='production':
-            db.session.execute(f"TRUNCATE table {SCHEMA}.servers RESTART IDENTITY CASCADE;")
-        else:
-            db.session.execute(text("DELETE FROM servers"))
+def undo_servers():
+    if environment=='production':
+        db.session.execute(f"TRUNCATE table {SCHEMA}.servers RESTART IDENTITY CASCADE;")
+    else:
+        db.session.execute(text("DELETE FROM servers"))
 
     db.session.commit()

@@ -1,10 +1,6 @@
 from app.models import db, Message, environment, SCHEMA
 from sqlalchemy.sql import text
 
-            # "channel_id": ,
-            # "owner_id": ,
-            # "text":
-
 def seed_messages():
     for message in [
         {
@@ -207,10 +203,10 @@ def seed_messages():
 
     db.session.commit()
 
-    def undo_messages():
-        if environment=='production':
-            db.session.execute(f"TRUNCATE table {SCHEMA}.messages RESTART IDENTITY CASCADE;")
-        else:
-            db.session.execute(text("DELETE FROM messages"))
+def undo_messages():
+    if environment=='production':
+        db.session.execute(f"TRUNCATE table {SCHEMA}.messages RESTART IDENTITY CASCADE;")
+    else:
+        db.session.execute(text("DELETE FROM messages"))
 
     db.session.commit()
