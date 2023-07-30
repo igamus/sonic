@@ -10,7 +10,7 @@ class Reaction(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     owner_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
-    messages_id = db.Column(db.Integer, db.ForeignKey("messages.id"), nullable=False)
+    message_id = db.Column(db.Integer, db.ForeignKey("messages.id"), nullable=False)
     emoji = db.Column(db.String, nullable=False)
 
   #relationship attributes

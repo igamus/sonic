@@ -47,21 +47,21 @@ def seed_users():
     )
 
 
-    db.session.add(marnie)
-    db.session.add(bobbie)
-    db.session.add(finn)
-    db.session.add(jawa)
-    db.session.add(rico)
-    db.session.add(picard)
-    db.session.add(spock)
-    db.session.add(mccoy)
-    db.session.add(worf)
-    db.session.add(sisko)
-    db.session.add(spiderman)
-    db.session.add(msmarvel)
-    db.session.add(unknown)
-    db.session.add(demo1)
-    db.session.add(demo2)
+    db.session.add(marnie) # 1
+    db.session.add(bobbie) # 2
+    db.session.add(finn) # 3
+    db.session.add(jawa) # 4
+    db.session.add(rico) # 5
+    db.session.add(picard) # 6
+    db.session.add(spock) # 7
+    db.session.add(mccoy) # 8
+    db.session.add(worf) # 9
+    db.session.add(sisko) # 10
+    db.session.add(spiderman) # 11
+    db.session.add(msmarvel) # 12
+    db.session.add(unknown) # 13
+    db.session.add(demo1) # 14
+    db.session.add(demo2) # 15
     db.session.commit()
 
 
