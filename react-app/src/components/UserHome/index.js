@@ -1,7 +1,9 @@
 import './UserHome.css'
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { loadUserServersThunk } from '../../store/servers';
+import { loadServerChannelsThunk } from '../../store/channels';
+import ChannelsList from '../ChannelsList';
 
 function UserHome() {
     const dispatch = useDispatch();
@@ -11,6 +13,7 @@ function UserHome() {
 
     const servers = useSelector(state => Object.values(state.servers.allServers));
     console.log('servers:', servers);
+    const [activeServer, setActiveServer] = useState(servers[0]);
 
     return (
         <div>
@@ -19,10 +22,14 @@ function UserHome() {
                 <h2>Servers You're In</h2>
                 {servers.map(server => (
                     <div>
-                        {server.name}
+                        <h3
+                            onClick={e => {
+                                dispatch(loadServerChannelsThunk(server.id))
+                                setActiveServer(server)}}
+                        >{server.name}</h3>
                     </div>
                 ))}
-
+                {activeServer && <ChannelsList server={activeServer} />}
             </div>
         </div>
     )

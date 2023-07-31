@@ -8,14 +8,28 @@ server_routes = Blueprint('server', __name__)
 @login_required
 def current_servers():
     """
-    Return a list of the servers current user is a member of.
+    Returns a list of the servers current user is a member of.
     """
     serverList = []
     servers = current_user.servers
     for server in servers:
         serverList.append(server.to_dict())
 
-    print (serverList)
-    #serverList = { current_user.servers }
-
     return serverList
+
+@server_routes.route('/<int:serverId>/channels')
+@login_required
+def server_channels(serverId):
+    """
+    Returns a list of the channels on the specified server.
+    """
+
+    server = Server.query.filter(Server.id == serverId).first()
+
+    channelList = []
+    for channel in server.channels:
+        channelList.append(channel.to_dict())
+
+    print (channelList)
+
+    return channelList
