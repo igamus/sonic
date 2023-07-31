@@ -10,9 +10,12 @@ def current_servers():
     """
     Return a list of the servers current user is a member of.
     """
+    serverList = []
+    servers = current_user.servers
+    for server in servers:
+        serverList.append(server.to_dict())
 
-    serverList = {
-        current_user.servers
-    }
+    print (serverList)
+    #serverList = { current_user.servers }
 
     return serverList
