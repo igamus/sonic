@@ -1,4 +1,5 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
+from .users_servers import memberships
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
@@ -15,8 +16,15 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
     profile_picture = db.Column(db.String(250), nullable=False)
     # make sure you add a default url later when user doesn't submit a photo
-    servers = db.relationship("Server", back_populates="user", secondary="users_servers")
-    reactions= db.relationship("Reaction", back_populates="user")
+
+    servers = db.relationship("Server", back_populates="user", cascade="delete-orphan, all")
+    user_memberships = db.relationship(
+        "Server",
+        secondary=memberships,
+        back_populates="server_memberships"
+    )
+    reactions= db.relationship("Reaction", back_populates="user", cascade="delete-orphan, all")
+    messages = db.relationship("Message", back_populates="user", cascade="delete-orphan, all")
 
     def __repr__(self):
         return f"< User: {self.username} ID: {self.id}>"

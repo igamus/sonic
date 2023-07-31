@@ -1,5 +1,5 @@
 from .db import db, environment, SCHEMA
-
+from .users_servers import memberships
 
 
 class Server(db.Model):
@@ -17,8 +17,13 @@ class Server(db.Model):
     banner_image = db.Column(db.String(250), nullable=False)
 
   #relationship attributes
-    user = db.relationship("User", back_populates="servers", secondary="users_servers")
-    channels = db.relationship("Channel", back_populates="server")
+    user = db.relationship("User", back_populates="servers")
+    server_memberships = db.relationship(
+        "User",
+        secondary=memberships,
+        back_populates="user_memberships"
+    )
+    channels = db.relationship("Channel", back_populates="server", cascade="delete-orphan, all")
 
 
 

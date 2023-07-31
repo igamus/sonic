@@ -7,11 +7,11 @@ class Channel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     server_id = db.Column(db.Integer, db.ForeignKey("servers.id") , nullable=False)
     description = db.Column(db.String(255), nullable=False)
-    name= db.Column(db.String(255), nullable=False, unique=True)
+    name= db.Column(db.String(255), nullable=False)
 
     #relationship attributes
-    server = db.relationship("Server", back_populates="channel")
-    message = db.relationship("Message", back_populates="channel")
+    server = db.relationship("Server", back_populates="channels")
+    messages = db.relationship("Message", back_populates="channel", cascade="delete-orphan, all")
 
 
     def to_dict(self):

@@ -80,22 +80,22 @@ def seed_messages():
         },
         { # 16
             "channel_id": 6,
-            "owner_id": 1,
+            "owner_id": 2,
             "text": "All of this has happened before and all of this will happen again"
         },
         { # 17
             "channel_id": 6,
-            "owner_id": 1,
+            "owner_id": 2,
             "text": "There are many copies, and they have a plan"
         },
         { # 18
             "channel_id": 6,
-            "owner_id": 2,
+            "owner_id": 1,
             "text": "Oh, frack off"
         },
         { # 19
             "channel_id": 6,
-            "owner_id": 1,
+            "owner_id": 2,
             "text": "srry"
         },
         { # 20
