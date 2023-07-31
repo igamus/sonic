@@ -14,7 +14,7 @@ def user_exists(form, field):
 
 
 def username_exists(form, field):
-    # Checking if username is already in use
+    # Checking if username is already in usee
     username = field.data
     user = User.query.filter(User.username == username).first()
     if user:
