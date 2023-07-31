@@ -7,6 +7,8 @@ import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UserHome from "./components/UserHome";
+import NotFound from "./components/ErrorPage/Errorpage";
+import LandingPage from "./components/LandingPage/LandingPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -20,6 +22,7 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
+          <Route  exact path="/"component={LandingPage}></Route>
           <ProtectedRoute path="/me">
             <UserHome />
           </ProtectedRoute>
@@ -29,6 +32,7 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
+          <Route path="*" component={NotFound}/>
         </Switch>
       )}
     </>
