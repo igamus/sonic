@@ -5,6 +5,8 @@ import SignupFormPage from "./components/SignupFormPage";
 import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
+import ProtectedRoute from "./components/auth/ProtectedRoute";
+import UserHome from "./components/UserHome";
 
 function App() {
   const dispatch = useDispatch();
@@ -18,6 +20,9 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
+          <ProtectedRoute path="/me">
+            <UserHome />
+          </ProtectedRoute>
           <Route path="/login" >
             <LoginFormPage />
           </Route>

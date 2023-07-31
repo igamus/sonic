@@ -17,7 +17,7 @@ export const loadUserServersThunk = () => async dispatch => {
 };
 
 // reducer
-const initialState = { allServers: { {} }, singleServer: {}  }
+const initialState = { allServers: {}, singleServer: {}  }
 
 const serversReducer = (state = initialState, action) => {
     let newState;
