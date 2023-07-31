@@ -9,7 +9,7 @@ function UserHome() {
         dispatch(loadUserServersThunk())
     }, [dispatch]);
 
-    const servers = useSelector(state => state.servers.allServers);
+    const servers = useSelector(state => Object.values(state.servers.allServers));
     console.log('servers:', servers);
 
     return (
