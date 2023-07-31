@@ -10,8 +10,8 @@ export const loadServerChannelsAction = channels => {
 };
 
 // thunk action creators
-export const loadServerChannelsThunk = () => async dispatch => {
-    const res = await fetch("/api/channels/current", {"headers": {
+export const loadServerChannelsThunk = serverId => async dispatch => {
+    const res = await fetch(`/api/servers/${serverId}/channels`, {"headers": {
         "method": "GET",
         "Content-Type": "application/json"
     }});
