@@ -17,7 +17,7 @@ class User(db.Model, UserMixin):
     profile_picture = db.Column(db.String(250), nullable=False)
     # make sure you add a default url later when user doesn't submit a photo
 
-    servers = db.relationship("Server", back_populates="user", cascade="delete-orphan, all")
+    servers = db.relationship("Server", back_populates="users", cascade="delete-orphan, all")
     user_memberships = db.relationship(
         "Server",
         secondary=memberships,

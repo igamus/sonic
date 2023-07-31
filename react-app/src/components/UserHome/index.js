@@ -20,7 +20,7 @@ function UserHome() {
                 <h2>Servers You're In</h2>
                 {servers.map(server => (
                     <div>
-                        {servers.name}
+                        {server.name}
                     </div>
                 ))}
 
