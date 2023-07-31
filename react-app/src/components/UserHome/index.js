@@ -1,16 +1,16 @@
 import './UserHome.css'
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { loadUserServersAction } from '../../store/servers';
+import { loadUserServersThunk } from '../../store/servers';
 
 function UserHome() {
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(loadUserServersAction())
+        dispatch(loadUserServersThunk())
     }, [dispatch]);
 
     const servers = useSelector(state => state.servers.allServers);
-    console.log(servers);
+    console.log('servers:', servers);
 
     return (
         <div>
