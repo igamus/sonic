@@ -17,7 +17,7 @@ class Server(db.Model):
     banner_image = db.Column(db.String(250), nullable=False)
 
   #relationship attributes
-    user = db.relationship("User", back_populates="servers")
+    users = db.relationship("User", back_populates="servers")
     server_memberships = db.relationship(
         "User",
         secondary=memberships,

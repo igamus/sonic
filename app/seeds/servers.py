@@ -32,7 +32,7 @@ def seed_servers():
             "server_memberships": [bobbie, marnie, rico, demo1]
         },
         {
-            "owner_id" : 3,
+            "owner_id" : 6,
             "public" : False,
             "description" : "We just pretend Enterprise doesn't exist",
             "name" : "To Boldly Go",
@@ -41,7 +41,7 @@ def seed_servers():
             "server_memberships": [picard, mccoy, finn, spock, worf, sisko]
         },
         {
-            "owner_id" : 3,
+            "owner_id" : 13,
             "public" : True,
             "description" : "Now we're all standing in a circle",
             "name" : "Marvel Guardians",
