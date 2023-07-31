@@ -11,7 +11,10 @@ export const loadUserServersAction = servers => {
 
 // thunk action creators
 export const loadUserServersThunk = () => async dispatch => {
-    const res = await fetch("/api/servers/current");
+    const res = await fetch("/api/servers/current", {"headers": {
+        "method": "GET",
+        "Content-Type": "application/json"
+    }});
     const data = await res.json();
     return dispatch(loadUserServersAction(data));
 };
