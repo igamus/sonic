@@ -12,12 +12,12 @@ function ChannelsList({ server }) {
     console.log('server channels:', channels)
 
     return (
-        <div>
+        <>
             <h2>{server.name}'s Channels:</h2>
             {channels.map(channel => (
-                <h3>{channel.name}</h3>
+                <h3 key={`channel-${channel.id}`}>{channel.name}</h3>
             ))}
-        </div>
+        </>
     );
 };
 
