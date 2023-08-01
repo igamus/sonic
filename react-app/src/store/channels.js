@@ -130,7 +130,6 @@ const channelsReducer = (state = initialState, action) => {
             delete newState.serverChannels[action.channelId];
             return newState;
         case UPDATE_CHANNEL:
-            console.log("action in thunk 4:", action.data)
             newState = {
                 ...state,
                 serverChannels: {

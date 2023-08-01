@@ -12,7 +12,6 @@ function UserHome() {
     }, [dispatch]);
 
     const servers = useSelector(state => Object.values(state.servers.allServers));
-    console.log('servers:', servers);
     const [activeServer, setActiveServer] = useState(servers[0]);
 
     return (

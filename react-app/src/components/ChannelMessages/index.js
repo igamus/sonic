@@ -9,7 +9,6 @@ function ChannelMessages({ channel }) {
         if (channel?.id) dispatch(loadChannelMessagesThunk(channel.id));
     }, [dispatch]);
     const messages = useSelector(state => Object.values(state.messages));
-    console.log('messages:', messages)
     return (
         <div>
             {
