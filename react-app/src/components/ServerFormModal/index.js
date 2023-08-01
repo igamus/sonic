@@ -5,7 +5,7 @@ import { useState } from 'react'
 import { createServerThunk } from '../../store/servers'
 import { useHistory } from 'react-router-dom'
 
-export default function ServerFormModal({}) {
+export default function ServerFormModal({ }) {
     const dispatch = useDispatch()
     const history = useHistory()
     const { closeModal } = useModal()
@@ -36,10 +36,10 @@ export default function ServerFormModal({}) {
     return (
         <div>
             <form onSubmit={handleSubmit}>
-                <input type='text' value={name} onChange={(e) => setName(e.target.value)}/>
-                <input type='text' value={description} onChange={(e) => setDescription(e.target.value)}/>
-                <input type='file'  onChange={(e) => setServerImage(e.target.files[0])} accept='image/*'/>
-                <input type='file'  onChange={(e) => setServerBannerImage(e.target.files[0])} accept='image/*'/>
+                <input type='text' value={name} onChange={(e) => setName(e.target.value)} />
+                <input type='text' value={description} onChange={(e) => setDescription(e.target.value)} />
+                <input type='file' onChange={(e) => setServerImage(e.target.files[0])} accept='image/*' />
+                <input type='file' onChange={(e) => setServerBannerImage(e.target.files[0])} accept='image/*' />
                 <button type='submit'>
                     Create Form
                 </button>
