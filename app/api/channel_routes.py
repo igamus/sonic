@@ -16,7 +16,7 @@ def channel_messages(channelId):
     messageList = []
     for message in channel.messages:
         newMessage = message.to_dict()
-        newMessage["user"] = message["user"].to_dict()
+        newMessage["user"] = message.user.to_dict()
         messageList.append(newMessage)
 
     print (messageList)
