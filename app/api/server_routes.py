@@ -1,5 +1,6 @@
 from flask import Blueprint, jsonify, session, request
-from app.models import User, Server, db
+from app.models import User, Server, Channel, db
+from app.forms import CreateServerForm
 from flask_login import current_user, login_required
 from .AWS_helpers import get_unique_filename, upload_file_to_s3, remove_file_from_s3
 
@@ -42,23 +43,50 @@ def create_server():
     Adds a new server and adds the creator to the server as a member
     """
 
+
+
     form = CreateServerForm()
 
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        response = Server(
+        newServer = Server(
             name=form.data['name'],
             owner_id=current_user.id)
 
         description = form.data['description']
-        response.description = description if description != Null else ""
+        newServer.description = description if description != None else ""
 
         server_image = form.data['server_image']
-        response.server_image = server_image if server_image != Null else ""
+        server_image.filename = get_unique_filename(server_image.filename)
+        uploadServerImage = upload_file_to_s3(server_image)
+        if 'url' not in uploadServerImage:
+            return uploadServerImage
+        else:
+            newServer.server_image = uploadServerImage['url']
 
         banner_image = form.data['banner_image']
-        response.banner_image = banner_image if banner_image != Null else ""
+        banner_image.filename = get_unique_filename(banner_image.filename)
+        uploadBannerImage = upload_file_to_s3(banner_image)
+        if 'url' not in uploadBannerImage:
+            return uploadBannerImage
+        else:
+            newServer.banner_image = uploadBannerImage['url']
 
-        
+        db.session.add(newServer)
+        db.session.commit()
 
+        newChannel = Channel(server_id=newServer.id, name='General', description='')
+        db.session.add(newChannel)
+        db.session.commit()
 
+        newServer.channels.append(newChannel)
+        newServer.server_memberships.append(current_user)
+        db.session.commit()
+
+        server_dict = newServer.to_dict()
+        server_dict['general_channel_id'] = newChannel.id
+        print ('success server route')
+        return server_dict
+    else:
+        print ('fail server route')
+        return form.errors, 400

@@ -26,7 +26,7 @@ function UserHome() {
                             onClick={e => {
                                 dispatch(loadServerChannelsThunk(server.id))
                                 setActiveServer(server)}}
-                        >{server.name}</h3>
+                        ><img src={server.serverImage} /><img src={server.bannerImage} />{server.name}</h3>
                     </div>
                 ))}
                 {activeServer && <ChannelsList server={activeServer} />}
