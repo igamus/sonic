@@ -11,12 +11,7 @@ function UserHome() {
     dispatch(loadUserServersThunk());
   }, [dispatch]);
 
-    const servers = useSelector(state => Object.values(state.servers.allServers));
-    const [activeServer, setActiveServer] = useState(servers[0]);
-  const servers = useSelector((state) =>
-    Object.values(state.servers.allServers)
-  );
-  console.log("servers:", servers);
+  const servers = useSelector(state => Object.values(state.servers.allServers));
   const [activeServer, setActiveServer] = useState(servers[0]);
 
   const handleDeleteServer = (serverId) => {

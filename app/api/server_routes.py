@@ -44,9 +44,6 @@ def create_server():
     """
     Adds a new server and adds the creator to the server as a member
     """
-
-
-
     form = CreateServerForm()
 
     form['csrf_token'].data = request.cookies['csrf_token']
