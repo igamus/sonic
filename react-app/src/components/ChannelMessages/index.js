@@ -14,14 +14,14 @@ function ChannelMessages({ channel }) {
             {
                 messages.length
                     ?
-                <>{messages.map(message => (
-                    <div>
-                        <p>{message.user.username} says...</p>
-                        <p>{message.text}</p>
-                    </div>)
-                )}</>
+                    <>{messages.map(message => (
+                        <div>
+                            <p>{message.user.username} says...</p>
+                            <p>{message.text}</p>
+                        </div>)
+                    )}</>
                     :
-                <p>Be the first to say something!</p>
+                    <p>Be the first to say something!</p>
             }
         </div>
     );

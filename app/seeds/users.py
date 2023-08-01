@@ -76,4 +76,9 @@ def undo_users():
     else:
         db.session.execute(text("DELETE FROM users"))
 
+    if environment == "production":
+        db.session.execute(f"TRUNCATE table {SCHEMA}.memberships RESTART IDENTITY CASCADE;")
+    else:
+        db.session.execute(text("DELETE FROM memberships"))
+
     db.session.commit()
