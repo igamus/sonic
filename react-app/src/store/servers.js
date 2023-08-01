@@ -23,9 +23,10 @@ export const updateServersAction = (servers) => {
   };
 };
 
-export const deleteServerAction = (servers) => {
+export const deleteServerAction = (serverId) => {
   return {
     type: DELETE_SERVER,
+    serverId,
   };
 };
 
