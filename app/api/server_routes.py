@@ -90,3 +90,21 @@ def create_server():
     else:
         print ('fail server route')
         return form.errors, 400
+
+@login_required
+@server_routes.route('/<int:serverId>', methods = ['DELETE'])
+def delete_server(serverId):
+#  find server by id in database
+    server = Server.query.get(serverId)
+
+    if server is None:
+        return jsonify({'message': "Server doesn't exist"}),404
+
+    if current_user.id != server.owner_id:
+        return jsonify({'message': 'You do not have permission to delete this server'}), 403
+
+
+    db.session.delete(server)
+    db.session.commit()
+
+    return jsonify({'message': 'Server deleted success'}), 200
