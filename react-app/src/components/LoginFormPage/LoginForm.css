@@ -1,0 +1,40 @@
+.field-holder {
+    position: relative;
+    margin-bottom: 1.25rem;
+}
+
+.field-holder button {
+    width: 300px;
+    height: 40px;
+    color: white;
+    box-shadow: 2px 2px 2px #666666;
+    border: solid #4752c4;
+    background-color: #4752c4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+}
+.field-holder input {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 300px;
+}
+.field-holder label {
+    display: flex;
+  flex-direction: column;
+  width: 300px;
+  margin: 0.5rem;
+}
+.field-holder form {
+    display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2rem;
+}
+
+button {
+    cursor: pointer;
+}
