@@ -3,7 +3,8 @@ import { login } from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import './LoginForm.css';
-
+import Card from "../UI/Card/Card";
+import './LoginForm.css'
 function LoginFormPage() {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
@@ -22,15 +23,19 @@ function LoginFormPage() {
   };
 
   return (
+    <Card>
     <>
-      <h1>Log In</h1>
+
+      <h1>Welcome Back!</h1>
+      <div>We're so excited to see you again!</div>
       <form onSubmit={handleSubmit}>
         <ul>
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
           ))}
         </ul>
-        <label>
+        <div div className="field-holder">
+        <label className="label-ss">
           Email
           <input
             type="text"
@@ -39,7 +44,9 @@ function LoginFormPage() {
             required
           />
         </label>
-        <label>
+        </div>
+        <div className="field-holder" >
+        <label className="label-ss">
           Password
           <input
             type="password"
@@ -47,10 +54,19 @@ function LoginFormPage() {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
+        <div>Forgot your password</div>
         </label>
-        <button type="submit">Log In</button>
+        </div>
+
+        <div className="field-holder" >
+        <button className="login-bttn"type="submit">Log In</button>
+        </div>
+
+
       </form>
     </>
+    </Card>
+
   );
 }
 

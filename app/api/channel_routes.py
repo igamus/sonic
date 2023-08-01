@@ -15,8 +15,10 @@ def channel_messages(channelId):
 
     messageList = []
     for message in channel.messages:
-        messageList.append(message.to_dict())
-    
+        newMessage = message.to_dict()
+        newMessage["user"] = message.user.to_dict()
+        messageList.append(newMessage)
+
     print (messageList)
 
     return messageList
