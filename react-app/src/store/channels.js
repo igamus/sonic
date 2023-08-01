@@ -2,6 +2,7 @@
 const LOAD_SERVER_CHANNELS = 'sonic/channels/LOAD_SERVER_CHANNELS';
 const CREATE_CHANNEL = 'sonic/channels/CREATE_CHANNEL';
 const DELETE_CHANNEL = 'sonic/channels/DELETE_CHANNEL';
+const UPDATE_CHANNEL = 'sonic/channels/UPDATE_CHANNEL';
 
 // action creators
 export const loadServerChannelsAction = channels => {
@@ -22,6 +23,13 @@ export const deleteChannelAction = channelId => {
     return {
         type: DELETE_CHANNEL,
         channelId
+    }
+};
+
+export const updateChannelAction = data => {
+    return {
+        type: UPDATE_CHANNEL,
+        data
     }
 };
 
@@ -51,11 +59,9 @@ export const createChannelThunk = formData => async dispatch => {
 
     if (res.ok) {
         const data = await res.json();
-        console.log('res was good:', data);
         return dispatch(createChannelAction(data))
     } else {
         const errors = await res.json();
-        console.log('res was bad:', errors)
         return errors;
     }
 };
@@ -69,6 +75,26 @@ export const deleteChannelThunk = channelId => async dispatch => {
         return dispatch(deleteChannelAction(channelId));
     } else {
         return {"message": "There was a problem deleting the channel"};
+    }
+};
+
+export const updateChannelThunk = formData => async dispatch => {
+    const submission = {};
+    if (formData.name) submission.name = formData.name;
+    if (formData.description) submission.description = formData.description;
+
+    const res = await fetch(`/api/channels/${formData.channelId}`, {
+        method: "PUT",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(submission)
+    });
+
+    if (res.ok) {
+        const data = await res.json();
+        return dispatch(updateChannelAction(data));
+    } else {
+        const errors = await res.json();
+        return errors;
     }
 };
 
@@ -102,6 +128,20 @@ const channelsReducer = (state = initialState, action) => {
                 }
             };
             delete newState.serverChannels[action.channelId];
+            return newState;
+        case UPDATE_CHANNEL:
+            console.log("action in thunk 4:", action.data)
+            newState = {
+                ...state,
+                serverChannels: {
+                    ...state.serverChannels,
+                    [action.data.id]: {
+                        ...action.data
+                    }
+                }
+            };
+
+            // newState.serverChannels[action.formData.id] = { ...newState.serverChannels[action.formData.id], ...action.formData };
             return newState;
         default:
             return state;

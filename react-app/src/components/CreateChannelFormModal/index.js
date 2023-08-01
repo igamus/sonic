@@ -4,7 +4,7 @@ import ChannelForm from '../ChannelForm';
 function CreateChannelFormModal({ serverId }) {
     const formData = {name: "", description: "", serverId}
     return (
-        <ChannelForm type="create" formData={formData}/>
+        <ChannelForm type="create" formData={formData} />
     );
 };
 

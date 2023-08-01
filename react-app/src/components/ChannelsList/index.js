@@ -7,6 +7,7 @@ import { loadChannelMessagesThunk } from '../../store/messages';
 import OpenModalButton from '../OpenModalButton';
 import CreateChannelFormModal from '../CreateChannelFormModal';
 import DeleteChannelModal from '../DeleteChannelModal';
+import UpdateChannelFormModal from '../UpdateChannelFormModal';
 
 function ChannelsList({ server }) {
     const dispatch = useDispatch();
@@ -39,6 +40,10 @@ function ChannelsList({ server }) {
                         }}
                         key={`channel-${channel.id}`}
                     >{channel.name}</h3>
+                    <OpenModalButton
+                        modalComponent={<UpdateChannelFormModal channel={channel} />}
+                        buttonText={"Update Channel"}
+                    />
                     <OpenModalButton
                         modalComponent={<DeleteChannelModal channelId={channel.id} />}
                         buttonText={"Delete Channel"}

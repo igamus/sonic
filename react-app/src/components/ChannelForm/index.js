@@ -1,7 +1,7 @@
 import './ChannelForm.css';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { createChannelThunk } from '../../store/channels';
+import { createChannelThunk, updateChannelThunk } from '../../store/channels';
 import { useModal } from '../../context/Modal';
 
 function ChannelForm({ type, formData }) {
@@ -34,19 +34,23 @@ function ChannelForm({ type, formData }) {
                 dispatch(createChannelThunk(submission))
                 closeModal()
             } catch (e) {
-                console.log(errors);
+                console.log(e);
             }
        } else {
-            // TODO: Update
-            return console.log("SOMETHING HAPPENED!");
+            submission.channelId = formData.id;
+            try {
+                dispatch(updateChannelThunk(submission))
+                closeModal()
+            } catch (e) {
+                console.log(e)
+            }
        }
     };
 
     return (
         <div>
-            <h1>Add Channel</h1>
+            <h1>{type === "create" ? "Add Channel" : "Update Channel"}</h1>
             {Object.values(errors).map(e => (<p className='error'>{e}</p>))}
-            <p>type: {type}</p>
             <form id="channel-form" onSubmit={handleSubmit}>
                 <label htmlFor="channel-name">
                     New Channel Name
@@ -70,7 +74,7 @@ function ChannelForm({ type, formData }) {
                     onChange={e => setDescription(e.target.value)}
                 />
 
-                <button type="submit">Create Channel</button>
+                <button type="submit">{type === "create" ? "Create Channel" : "Update Channel"}</button>
             </form>
         </div>
     );
