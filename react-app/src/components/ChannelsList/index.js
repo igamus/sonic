@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { loadServerChannelsThunk } from '../../store/channels';
 import { loadChannelMessagesThunk } from '../../store/messages';
+import OpenModalButton from '../OpenModalButton';
+import CreateChannelFormModal from '../CreateChannelFormModal';
 
 function ChannelsList({ server }) {
     const dispatch = useDispatch();
@@ -14,10 +16,18 @@ function ChannelsList({ server }) {
     console.log('server channels:', channels)
 
     const [activeChannel, setActiveChannel] = useState(null);
-
+    // open modal
     return (
         <div>
-            <h2>{server.name}'s Channels:</h2>
+            <div>
+                <h2>{server.name}'s Channels:</h2>
+                <OpenModalButton
+                    modalComponent={<CreateChannelFormModal serverId={server.id} />}
+                    buttonText={"+"}
+                    // onButtonClick={}
+                    // onModalClose={}
+                />
+            </div>
             {channels.map(channel => (
                 <h3
                     onClick={e => {

@@ -19,33 +19,35 @@ export const createChannelAction = channel => {
 
 // thunk action creators
 export const loadServerChannelsThunk = serverId => async dispatch => {
-    const res = await fetch(`/api/servers/${serverId}/channels`, {"headers": {
+    const res = await fetch(`/api/servers/${serverId}/channels`, {
         "method": "GET",
-        "Content-Type": "application/json"
-    }});
+        "headers": {
+            "Content-Type": "application/json"
+        }
+    });
     const data = await res.json();
     return dispatch(loadServerChannelsAction(data));
 };
 
 export const createChannelThunk = formData => async dispatch => {
-    const serverId = formData.serverId;
-    const res = await fetch(`/api/servers/${serverId}/channels`,
-    {
+    const res = await fetch(`/api/servers/${formData.serverId}/channels`, {
+        "method": "POST",
         "headers": {
-            "method": "POST",
             "Content-Type": "application/json"
         },
         "body": JSON.stringify({
             name: formData.name,
-            description: formData.description
+            description: formData.description,
         })
     });
 
     if (res.ok) {
         const data = await res.json();
+        console.log('res was good:', data);
         return dispatch(createChannelAction(data))
     } else {
         const errors = await res.json();
+        console.log('res was bad:', errors)
         return errors;
     }
 };
@@ -64,10 +66,11 @@ const channelsReducer = (state = initialState, action) => {
             );
             return newState;
         case CREATE_CHANNEL:
+            console.log("In reducer (action):", action)
             newState  = {
                 ...state,
                 serverChannels: {
-                    ...newState.serverChannels,
+                    ...state.serverChannels,
                     [action.channel.id]: action.channel
                 }
             };

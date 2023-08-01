@@ -43,6 +43,7 @@ def create_channel(server_id):
     Creates a new channel in the specified server
     """
     form = CreateChannelForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         new_channel = Channel(
             server_id=server_id,
