@@ -108,3 +108,51 @@ def delete_server(serverId):
     db.session.commit()
 
     return jsonify({'message': 'Server deleted success'}), 200
+
+@login_required
+@server_routes.route('/<int:serverId>', methods = ['PUT'])
+def edit_server(serverId):
+    # Updates the server information based on the provided server_id.
+    # Only the owner of the server can perform this action.
+    server = Server.query.get(serverId)
+
+    if server is None:
+        return jsonify({"message": "Server doesn't exist"}), 404
+
+
+    if current_user.id != server.owner_id:
+        return jsonify({'message': 'You do not have permission to delete this server'}), 403
+
+
+    data = request.get_json()
+
+    new_name = data.get('name')
+    if new_name is not None and new_name != server.name:
+
+        existing_server = Server.query.filter_by(name=new_name).first()
+        if existing_server:
+            return jsonify(error = 'Server name already in use'), 400
+        server.name = new_name
+
+    server_image = data.get('serverImage')
+    if server_image:
+        server_image_filename = get_unique_filename(server_image.get('filename'))
+        uploadServerImage = upload_file_to_s3(server_image, server_image_filename)
+        if 'url' not in uploadServerImage:
+            return jsonify(error=uploadServerImage), 400
+        server.server_image = uploadServerImage['url']
+
+    banner_image = data.get('bannerImage')
+    if banner_image:
+        banner_image_filename = get_unique_filename(banner_image.get('filename'))
+        uploadBannerImage = upload_file_to_s3(banner_image, banner_image_filename)
+        if 'url' not in uploadBannerImage:
+            return jsonify(error=uploadBannerImage), 400
+        server.banner_image = uploadBannerImage['url']
+    try:
+        db.session.commit()
+        return jsonify(message="Server updated successfully"), 200
+    except Exception as e:
+        # Handle any errors that might occur during the update process
+        db.session.rollback()
+        return jsonify(error="An error occurred while updating the server"), 500
