@@ -22,3 +22,20 @@ def channel_messages(channelId):
     print (messageList)
 
     return messageList
+
+@channel_routes.route('/<int:channelId>', methods=["DELETE"])
+@login_required
+def delete_channel(channelId):
+    """
+    Deletes specified channel
+    """
+    channel = Channel.query.filter(Channel.id == channelId).first()
+
+    db.session.delete(channel)
+    db.session.commit()
+
+    message = f"Channel {channelId} deleted"
+
+    print(message)
+
+    return {"message": message}

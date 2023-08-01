@@ -1,6 +1,7 @@
 // action types
 const LOAD_SERVER_CHANNELS = 'sonic/channels/LOAD_SERVER_CHANNELS';
 const CREATE_CHANNEL = 'sonic/channels/CREATE_CHANNEL';
+const DELETE_CHANNEL = 'sonic/channels/DELETE_CHANNEL';
 
 // action creators
 export const loadServerChannelsAction = channels => {
@@ -14,6 +15,13 @@ export const createChannelAction = channel => {
     return {
         type: CREATE_CHANNEL,
         channel
+    }
+};
+
+export const deleteChannelAction = channelId => {
+    return {
+        type: DELETE_CHANNEL,
+        channelId
     }
 };
 
@@ -52,6 +60,18 @@ export const createChannelThunk = formData => async dispatch => {
     }
 };
 
+export const deleteChannelThunk = channelId => async dispatch => {
+    const res = await fetch(`/api/channels/${channelId}`, {
+        method: "DELETE",
+    });
+
+    if (res.ok) {
+        return dispatch(deleteChannelAction(channelId));
+    } else {
+        return {"message": "There was a problem deleting the channel"};
+    }
+};
+
 // reducer
 const initialState = { serverChannels: {}, singleChannel: {}  }
 
@@ -66,7 +86,6 @@ const channelsReducer = (state = initialState, action) => {
             );
             return newState;
         case CREATE_CHANNEL:
-            console.log("In reducer (action):", action)
             newState  = {
                 ...state,
                 serverChannels: {
@@ -74,6 +93,15 @@ const channelsReducer = (state = initialState, action) => {
                     [action.channel.id]: action.channel
                 }
             };
+            return newState;
+        case DELETE_CHANNEL:
+            newState = {
+                ...state,
+                serverChannels: {
+                    ...state.serverChannels
+                }
+            };
+            delete newState.serverChannels[action.channelId];
             return newState;
         default:
             return state;

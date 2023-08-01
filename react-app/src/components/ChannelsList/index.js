@@ -6,6 +6,7 @@ import { loadServerChannelsThunk } from '../../store/channels';
 import { loadChannelMessagesThunk } from '../../store/messages';
 import OpenModalButton from '../OpenModalButton';
 import CreateChannelFormModal from '../CreateChannelFormModal';
+import DeleteChannelModal from '../DeleteChannelModal';
 
 function ChannelsList({ server }) {
     const dispatch = useDispatch();
@@ -29,14 +30,20 @@ function ChannelsList({ server }) {
                 />
             </div>
             {channels.map(channel => (
-                <h3
-                    onClick={e => {
-                        dispatch(loadChannelMessagesThunk(channel.id))
-                        setActiveChannel(channel)
-                        console.log('hey, you clicked it')
-                    }}
-                    key={`channel-${channel.id}`}
-                >{channel.name}</h3>
+                <>
+                    <h3
+                        onClick={e => {
+                            dispatch(loadChannelMessagesThunk(channel.id))
+                            setActiveChannel(channel)
+                            console.log('hey, you clicked it')
+                        }}
+                        key={`channel-${channel.id}`}
+                    >{channel.name}</h3>
+                    <OpenModalButton
+                        modalComponent={<DeleteChannelModal channelId={channel.id} />}
+                        buttonText={"Delete Channel"}
+                    />
+                </>
             ))}
             {activeChannel && <ChannelMessages channel={activeChannel} />}
         </div>
