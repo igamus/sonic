@@ -1,6 +1,8 @@
 from flask import Blueprint, jsonify, session, request
 from app.models import User, Server, db
 from flask_login import current_user, login_required
+from ..forms.createchannel_form import CreateChannelForm
+from ..models import db, Channel
 
 server_routes = Blueprint('server', __name__)
 
@@ -17,7 +19,7 @@ def current_servers():
 
     return serverList
 
-@server_routes.route('/<int:serverId>/channels')
+@server_routes.route('/<int:serverId>/channels', methods=["GET"])
 @login_required
 def server_channels(serverId):
     """
@@ -33,3 +35,26 @@ def server_channels(serverId):
     print (channelList)
 
     return channelList
+
+@server_routes.route('/<int:server_id>/channels', methods=["POST"])
+@login_required
+def create_channel(server_id):
+    """
+    Creates a new channel in the specified server
+    """
+    form = CreateChannelForm()
+    if form.validate_on_submit():
+        new_channel = Channel(
+            server_id=server_id,
+            description=form.data["description"],
+            name=form.data["name"]
+        )
+        print(new_channel)
+        db.session.add(new_channel)
+        db.session.commit()
+
+        return new_channel.to_dict()
+    print(form.errors)
+    if form.errors:
+        return form.errors
+    return {"error": "An unknown error has occcured"} # need error messages
