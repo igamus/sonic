@@ -9,6 +9,7 @@ import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UserHome from "./components/UserHome";
 import NotFound from "./components/ErrorPage/Errorpage";
 import LandingPage from "./components/LandingPage/LandingPage";
+import Home from "./components/UserHome/UserHome";
 
 function App() {
   const dispatch = useDispatch();
@@ -32,8 +33,10 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
+          <Route path ="/ahh" component={Home}/>
           <Route path="*" component={NotFound}/>
         </Switch>
+
       )}
     </>
   );

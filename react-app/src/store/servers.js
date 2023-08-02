@@ -59,7 +59,7 @@ export const createServerThunk = (formData) => async (dispatch) => {
 };
 
 export const updateServerThunk = (server) => async (dispatch) => {
-  const res = await fetch("", {
+  const res = await fetch(`/api/servers/${server.id}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(server),

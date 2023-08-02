@@ -1,0 +1,40 @@
+.sidenav {
+    justify-content: flex-start;
+    height: 100%;
+    width: 4%;
+    position: fixed;
+    overflow-x: hidden;
+    padding-top: 20px;
+    background-color: #1e1f22;
+    top: 0;
+    left: 0;
+    padding-top: 20px;
+}
+.sideleftwrap {
+    display: flex;
+    align-items: center;
+    /* margin-left: 5px; */
+    flex-direction: column;
+
+}
+
+.circle{
+    display: block;
+    background-color: #0B455E;
+    width: 48px;
+    height: 48px;
+    margin: 0.5px auto 0;
+    transition: all 0.5s ease;
+  }
+  .circle:hover{
+    background-color: #666;
+  }
+  .circle{
+       border-radius: 100%;
+       -moz-border-radius: 100%;
+       -webkit-border-radius: 100%;
+  }
+
+  .circle:hover{
+         -webkit-border-radius: 0 0 0 0;
+  }
