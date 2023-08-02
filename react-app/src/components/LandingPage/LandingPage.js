@@ -3,7 +3,7 @@ import { NavLink, useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import classes from "./LandingPage.module.css";
 import * as sessionActions from '../../store/session';
 import { useDispatch } from 'react-redux';
-
+import Chat from '../ChannelMessages/Messages/Message';
 
 
 const LandingPage = () => {
@@ -34,6 +34,8 @@ const LandingPage = () => {
         </NavLink>
       </div>
       <button onClick={logout}>Log Out</button>
+      <div>---------------------</div>
+      <Chat />
     </>
   );
 };
