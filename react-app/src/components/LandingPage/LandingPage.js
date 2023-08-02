@@ -34,8 +34,6 @@ const LandingPage = () => {
         </NavLink>
       </div>
       <button onClick={logout}>Log Out</button>
-      <div>---------------------</div>
-      <Chat />
     </>
   );
 };
