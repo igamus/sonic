@@ -3,6 +3,8 @@ const LOAD_USER_SERVERS = "sonic/servers/LOAD_USER_SERVERS";
 const CREATE_SERVER = "sonic/servers/CREATE_SERVER";
 const UPDATE_SERVER = "sonic/servers/UPDATE_SERVERS";
 const DELETE_SERVER = "sonic/servers/DELETE_SERVER";
+const LOAD_SINGLE_SERVER = "sonic/servers/LOAD_SINGLE_SERVER";
+const LOAD_ALL_SERVERS = "sonic/servers/LOAD_ALL_SERVERS";
 // action creators ---------------------------------------------------
 export const loadUserServersAction = (servers) => {
   return {
@@ -30,6 +32,19 @@ export const deleteServerAction = (serverId) => {
   };
 };
 
+export const loadSingleServerAction = (server) => {
+  return {
+    type: LOAD_SINGLE_SERVER,
+    server,
+  };
+};
+
+export const loadAllServersAction = (servers) => {
+  return {
+    type: LOAD_ALL_SERVERS,
+    servers,
+  };
+};
 // thunk action creators ---------------------------
 export const loadUserServersThunk = () => async (dispatch) => {
   const res = await fetch("/api/servers/current", {
@@ -90,6 +105,40 @@ export const deleteServerThunk = (serverId) => async (dispatch) => {
   }
 };
 
+export const loadSingleServerThunk = (serverId) => async (dispatch) => {
+  const res = await fetch(`/api/servers/${serverId}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  if (res.ok) {
+    const serverData = await res.json();
+    dispatch(loadSingleServerAction(serverData));
+    return serverData;
+  } else {
+    const errors = await res.json();
+    return errors;
+  }
+};
+
+export const loadAllServersThunk = () => async (dispatch) => {
+  const res = await fetch("/api/servers/all", {
+    headers: {
+      method: "GET",
+      "Content-Type": "application/json",
+    },
+  });
+  if (res.ok) {
+    const data = await res.json();
+    dispatch(loadAllServersAction(data));
+    return data;
+  } else {
+    const errors = await res.json();
+    return errors;
+  }
+};
 // reducer----------------------------------------------------------------------------------------------------------
 const initialState = { allServers: {}, singleServer: {} };
 // --------------------------------------------------------------------------------------------------------
@@ -127,6 +176,17 @@ const serversReducer = (state = initialState, action) => {
         ...state,
         allServers: remainingServers,
       };
+    case LOAD_SINGLE_SERVER:
+      return {
+        ...state,
+        singleServer: action.server,
+      };
+    case LOAD_ALL_SERVERS:
+      newState = { ...state, allServers: {} };
+      action.servers.forEach(
+        (server) => (newState.allServers[server.id] = server)
+      );
+      return newState;
     default:
       return state;
   }

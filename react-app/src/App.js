@@ -34,6 +34,7 @@ function App() {
             <SignupFormPage />
           </Route>
           <Route path ="/ahh" component={Home}/>
+          <Route path ="/test" compnent ={Home}/>
           <Route path="*" component={NotFound}/>
         </Switch>
 
