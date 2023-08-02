@@ -10,7 +10,6 @@ import UserHome from "./components/UserHome";
 import NotFound from "./components/ErrorPage/Errorpage";
 import LandingPage from "./components/LandingPage/LandingPage";
 import Home from "./components/UserHome/UserHome";
-import Chat from "./components/ChannelMessages/Messages/Message";
 
 function App() {
   const dispatch = useDispatch();
@@ -34,7 +33,7 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
-          <Route path ="/ahh" component={Chat}/>
+          <Route path ="/ahh" component={Home}/>
           <Route path="*" component={NotFound}/>
         </Switch>
 
