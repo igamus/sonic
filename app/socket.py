@@ -10,7 +10,7 @@ else:
 socketio = SocketIO(cors_allowed_origins=origins)
 
 
-@socketio.on("chan_message")
+@socketio.on("chat")
 def handling_channel_messages(data):
     message = Message(
         text = data['text'],
@@ -21,4 +21,4 @@ def handling_channel_messages(data):
     db.session.add(message)
     db.session.commit()
     temp = message.to_dict()
-    emit("chan_message", temp, broadcast=True)
+    emit("chat", temp, broadcast=True)
