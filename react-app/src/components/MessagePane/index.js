@@ -45,7 +45,7 @@ const Chat = ({ channelId }) => {
             console.log('disconnect');
             socket.disconnect()
         })
-    }, [])
+    }, [channelId])
 
     const updateChatInput = (e) => {
         setChatInput(e.target.value)
