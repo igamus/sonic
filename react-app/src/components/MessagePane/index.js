@@ -6,11 +6,20 @@ import { loadChannelMessagesThunk } from "../../store/messages";
 let socket;
 
 const Chat = ({ channelId }) => {
-    // let channelId = 4; // temp hardcode 4 testing; this channel has messages. how should things work in the front & back when there are no messages in a channel?
+    console.log("channelId:", channelId);
     const dispatch = useDispatch();
     const [chatInput, setChatInput] = useState("");
     const [messages, setMessages] = useState([]);
     const [isSending, setisSending]= useState(false);
+    const [savedChannelId, setSavedChannelId] = useState(0);
+    const [channelFlip, setChannelFlip] = useState(false);
+
+    if (channelId !== savedChannelId) {
+        setChatInput("");
+        console.log("component start DISPATCH FROM channelId:", channelId)
+        dispatch(loadChannelMessagesThunk(channelId))
+        setSavedChannelId(channelId);
+    };
 
     const user = useSelector(state => state.session.user)
     const channelMessages = useSelector(state => Object.values(state.messages))
@@ -23,9 +32,11 @@ const Chat = ({ channelId }) => {
         // create websocket
         socket = io();
         console.log('connect');
-        dispatch(loadChannelMessagesThunk(channelId));
+        // dispatch(loadChannelMessagesThunk(channelId));
         socket.on("chat", (chat) => {
-            let msg = dispatch(loadChannelMessagesThunk(channelId));
+            // emit comes from here which isn't necessarily updating when you changge the channel -- wait, maybbe not
+            console.log("emit DISPATCH FROM savedchannelId:", channelId)
+            let msg = dispatch(loadChannelMessagesThunk(channelId)); // was savedchannel
             let msgArr = Object.values(msg)
             setMessages([...msgArr]);
         })

@@ -11,6 +11,7 @@ export const loadChannelMessagesAction = messages => {
 
 // thunk action creators
 export const loadChannelMessagesThunk = channelId => async dispatch => {
+    console.log("THIS IS THE CHANNEL YOU'RE QUERYING:", channelId )
     const res = await fetch(`/api/channels/${channelId}/messages`, {"headers": {
         "method": "GET",
         "Content-Type": "application/json"

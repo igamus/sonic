@@ -38,7 +38,7 @@ function ChannelsList({ server }) {
                 <>
                     <h3
                         onClick={e => {
-                            dispatch(loadChannelMessagesThunk(channel.id))
+                            // dispatch(loadChannelMessagesThunk(channel.id))
                             setActiveChannel(channel)
                         }}
                         key={`channel-${channel.id}`}

@@ -12,6 +12,9 @@ socketio = SocketIO(cors_allowed_origins=origins)
 
 @socketio.on("chat")
 def handle_chat(data):
+    print('---------------------------------------------------------------------------------------------------')
+    print(data)
+    print('---------------------------------------------------------------------------------------------------')
     message = Message(
         text = data['text'],
         owner_id = data['owner_id'],
