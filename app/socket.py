@@ -21,6 +21,13 @@ def handle_chat(data):
     db.session.commit()
     emit("chat", data, broadcast=True) # data was temp
 
+@socketio.on("delete_message")
+def handle_delete_message(data):
+    target_message = Message.query.get(data['message_id'])
+    db.session.delete(target_message)
+    db.session.commit()
+    emit("chat", data, broadcast=True)
+
 # @socketio.on("react")
 # def handle_react(data):
 #     reaction = Reaction(
