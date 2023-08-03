@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import OpenModalButton from "../OpenModalButton";
 import ServerFormModal from '../ServerFormModal'
+import LoggedInUserDisplay from "../LoggedInUserDisplay";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -18,6 +19,7 @@ const Home = () => {
     Object.values(state.servers.allServers)
   );
   const [activeServer, setActiveServer] = useState(servers[0]);
+  const user = useSelector(state => state.session.user);
 
   return (
     <body>
@@ -29,12 +31,13 @@ const Home = () => {
               <button>{server.name}</button>
             </Link>
           ))}
-          <OpenModalButton modalComponent={<ServerFormModal title='Create Server' />} buttonText='+'/>
+          <OpenModalButton modalComponent={<ServerFormModal title='Create Server' />} buttonText='+' />
         </div>
       </nav>
       <nav className={classes.friends}>
-        <section className={classes.wrapper}>
-
+        <section className={classes.friendsList}></section>
+        <section className={classes.wrapper} id='logged-in-user-wrapper'>
+          <LoggedInUserDisplay user={user} />
         </section>
       </nav>
       <nav className={classes.main}>
