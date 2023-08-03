@@ -4,45 +4,45 @@ from sqlalchemy.sql import text
 
 # Adds a demo user, you can add other users here if you want
 demo1 = User(
-    username='Demo 1', email='demo1@aa.io', password='password', profile_picture='')
+    username='Demo 1', email='demo1@aa.io', password='password', profile_picture='http://sonic-aws.s3.amazonaws.com/53d02c6288504e08bf0ca3be5696ba85.png')
 demo2 = User(
-    username='Demo 2', email='demo2@aa.io', password='password', profile_picture='')
+    username='Demo 2', email='demo2@aa.io', password='password', profile_picture='http://sonic-aws.s3.amazonaws.com/fb2bf1d54a5040f5ab7cfcac0f26a0bb.png')
 marnie = User(
-    username='marnie', email='marnie@aa.io', password='password', profile_picture='')
+    username='marnie', email='marnie@aa.io', password='password', profile_picture='http://sonic-aws.s3.amazonaws.com/0e97eafd8cad4d9bac24f6a122f31830.png')
 bobbie = User(
-    username='bobbie', email='bobbie@aa.io', password='password', profile_picture='')
+    username='bobbie', email='bobbie@aa.io', password='password', profile_picture='http://sonic-aws.s3.amazonaws.com/550bd6945ee54238af26f5a632e9af94.png')
 finn = User(
-    username='finn', email='fn2187@firstorder.gov', password='REY', profile_picture=''
+    username='finn', email='fn2187@firstorder.gov', password='REY', profile_picture='http://sonic-aws.s3.amazonaws.com/abc552a36e9c432a95ce1088acc8e412.png'
 )
 jawa = User(
-    username='jawa-27', email='j27@jawa.net', password='jawa', profile_picture=''
+    username='jawa-27', email='j27@jawa.net', password='jawa', profile_picture='http://sonic-aws.s3.amazonaws.com/b3cd45b5f40744b2accd36c3ea4dd827.png'
 )
 rico = User(
-    username='jrico', email='johnnyrico@mobileinfantry.net', password='dizzy', profile_picture=''
+    username='jrico', email='johnnyrico@mobileinfantry.net', password='dizzy', profile_picture='http://sonic-aws.s3.amazonaws.com/b0ab37516970414d9f202225cc8acc03.png'
 )
 picard = User(
-    username='cjlp', email='cjlp@starfleet.gov', password='patrick', profile_picture=''
+    username='cjlp', email='cjlp@starfleet.gov', password='patrick', profile_picture='http://sonic-aws.s3.amazonaws.com/b2459cbcd882444e8bf22f1858f3a3e7.png'
 )
 spock = User(
-    username='docspock', email='spock@starfleet.gov', password='leonard', profile_picture=''
+    username='docspock', email='spock@starfleet.gov', password='leonard', profile_picture='http://sonic-aws.s3.amazonaws.com/ed247b0df781411f856febe735d70f4c.png'
 )
 mccoy = User(
-    username='drmccoy', email='mccoy@starfleet.gov', password='deforest', profile_picture=''
+    username='drmccoy', email='mccoy@starfleet.gov', password='deforest', profile_picture='http://sonic-aws.s3.amazonaws.com/ed247b0df781411f856febe735d70f4c.png'
 )
 worf = User(
-    username='worf', email='worf@starfleet.gov', password='michael', profile_picture=''
+    username='worf', email='worf@starfleet.gov', password='michael', profile_picture='http://sonic-aws.s3.amazonaws.com/4ffb625043de447cb4603e319bb13986.png'
 )
 sisko = User(
-    username='sisko', email='bsisko@starfleet.gov', password='avery', profile_picture=''
+    username='sisko', email='bsisko@starfleet.gov', password='avery', profile_picture='http://sonic-aws.s3.amazonaws.com/53c2b9ae403c47469692687eb013c2f8.png'
 )
 spiderman = User(
-    username='spiderman', email='pparker@avengers.co', password='peterandrewtom', profile_picture=''
+    username='spiderman', email='pparker@avengers.co', password='peterandrewtom', profile_picture='http://sonic-aws.s3.amazonaws.com/f344b22792974b82bfb5da4f38eeee31.png'
 )
 msmarvel = User(
-    username='msmarvel', email='kkhan@captainmarvelfans.blogspot.com', password='iman', profile_picture=''
+    username='msmarvel', email='kkhan@captainmarvelfans.blogspot.com', password='iman', profile_picture='http://sonic-aws.s3.amazonaws.com/abc552a36e9c432a95ce1088acc8e412.png'
 )
 unknown = User(
-    username='UNKNOWN', email='unknown@shield.gov', password='guest', profile_picture=''
+    username='UNKNOWN', email='unknown@shield.gov', password='guest', profile_picture='http://sonic-aws.s3.amazonaws.com/c1aa63e918f1449e8d5f98cb746364ac.png'
 )
 
 def seed_users():

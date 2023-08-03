@@ -18,11 +18,16 @@ function SignupFormPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (password === confirmPassword) {
-      const data = await dispatch(signUp(username,
-        email,
-        password,
-        profileImage));
+      const form = new FormData()
+      form.append('email', email);
+      form.append('username', username);
+      form.append('password', password);
+      form.append('profile_picture', profileImage)
+
+      console.log(form);
+      const data = await dispatch(signUp(form));
       if (data) {
         setErrors(data)
       }
