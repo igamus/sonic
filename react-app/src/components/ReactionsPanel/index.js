@@ -1,13 +1,20 @@
 import './ReactionsPanel.css'
 import sanitizeHtml from 'sanitize-html';
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react";
+import { io } from "socket.io-client";
+import { loadChannelMessagesThunk } from "../../store/messages";
+
+let socket;
 
 function ReactionsPanel({ message, userId }) {
+    const dispatch = useDispatch();
+
     const reactions = message.reactions;
-    console.log('reactions:', reactions)
     const reducedReactions = reactions.reduce((acc, cv) => {
         let ind = -1;
         acc.forEach((e, i) => {
-                    if (e.emoji === cv.emoji) ind = i;
+            if (e.emoji === cv.emoji) ind = i;
         });
 
         if (ind >= 0) {
@@ -28,6 +35,29 @@ function ReactionsPanel({ message, userId }) {
     // need a handler for adding emoji
 
     // make this websockets
+    useEffect(() => {
+        socket = io();
+        console.log("connected (reactions)");
+        socket.on("react", (react) => {
+            // dispatch(findAspo(spotId)) // => reloads the spot, so we'll want to reload the message/reactions
+            loadChannelMessagesThunk() // channelId -- maybe you need to update the thunk to rerender the reactions
+        })
+
+        return (() => {
+            console.log("disconnected (reactions)");
+            socket.disconnect();
+        })
+    }, []);
+
+    const addSmileEmoji = (e) => {
+        e.preventDefault();
+        socket.emit("reaction", {owner_id: userId, message_id: message.id, emoji: "1F600" });
+    }
+
+    const removeSmileEmoji = (e) => {
+        e.preventDefault();
+        //
+    }
 
     return (
         <div>

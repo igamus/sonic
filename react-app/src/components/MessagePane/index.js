@@ -13,7 +13,6 @@ const Chat = ({ channelId }) => {
     const [messages, setMessages] = useState([]);
     const [isSending, setisSending]= useState(false);
     const [savedChannelId, setSavedChannelId] = useState(0);
-    const [channelFlip, setChannelFlip] = useState(false);
 
     if (channelId !== savedChannelId) {
         setChatInput("");
