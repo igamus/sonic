@@ -58,7 +58,7 @@ function LoginFormPage() {
                   required
                 />
               </label>
-              <a href="">
+              <a href="" >
                 <div className="forgotten">Forgot your password?</div>
               </a>
               <br></br>
