@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import "./LoginForm.css";
 import Barcode from './Barcode.png'
-import Back from './AT_BG5.jpg'
+
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import "./LoginForm.css";
 function LoginFormPage() {
@@ -24,9 +24,12 @@ function LoginFormPage() {
     }
   };
 
+
+
+
   return (
 
-    <div className="main-wrap">
+    <div className="tst">
       <div className="login-box">
         <div className="login-io-box">
 
@@ -70,6 +73,7 @@ function LoginFormPage() {
                 Need an account? <Link to="/signup" className="sing">Register</Link>
               </span>
             </form>
+               
           </div>
           <div className="sag-box">
             <img src={Barcode} alt="test"/>
