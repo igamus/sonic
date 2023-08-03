@@ -3,20 +3,31 @@ import os
 from app.models import db, Channel, User, Message
 
 if os.environ.get("FLASK_ENV") == "production":
-    origins = "*"
+    origins = ["https://szonic.onrender.com"]
 else:
     origins = '*'
 
 socketio = SocketIO(cors_allowed_origins=origins)
 
-@socketio.on("chan_message")
-def handling_channel_messages(data):
+
+@socketio.on("chat")
+def handle_chat(data):
     message = Message(
         text = data['text'],
-        owner_id = data['owner_id']
+        owner_id = data['owner_id'],
+        channel_id = data['channel_id']
     )
-
     db.session.add(message)
     db.session.commit()
-    temp = message.to_dict()
-    emit("chan_message", temp, broadcast=True)
+    emit("chat", data, broadcast=True) # data was temp
+
+# @socketio.on("react")
+# def handle_react(data):
+#     reaction = Reaction(
+#         owner_id = data['owner_id']
+#         message_id = data['message_id']
+#         emoji = data['emoji']
+#     )
+#     db.session.add(reaction)
+#     db.session.commit()
+#     emit("react", data, broadcast=True)

@@ -1,40 +1,100 @@
-.field-holder {
-    position: relative;
-    margin-bottom: 1.25rem;
+.tst{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    background: url(AT_BG5.jpg) no-repeat;
+    background-size: cover;
+    color: #8e9297;
+    line-height: 10px;
 }
 
-.field-holder button {
-    width: 300px;
-    height: 40px;
-    color: white;
-    box-shadow: 2px 2px 2px #666666;
-    border: solid #4752c4;
-    background-color: #4752c4;
+.login-box {
+    width: 781px;
+    height: 370px;
+    background-color: #36393f;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 5px;
+    padding: 28px;
+}
+
+.login-io-box {
     display: flex;
-    flex-direction: column;
+    align-content: stretch;
+    justify-content: space-around;
+    flex-wrap: nowrap;
+    flex-direction: row;
     align-items: center;
-    justify-content: center;
-    margin-top: 1rem;
-}
-.field-holder input {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 300px;
-}
-.field-holder label {
-    display: flex;
-  flex-direction: column;
-  width: 300px;
-  margin: 0.5rem;
-}
-.field-holder form {
-    display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 2rem;
 }
 
-button {
-    cursor: pointer;
+.sol-box {
+    width:450px
+}
+
+.sol-box h2 {
+    color: white;
+}
+
+.sol-box span {
+    color: #b9bbbe;
+}
+.form-box {
+    font-size: 16px;
+}
+.sol-box input {
+    color: white;
+    box-sizing: border-box;
+    width: 100%;
+    border-radius: 4px;
+    background-color: #303338;
+    border: 1px solid #212327;
+    padding: 13px;
+}
+
+.sol-box input, select, text {
+    color: white;
+}
+.sing{
+    color: #00aff4;
+    margin-top: 10px;
+    text-decoration: none;
+    font-size: 14px;
+}
+.login-bttn {
+    text-align: center;
+    background-color: #5865f2;
+    padding: 15px;
+    width: 100%;
+    color: white;
+    border: none;
+    font-weight: 700;
+}
+
+.account {
+    color: #72767d;
+    font-size: 14px;
+    line-height: 40px;
+}
+
+.sag-box {
+    right: 10px;
+    width: 250px;
+    text-align: center;
+    line-height: 20px;
+}
+
+.sag-box h2 {
+    color: white;
+}
+
+
+@media only screen and (max-width:760px) {
+    .sag-box {
+        display: none;
+    }
 }

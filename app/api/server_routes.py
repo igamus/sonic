@@ -2,6 +2,8 @@ from flask import Blueprint, jsonify, session, request
 from app.models import User, Server, Channel, db
 from app.forms import CreateServerForm
 from flask_login import current_user, login_required
+from ..forms.createchannel_form import CreateChannelForm
+from ..models import db, Channel
 from .AWS_helpers import get_unique_filename, upload_file_to_s3, remove_file_from_s3
 
 server_routes = Blueprint('server', __name__)
@@ -13,13 +15,14 @@ def current_servers():
     Returns a list of the servers current user is a member of.
     """
     serverList = []
-    servers = current_user.servers
+    servers = current_user.user_memberships
+
     for server in servers:
         serverList.append(server.to_dict())
 
     return serverList
 
-@server_routes.route('/<int:serverId>/channels')
+@server_routes.route('/<int:serverId>/channels', methods=["GET"])
 @login_required
 def server_channels(serverId):
     """
@@ -32,9 +35,25 @@ def server_channels(serverId):
     for channel in server.channels:
         channelList.append(channel.to_dict())
 
-    print (channelList)
-
     return channelList
+
+
+
+@server_routes.route('/<int:serverId>/users', methods=["GET"])
+@login_required
+def server_users(serverId):
+    """
+    Return a list of the users in a server
+    """
+
+    server = Server.query.filter(Server.id == serverId).first()
+
+    userList = []
+    for user in server.server_memberships:
+        userList.append(user.to_dict())
+
+    return userList
+
 
 @login_required
 @server_routes.route('/create', methods = ['POST'])
@@ -42,9 +61,6 @@ def create_server():
     """
     Adds a new server and adds the creator to the server as a member
     """
-
-
-
     form = CreateServerForm()
 
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -156,3 +172,44 @@ def edit_server(serverId):
         # Handle any errors that might occur during the update process
         db.session.rollback()
         return jsonify(error="An error occurred while updating the server"), 500
+
+@server_routes.route('/<int:server_id>/channels', methods=["POST"])
+@login_required
+def create_channel(server_id):
+    """
+    Creates a new channel in the specified server
+    """
+    form = CreateChannelForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        new_channel = Channel(
+            server_id=server_id,
+            description=form.data["description"],
+            name=form.data["name"]
+        )
+        print(new_channel)
+        db.session.add(new_channel)
+        db.session.commit()
+
+        return new_channel.to_dict()
+    print(form.errors)
+    if form.errors:
+        return form.errors
+    return {"error": "An unknown error has occcured"} # need error messages
+
+@login_required
+@server_routes.route('/<int:serverId>', methods=['GET'])
+def get_single_server(serverId):
+  server = Server.query.get(serverId)
+
+  if server is None:
+        return jsonify({'message': "Server doesn't exist"}), 404
+
+  return jsonify(server.to_dict()), 200
+
+@login_required
+@server_routes.route('/all', methods=['GET'])
+def get_all_servers():
+ servers = Server.query.all()
+ server_list = [server.to_dict() for server in servers]
+ return jsonify(server_list), 200

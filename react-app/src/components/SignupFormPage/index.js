@@ -11,16 +11,23 @@ function SignupFormPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [profileImage, setProfileImage] = useState()
   const [errors, setErrors] = useState([]);
 
   if (sessionUser) return <Redirect to="/me" />;
 
   const handleSubmit = async (e) => {
-    const profilePicture = '';
     e.preventDefault();
+
     if (password === confirmPassword) {
-      console.log('profilePicture x', profilePicture, 'x')
-      const data = await dispatch(signUp(username, email, password, profilePicture));
+      const form = new FormData()
+      form.append('email', email);
+      form.append('username', username);
+      form.append('password', password);
+      form.append('profile_picture', profileImage)
+
+      console.log(form);
+      const data = await dispatch(signUp(form));
       if (data) {
         setErrors(data)
       }
@@ -53,6 +60,13 @@ function SignupFormPage() {
             onChange={(e) => setUsername(e.target.value)}
             required
           />
+        </label>
+        <label>
+          <input
+            type='file'
+            required
+            onChange={(e) => setProfileImage(e.target.files[0])}
+            accept='image/*' />
         </label>
         <label>
           Password

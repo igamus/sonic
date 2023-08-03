@@ -22,7 +22,7 @@ export default function ServerFormModal({ }) {
         form.append('description', description)
         form.append('server_image', serverImage)
         form.append('banner_image', serverBannerImage)
-
+        console.log(form);
         dispatch(createServerThunk(form)).then((responseData) => {
             if (responseData.error) {
                 setError(responseData.error)
