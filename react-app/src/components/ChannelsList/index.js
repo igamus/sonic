@@ -3,10 +3,9 @@ import ChannelMessages from '../ChannelMessages';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { loadServerChannelsThunk } from '../../store/channels';
-import { loadChannelMessagesThunk } from '../../store/messages';
 import OpenModalButton from '../OpenModalButton';
 import CreateChannelFormModal from '../CreateChannelFormModal';
-import DeleteChannelModal from '../DeleteChannelModal';
+import DeleteModal from '../DeleteModal';
 import UpdateChannelFormModal from '../UpdateChannelFormModal';
 
 function ChannelsList({ server }) {
@@ -38,7 +37,7 @@ function ChannelsList({ server }) {
                 <>
                     <h3
                         onClick={e => {
-                            dispatch(loadChannelMessagesThunk(channel.id))
+                            // dispatch(loadChannelMessagesThunk(channel.id))
                             setActiveChannel(channel)
                         }}
                         key={`channel-${channel.id}`}
@@ -51,7 +50,7 @@ function ChannelsList({ server }) {
                             buttonText={"Update Channel"}
                         />
                         <OpenModalButton
-                            modalComponent={<DeleteChannelModal channelId={channel.id} />}
+                            modalComponent={<DeleteModal type={"channel"} id={channel.id} />}
                             buttonText={"Delete Channel"}
                         />
                     </>
