@@ -5,7 +5,7 @@
   flex-direction: column;
   justify-content: center;
 }
-h1 {
+.big {
 
   font-weight: 800;
   font-family: "ABC Ginto Nord", "Noto Sans", "Helvetica Neue", Helvetica, Arial,
@@ -67,7 +67,7 @@ h1 {
   width: 30%;
 }
 
-h1 {
+.big {
   font-size: clamp(24px, 5vw, 44px);
   font-weight: 800;
   line-height: 95%;
@@ -76,7 +76,7 @@ h1 {
 }
 
 @media screen and (min-width: 768px) {
-  h1 {
+  .big {
     font-size: 56px;
   }
 }

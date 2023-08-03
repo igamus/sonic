@@ -1,7 +1,100 @@
-.field-holder {
+.main-wrap {
+  margin: 0px;
+  padding: 0px;
+  font-family: sans-serif;
+  background-image: url(AT_BG5.jpg) no-repeat;
+  background-size: cover;
+  color: #8e9297;
+  line-height: 10px;
+}
+
+.login-box {
+    width: 781px;
+    height: 370px;
+    background-color: #36393f;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 5px;
+    padding: 28px;
+}
+
+.login-io-box {
+    display: flex;
+    align-content: stretch;
+    justify-content: space-around;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    align-items: center;
+}
+
+.sol-box {
+    width:450px
+}
+
+.sol-box h2 {
+    color: white;
+}
+
+.sol-box span {
+    color: #b9bbbe;
+}
+.form-box {
+    font-size: 16px;
+}
+.sol-box input {
+    box-sizing: border-box;
+    width: 100%;
+    border-radius: 4px;
+    background-color: #303338;
+    border: 1px solid #212327;
+    padding: 13px;
+}
+.sing{
+    color: #00aff4;
+    margin-top: 10px;
+    text-decoration: none;
+    font-size: 14px;
+}
+.login-bttn {
+    text-align: center;
+    background-color: #5865f2;
+    padding: 15px;
+    width: 100%;
+    color: white;
+    border: none;
+    font-weight: 700;
+}
+
+.account {
+    color: #72767d;
+    font-size: 14px;
+    line-height: 40px;
+}
+
+.sag-box {
+    right: 10px;
+    width: 250px;
+    text-align: center;
+    line-height: 20px;
+}
+
+.sag-box h2 {
+    color: white;
+}
+
+
+@media only screen and (max-width:760px) {
+    .sag-box {
+        display: none;
+    }
+}
+/* .field-holder {
     position: relative;
     margin-bottom: 1.25rem;
 }
+
 
 .field-holder button {
     width: 300px;
@@ -37,4 +130,4 @@
 
 button {
     cursor: pointer;
-}
+} */
