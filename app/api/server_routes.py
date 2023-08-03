@@ -35,9 +35,25 @@ def server_channels(serverId):
     for channel in server.channels:
         channelList.append(channel.to_dict())
 
-    print (channelList)
-
     return channelList
+
+
+
+@server_routes.route('/<int:serverId>/users', methods=["GET"])
+@login_required
+def server_users(serverId):
+    """
+    Return a list of the users in a server
+    """
+
+    server = Server.query.filter(Server.id == serverId).first()
+
+    userList = []
+    for user in server.server_memberships:
+        userList.append(user.to_dict())
+
+    return userList
+
 
 @login_required
 @server_routes.route('/create', methods = ['POST'])
