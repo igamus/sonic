@@ -31,7 +31,7 @@ function ReactionsPanel({ message, userId }) {
             {reducedReactions.map(reaction => {
                 let className = "";
                 const val = "&#x" + reaction.emoji + ";"
-                if (reaction.ownerId === userId) {
+                if (reaction.ownerIds.indexOf(userId) >= 0) {
                     className += 'your-reaction'
                 }
                 return (
