@@ -1,6 +1,6 @@
 from flask_socketio import SocketIO, emit
 import os
-from app.models import db, Channel, User, Message
+from app.models import db, Channel, User, Message, Reaction
 
 if os.environ.get("FLASK_ENV") == "production":
     origins = ["https://szonic.onrender.com"]
@@ -21,16 +21,6 @@ def handle_chat(data):
     db.session.commit()
     emit("chat", data, broadcast=True) # data was temp
 
-@socketio.on("react")
-def handle_react(data):
-    reaction = Reaction(
-        owner_id = data['owner_id'],
-        message_id = data['message_id'],
-        emoji = data['emoji']
-    )
-    db.session.add(reaction)
-    db.session.commit()
-    emit("react", data, broadcast=True)
 @socketio.on("delete_message")
 def handle_delete_message(data):
     target_message = Message.query.get(data['message_id'])
@@ -38,13 +28,16 @@ def handle_delete_message(data):
     db.session.commit()
     emit("chat", data, broadcast=True)
 
-# @socketio.on("react")
-# def handle_react(data):
-#     reaction = Reaction(
-#         owner_id = data['owner_id']
-#         message_id = data['message_id']
-#         emoji = data['emoji']
-#     )
-#     db.session.add(reaction)
-#     db.session.commit()
-#     emit("react", data, broadcast=True)
+@socketio.on("react")
+def handle_react(data):
+    print("++++++++++++++++++++++++++")
+    print(data["owner_id"])
+    reaction = Reaction(
+        owner_id = data['owner_id'],
+        message_id = data['message_id'],
+        emoji = data['emoji']
+    )
+    db.session.add(reaction)
+    db.session.commit()
+    print(reaction)
+    emit("react", data, broadcast=True)
