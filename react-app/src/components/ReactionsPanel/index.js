@@ -25,6 +25,9 @@ function ReactionsPanel({ message, userId }) {
     }, []);
 
     const removeEmoji = () => {}; // handler for removing emoji
+    // need a handler for adding emoji
+
+    // make this websockets
 
     return (
         <div>
