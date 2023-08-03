@@ -73,3 +73,14 @@ def update_channel(channelId):
         return form.errors
 
     return {"error": "An unknown error has occurred"}
+
+@login_required
+@channel_routes.route('/<int:channelId>', methods=["GET"])
+def get_single_channel(channelId):
+    channel = Channel.query.get(channelId)
+    
+    if channel is None:
+        return jsonify({'message': "Channel doesn't exist"}), 404
+
+    channel_data = channel.to_dict()
+    return jsonify(channel_data), 200
