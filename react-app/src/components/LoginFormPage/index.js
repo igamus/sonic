@@ -28,21 +28,21 @@ function LoginFormPage() {
 
   function LoginDemoUserMarnie() {
     const demoUserInfo = {
-      credential: 'marnie@aa.io',
+      email: 'marnie@aa.io',
       password: 'password'
     }
 
-    return dispatch(login(demoUserInfo))
+    return dispatch(login(demoUserInfo.email, demoUserInfo.password))
       .then(history.push('/me'));
   }
 
   function LoginDemoUserBobbie() {
     const demoUserInfo = {
-      credential: 'bobbie@aa.io',
+      email: 'bobbie@aa.io',
       password: 'password'
     }
 
-    return dispatch(login(demoUserInfo))
+    return dispatch(login(demoUserInfo.email, demoUserInfo.password))
       .then(history.push('/me'));
   }
 
