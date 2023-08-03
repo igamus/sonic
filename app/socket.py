@@ -31,3 +31,20 @@ def handle_react(data):
     db.session.add(reaction)
     db.session.commit()
     emit("react", data, broadcast=True)
+@socketio.on("delete_message")
+def handle_delete_message(data):
+    target_message = Message.query.get(data['message_id'])
+    db.session.delete(target_message)
+    db.session.commit()
+    emit("chat", data, broadcast=True)
+
+# @socketio.on("react")
+# def handle_react(data):
+#     reaction = Reaction(
+#         owner_id = data['owner_id']
+#         message_id = data['message_id']
+#         emoji = data['emoji']
+#     )
+#     db.session.add(reaction)
+#     db.session.commit()
+#     emit("react", data, broadcast=True)

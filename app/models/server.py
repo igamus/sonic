@@ -28,6 +28,9 @@ class Server(db.Model):
 
 
     def to_dict(self):
+        userDicts = []
+        for user in self.server_memberships:
+            userDicts.append(user.to_dict())
         return {
             'id': self.id,
             'ownerId': self.owner_id,
@@ -35,5 +38,6 @@ class Server(db.Model):
             'description': self.description,
             'name': self.name,
             'serverImage': self.server_image,
-            'bannerImage': self.banner_image
+            'bannerImage': self.banner_image,
+            'users': userDicts
         }
