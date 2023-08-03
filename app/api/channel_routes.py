@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, session, request
-from app.models import User, Channel, db
+from app.models import User, Channel, db, Reaction
 from flask_login import current_user, login_required
 from ..forms.createchannel_form import CreateChannelForm
 
@@ -17,7 +17,14 @@ def channel_messages(channelId):
     messageList = []
     for message in channel.messages:
         newMessage = message.to_dict()
+
         newMessage["user"] = message.user.to_dict()
+
+        if message.reactions:
+            newMessage["reactions"] = [reaction.to_dict() for reaction in message.reactions]
+        else:
+            newMessage["reactions"] = []
+
         messageList.append(newMessage)
 
     print (messageList)

@@ -21,14 +21,9 @@ const Channel = () => {
           <div>
             <h1>Channel Name: {channel.name}</h1>
             <p>Description: {channel.description}</p>
-            {/* Display messages */}
+            Display messages
             <h2>Messages:</h2>
-            <ul>
-              {messages.map((message) => (
-                <li key={message.id}>{message.content}</li>
-              ))}
-            </ul>
-            <Chat/>
+            <Chat channelId={channel.id} />
           </div>
         )}
       </div>

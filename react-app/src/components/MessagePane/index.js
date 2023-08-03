@@ -53,13 +53,24 @@ const Chat = ({ channelId }) => {
         setChatInput("")
     }
 
+    const deleteMessage = (e) => {
+        e.preventDefault();
+        socket.emit("delete_message", {"message_id": parseInt(e.target.value)})
+    }
+
     return (messages && (
         <div>
             <div>
                 {
                     channelMessages && msgList?.length > 0
                         ?
-                    <>{msgList.map((message, ind) => <MessageCard key={ind} message={message} userId={user.id} />)}</>
+                    <>{msgList.map((message, ind) => (
+                        <div>
+                            <MessageCard key={ind} message={message} userId={user.id} />
+                            {console.log(message)}
+                            {message.owner_id === user.id ? <button onClick={deleteMessage} value={message.id}>Delete message?</button> : null}
+                        </div>
+                    ))}</>
                         :
                         <p>Be the first to say something!</p>
                 }
