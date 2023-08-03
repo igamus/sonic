@@ -10,7 +10,6 @@ const LandingPage = () => {
 
   const logout = (e) => {
     e.preventDefault();
-    console.log('clicked');
     dispatch(sessionActions.logout());
     history.push('/me');
   };

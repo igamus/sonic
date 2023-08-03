@@ -3,10 +3,11 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { io } from 'socket.io-client';
 import { loadChannelMessagesThunk } from "../../store/messages";
+import MessageCard from '../MessageCard';
+
 let socket;
 
 const Chat = ({ channelId }) => {
-    console.log("channelId:", channelId);
     const dispatch = useDispatch();
     const [chatInput, setChatInput] = useState("");
     const [messages, setMessages] = useState([]);
@@ -16,27 +17,20 @@ const Chat = ({ channelId }) => {
 
     if (channelId !== savedChannelId) {
         setChatInput("");
-        console.log("component start DISPATCH FROM channelId:", channelId)
         dispatch(loadChannelMessagesThunk(channelId))
         setSavedChannelId(channelId);
     };
 
     const user = useSelector(state => state.session.user)
     const channelMessages = useSelector(state => Object.values(state.messages))
-    console.log('channelMessages:', channelMessages);
     let msgList;
     if (channelMessages.length) msgList = [...channelMessages];
 
     useEffect(() => {
-        // open socket connection
-        // create websocket
         socket = io();
         console.log('connect');
-        // dispatch(loadChannelMessagesThunk(channelId));
         socket.on("chat", (chat) => {
-            // emit comes from here which isn't necessarily updating when you changge the channel -- wait, maybbe not
-            console.log("emit DISPATCH FROM savedchannelId:", channelId)
-            let msg = dispatch(loadChannelMessagesThunk(channelId)); // was savedchannel
+            let msg = dispatch(loadChannelMessagesThunk(channelId));
             let msgArr = Object.values(msg)
             setMessages([...msgArr]);
         })
@@ -65,11 +59,7 @@ const Chat = ({ channelId }) => {
                 {
                     channelMessages && msgList?.length > 0
                         ?
-                    <>{msgList.map((message, ind) => (
-                        <>
-                            <div key={ind}>{`${message.user.username}: ${message.text}`}</div>
-                        </>
-                    ))}</>
+                    <>{msgList.map((message, ind) => <MessageCard key={ind} message={message} userId={user.id} />)}</>
                         :
                         <p>Be the first to say something!</p>
                 }

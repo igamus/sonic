@@ -1,19 +1,22 @@
-import './DeleteChannelModal.css';
+import './DeleteModal.css';
 import { useModal } from '../../context/Modal';
 import { deleteChannelThunk } from '../../store/channels';
+import { deleteMessageThunk } from '../../store/messages';
 import { useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
-function DeleteChannelModal({ channelId }) {
+function DeleteModal({ type, id }) {
     const { closeModal } = useModal();
     const dispatch = useDispatch();
-    const history = useHistory();
     const [errorMessage, setErrorMessage] = useState("");
 
-    const deleteChannel  = () => {
+    const deleter = () => {
         try {
-            dispatch(deleteChannelThunk(channelId));
+            if (type === "channel") {
+                dispatch(deleteChannelThunk(id));
+            } else {
+                dispatch(deleteMessageThunk(id));
+            }
             return closeModal();
         } catch (e) {
             console.log(e);
@@ -23,12 +26,12 @@ function DeleteChannelModal({ channelId }) {
 
     return (
         <div>
-            <h2>Are you sure you want to delete this channel?</h2>
+            <h2>Are you sure you want to delete this {type === "channel" ? "channel" : "message"}?</h2>
             <p>{errorMessage}</p>
-            <button onClick={deleteChannel}>Yes</button>
+            <button onClick={deleter}>Yes</button>
             <button onClick={closeModal}>No</button>
         </div>
     );
 };
 
-export default DeleteChannelModal;
+export default DeleteModal;
