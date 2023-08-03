@@ -1,5 +1,5 @@
 import './ReactionsPanel.css'
-// need to install sanitizing package if we get approved
+import sanitizeHtml from 'sanitize-html';
 
 function ReactionsPanel({ message, userId }) {
     const reactions = message.reactions;
@@ -39,7 +39,7 @@ function ReactionsPanel({ message, userId }) {
                 }
                 return (
                     <span>
-                        <button dangerouslySetInnerHTML={{__html: val}} className={className} onClick={removeEmoji} />
+                        <button dangerouslySetInnerHTML={{__html: sanitizeHtml(val)}} className={className} onClick={removeEmoji} />
                         {reaction.frequency}
                     </span>
                 )
