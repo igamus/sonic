@@ -16,7 +16,7 @@ def current_servers():
     """
     serverList = []
     servers = current_user.user_memberships
-    
+
     for server in servers:
         serverList.append(server.to_dict())
 

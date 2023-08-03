@@ -7,6 +7,7 @@ import Barcode from './Barcode.png'
 
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import "./LoginForm.css";
+
 function LoginFormPage() {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
@@ -73,7 +74,7 @@ function LoginFormPage() {
                 Need an account? <Link to="/signup" className="sing">Register</Link>
               </span>
             </form>
-               
+
           </div>
           <div className="sag-box">
             <img src={Barcode} alt="test"/>

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { loadChannelMessagesThunk } from '../../store/messages';
 import { loadSingleChannelThunk } from '../../store/channels';
-
+import Chat from '../MessagePane';
 const Channel = () => {
     const { channelId } = useParams();
     const dispatch = useDispatch();
@@ -28,6 +28,7 @@ const Channel = () => {
                 <li key={message.id}>{message.content}</li>
               ))}
             </ul>
+            <Chat/>
           </div>
         )}
       </div>
