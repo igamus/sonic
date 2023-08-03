@@ -31,6 +31,10 @@ const SingleSpot = () => {
               <p>{channel.name}</p>
             </Link>
           ))}
+          <h3>Users:</h3>
+          {server.users?.map((user) => (<p><p>Name: {user.username} </p><img src={user.profilePic} /></p>
+
+          ))}
           {channels.length === 0 && <p>No channels available for this server.</p>}
         </div>
       ) : (

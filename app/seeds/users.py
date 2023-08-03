@@ -21,10 +21,10 @@ rico = User(
     username='jrico', email='johnnyrico@mobileinfantry.net', password='dizzy', profile_picture='http://sonic-aws.s3.amazonaws.com/b0ab37516970414d9f202225cc8acc03.png'
 )
 picard = User(
-    username='cjlp', email='cjlp@starfleet.gov', password='patrick', profile_picture='http://sonic-aws.s3.amazonaws.com/b2459cbcd882444e8bf22f1858f3a3e7.png'
+    username='cjlp', email='cjlp@starfleet.gov', password='patrick', profile_picture='https://sonic-aws.s3.us-east-2.amazonaws.com/d9118f9a908d4a72b2059051404c8e92.png'
 )
 spock = User(
-    username='docspock', email='spock@starfleet.gov', password='leonard', profile_picture='http://sonic-aws.s3.amazonaws.com/ed247b0df781411f856febe735d70f4c.png'
+    username='docspock', email='spock@starfleet.gov', password='leonard', profile_picture='http://sonic-aws.s3.amazonaws.com/c105772176c44a1289ac8289faf9bf04.png'
 )
 mccoy = User(
     username='drmccoy', email='mccoy@starfleet.gov', password='deforest', profile_picture='http://sonic-aws.s3.amazonaws.com/ed247b0df781411f856febe735d70f4c.png'
@@ -39,7 +39,7 @@ spiderman = User(
     username='spiderman', email='pparker@avengers.co', password='peterandrewtom', profile_picture='http://sonic-aws.s3.amazonaws.com/f344b22792974b82bfb5da4f38eeee31.png'
 )
 msmarvel = User(
-    username='msmarvel', email='kkhan@captainmarvelfans.blogspot.com', password='iman', profile_picture='http://sonic-aws.s3.amazonaws.com/abc552a36e9c432a95ce1088acc8e412.png'
+    username='msmarvel', email='kkhan@captainmarvelfans.blogspot.com', password='iman', profile_picture='http://sonic-aws.s3.amazonaws.com/b2459cbcd882444e8bf22f1858f3a3e7.png'
 )
 unknown = User(
     username='UNKNOWN', email='unknown@shield.gov', password='guest', profile_picture='http://sonic-aws.s3.amazonaws.com/c1aa63e918f1449e8d5f98cb746364ac.png'
