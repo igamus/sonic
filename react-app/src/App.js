@@ -10,6 +10,8 @@ import UserHome from "./components/UserHome";
 import NotFound from "./components/ErrorPage/Errorpage";
 import LandingPage from "./components/LandingPage/LandingPage";
 import Home from "./components/UserHome/UserHome";
+import SingleSpot from "./components/Servers/IndivudalSever";
+import Channel from "./components/Channel";
 
 function App() {
   const dispatch = useDispatch();
@@ -23,20 +25,18 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          <Route  exact path="/"component={LandingPage}></Route>
+          <Route exact path="/" component={LandingPage}/>
           <ProtectedRoute path="/me">
             <UserHome />
           </ProtectedRoute>
-          <Route path="/login" >
-            <LoginFormPage />
-          </Route>
-          <Route path="/signup">
-            <SignupFormPage />
-          </Route>
-          <Route path ="/ahh" component={Home}/>
-          <Route path="*" component={NotFound}/>
+          <ProtectedRoute exact path="/servers/:serverId/:channelId" component={Channel} />
+          <ProtectedRoute exact path ="/servers/:serverId" component={SingleSpot}/>
+          <Route path="/login" component={LoginFormPage} />
+          <Route path="/signup" component={SignupFormPage }/>
+          <ProtectedRoute path="/ahh" component={Home} />
+          <Route path="/test" component={Home} />
+          <Route path="*" component={NotFound} />
         </Switch>
-
       )}
     </>
   );

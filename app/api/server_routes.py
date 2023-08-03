@@ -179,3 +179,20 @@ def create_channel(server_id):
     if form.errors:
         return form.errors
     return {"error": "An unknown error has occcured"} # need error messages
+
+@login_required
+@server_routes.route('/<int:serverId>', methods=['GET'])
+def get_single_server(serverId):
+  server = Server.query.get(serverId)
+
+  if server is None:
+        return jsonify({'message': "Server doesn't exist"}), 404
+
+  return jsonify(server.to_dict()), 200
+
+@login_required
+@server_routes.route('/all', methods=['GET'])
+def get_all_servers():
+ servers = Server.query.all()
+ server_list = [server.to_dict() for server in servers]
+ return jsonify(server_list), 200
