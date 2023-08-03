@@ -1,0 +1,18 @@
+#logged-in-user-image {
+    width: 80px;
+    object-fit: contain;
+    height: 80px;
+    border-radius: 50% 50% 50% 50%;
+
+}
+
+#logged-in-user-display {
+    display: flex;
+    flex-direction: row;
+    height: 100px;
+}
+
+#logged-in-user-info {
+    display: flex;
+    flex-direction: column;
+}
