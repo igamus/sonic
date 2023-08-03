@@ -14,7 +14,6 @@ function ChannelForm({ type, formData }) {
 
     const handleSubmit = async e => {
         e.preventDefault();
-        console.log("button pushed")
 
         const submission = {
             name,

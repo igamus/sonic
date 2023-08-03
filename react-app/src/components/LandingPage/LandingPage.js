@@ -4,15 +4,12 @@ import classes from "./LandingPage.module.css";
 import * as sessionActions from '../../store/session';
 import { useDispatch } from 'react-redux';
 
-
-
 const LandingPage = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
   const logout = (e) => {
     e.preventDefault();
-    console.log('clicked');
     dispatch(sessionActions.logout());
     history.push('/me');
   };

@@ -3,7 +3,7 @@ const LOAD_SERVER_CHANNELS = 'sonic/channels/LOAD_SERVER_CHANNELS';
 const CREATE_CHANNEL = 'sonic/channels/CREATE_CHANNEL';
 const DELETE_CHANNEL = 'sonic/channels/DELETE_CHANNEL';
 const UPDATE_CHANNEL = 'sonic/channels/UPDATE_CHANNEL';
-
+const LOAD_SINGLE_CHANNEL =  'sonic/channels/LOAD_SINGLE_CHANNEL';
 // action creators
 export const loadServerChannelsAction = channels => {
     return {
@@ -32,6 +32,14 @@ export const updateChannelAction = data => {
         data
     }
 };
+
+export const loadSingleChannelAction = channel => {
+    return {
+        type: LOAD_SINGLE_CHANNEL,
+        channel
+    };
+};
+
 
 // thunk action creators
 export const loadServerChannelsThunk = serverId => async dispatch => {
@@ -98,6 +106,21 @@ export const updateChannelThunk = formData => async dispatch => {
     }
 };
 
+export const loadSingleChannelThunk = channelId => async dispatch => {
+    const res = await fetch(`/api/channels/${channelId}`, {
+        headers: {
+            "Content-Type": "application/json"
+        }
+    });
+    if (res.ok) {
+        const data = await res.json();
+        return dispatch(loadSingleChannelAction(data));
+    } else {
+        const error = await res.json();
+        console.error("Error loading channel:", error);
+    }
+};
+
 // reducer
 const initialState = { serverChannels: {}, singleChannel: {}  }
 
@@ -142,6 +165,9 @@ const channelsReducer = (state = initialState, action) => {
 
             // newState.serverChannels[action.formData.id] = { ...newState.serverChannels[action.formData.id], ...action.formData };
             return newState;
+            case LOAD_SINGLE_CHANNEL:
+                newState = { ...state, singleChannel: action.channel };
+                return newState;
         default:
             return state;
     };

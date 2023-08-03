@@ -1,23 +1,64 @@
 .sidenav {
-    justify-content: flex-start;
-    height: 100%;
-    width: 4%;
+  justify-content: flex-start;
+  height: 100%;
+  width: 5%;
     position: fixed;
     overflow-x: hidden;
-    padding-top: 20px;
-    background-color: #1e1f22;
-    top: 0;
-    left: 0;
-    padding-top: 20px;
+  background-color: #1e1f22;
+  top: 0;
+  left: 0;
+  align-items: center;
+  padding-top: 20px;
 }
-.sideleftwrap {
+.friends {
+  display: flex;
+  justify-content: flex-start;
+  height: 100%;
+  width: 14%;
+  position: fixed;
+  overflow-x: hidden;
+  padding-top: 20px;
+  background-color: #2b2d31;
+  margin-left: 5%;
+  align-items: center;
+  top: 0;
+  left:0;
+}
+.main {
+  justify-content: flex-start;
+  height: 100%;
+  width: 60%;
+  position: fixed;
+  overflow-x: hidden;
+  padding-top: 20px;
+  background-color: #313338;
+  margin-left: 19%;
+  top: 0;
+  left: 0;
+}
+.status {
+  justify-content: flex-start;
+  height: 100%;
+  width: 21%;
+  position: fixed;
+  overflow-x: hidden;
+  padding-top: 20px;
+  background-color: blue;
+  margin-left: 69%;
+  top: 0;
+  right:0;
+}
+.wrapper {
     display: flex;
     align-items: center;
-    /* margin-left: 5px; */
+    gap: 20px;
     flex-direction: column;
-
 }
-
+.button {
+  border: 0;
+  padding: 0;
+}
+/*
 .circle{
     display: block;
     background-color: #0B455E;
@@ -37,4 +78,4 @@
 
   .circle:hover{
          -webkit-border-radius: 0 0 0 0;
-  }
+  } */
