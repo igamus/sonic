@@ -12,6 +12,7 @@ import LandingPage from "./components/LandingPage/LandingPage";
 import Home from "./components/UserHome/UserHome";
 import SingleSpot from "./components/Servers/IndivudalSever";
 import Channel from "./components/Channel";
+import ExplorePage from "./components/Servers/ExplorePage/ExplorePage";
 
 function App() {
   const dispatch = useDispatch();
@@ -29,6 +30,7 @@ function App() {
           <ProtectedRoute path="/ahh">
             <UserHome />
           </ProtectedRoute>
+          <ProtectedRoute exact path="/servers/explore" component={ExplorePage} />
           <ProtectedRoute exact path="/servers/:serverId/:channelId" component={Channel} />
           <ProtectedRoute exact path="/servers/:serverId" component={SingleSpot} />
           <Route path="/login" component={LoginFormPage} />
