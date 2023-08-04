@@ -35,7 +35,7 @@ function ChannelForm({ type, formData }) {
             } catch (e) {
                 console.log(e);
             }
-       } else {
+        } else {
             submission.channelId = formData.id;
             try {
                 dispatch(updateChannelThunk(submission))
@@ -43,7 +43,7 @@ function ChannelForm({ type, formData }) {
             } catch (e) {
                 console.log(e)
             }
-       }
+        }
     };
 
     return (
