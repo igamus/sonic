@@ -30,14 +30,19 @@ def handle_delete_message(data):
 
 @socketio.on("react")
 def handle_react(data):
-    print("++++++++++++++++++++++++++")
-    print(data["owner_id"])
-    reaction = Reaction(
-        owner_id = data['owner_id'],
-        message_id = data['message_id'],
-        emoji = data['emoji']
-    )
-    db.session.add(reaction)
-    db.session.commit()
-    print(reaction)
-    emit("react", data, broadcast=True)
+    test = db.session.query(Reaction).filter(Reaction.owner_id == data["owner_id"]).filter(Reaction.emoji == data['emoji']).filter(Reaction.message_id == data['message_id']).first()
+    if test:
+        print("test fail")
+        print(test)
+        return
+    else:
+        print("test pass")
+        reaction = Reaction(
+            owner_id = data['owner_id'],
+            message_id = data['message_id'],
+            emoji = data['emoji']
+        )
+        db.session.add(reaction)
+        db.session.commit()
+        print(reaction)
+        emit("react", data, broadcast=True)

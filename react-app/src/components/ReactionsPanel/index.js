@@ -1,10 +1,11 @@
 import './ReactionsPanel.css'
 import sanitizeHtml from 'sanitize-html';
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { io } from "socket.io-client";
 import { loadChannelMessagesThunk } from "../../store/messages";
 import OpenModalButton from "../OpenModalButton"; // test the text set
+import ReactionSelector from '../ReactionSelector';
 
 let socket;
 
@@ -35,26 +36,18 @@ function ReactionsPanel({ message, userId, channelId }) {
     const removeEmoji = () => {}; // handler for removing emoji
     // need a handler for adding emoji
 
-    // make this websockets
     useEffect(() => {
         socket = io();
         console.log("connected (reactions)");
         socket.on("react", (react) => {
-            dispatch(loadChannelMessagesThunk(channelId)) // channelId -- maybe you need to update the thunk to rerender the reactions
+            dispatch(loadChannelMessagesThunk(channelId))
         })
 
         return (() => {
             console.log("disconnected (reactions)");
             socket.disconnect();
         })
-    }, []); // reactId? Won't fix the fact that it doesn't send
-
-    const addSmileEmoji = (e) => {
-        e.preventDefault();
-        console.log("Yeah, you're sending this")
-        console.log("Hey:", {owner_id: userId, message_id: message.id, emoji: "1F600"}); // can probably open a modal and save an emoji value to context or something
-        socket.emit("react", {owner_id: userId, message_id: message.id, emoji: "1F600" });
-    }
+    }, []); // reactId?
 
     const removeSmileEmoji = (e) => {
         e.preventDefault();
@@ -81,8 +74,7 @@ function ReactionsPanel({ message, userId, channelId }) {
                 )
             }
             )}
-            <button onClick={e => addSmileEmoji(e)}>Add smiley face</button>
-            <OpenModalButton buttonText={"Test"} />
+            <OpenModalButton buttonText={"+"} modalComponent={<ReactionSelector channelId={channelId} messageId={message.id} userId={userId} />} />
         </div>
     );
 };
