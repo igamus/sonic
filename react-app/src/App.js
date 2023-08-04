@@ -13,6 +13,7 @@ import Home from "./components/UserHome/UserHome";
 import SingleSpot from "./components/Servers/IndivudalSever";
 import Channel from "./components/Channel";
 import ExplorePage from "./components/Servers/ExplorePage/ExplorePage";
+import NewLandingPage from "./components/LandingPage/NewLandingPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -26,7 +27,7 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          <Route exact path="/" component={LandingPage} />
+          <Route exact path="/" component={NewLandingPage} />
           <ProtectedRoute path="/ahh">
             <UserHome />
           </ProtectedRoute>
