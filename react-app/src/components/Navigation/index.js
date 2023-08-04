@@ -5,7 +5,7 @@ import './Navigation.css';
 import OpenModalButton from '../OpenModalButton';
 import ServerFormModal from '../ServerFormModal'
 
-function Navigation({ isLoaded }){
+function Navigation({ isLoaded }) {
 	const sessionUser = useSelector(state => state.session.user);
 
 	return (
@@ -15,7 +15,7 @@ function Navigation({ isLoaded }){
 			</li>
 			{isLoaded && (
 				<div>
-					<OpenModalButton modalComponent={<ServerFormModal title='Create Server' />} buttonText='Create Server'/>
+
 				</div>
 			)}
 		</ul>
