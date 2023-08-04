@@ -166,7 +166,8 @@ const channelsReducer = (state = initialState, action) => {
             // newState.serverChannels[action.formData.id] = { ...newState.serverChannels[action.formData.id], ...action.formData };
             return newState;
             case LOAD_SINGLE_CHANNEL:
-                newState = { ...state, singleChannel: action.channel };
+                newState = { ...state, singleChannel: {} };
+                newState.singleChannel = { ...action.channel }
                 return newState;
         default:
             return state;

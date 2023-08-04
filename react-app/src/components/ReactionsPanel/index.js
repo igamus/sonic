@@ -1,13 +1,22 @@
 import './ReactionsPanel.css'
 import sanitizeHtml from 'sanitize-html';
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { io } from "socket.io-client";
+import { loadChannelMessagesThunk } from "../../store/messages";
+import OpenModalButton from "../OpenModalButton"; // test the text set
+import ReactionSelector from '../ReactionSelector';
 
-function ReactionsPanel({ message, userId }) {
+let socket;
+
+function ReactionsPanel({ message, userId, channelId }) {
+    const dispatch = useDispatch();
+
     const reactions = message.reactions;
-    console.log('reactions:', reactions)
     const reducedReactions = reactions.reduce((acc, cv) => {
         let ind = -1;
         acc.forEach((e, i) => {
-                    if (e.emoji === cv.emoji) ind = i;
+            if (e.emoji === cv.emoji) ind = i;
         });
 
         if (ind >= 0) {
@@ -24,10 +33,27 @@ function ReactionsPanel({ message, userId }) {
         return acc;
     }, []);
 
-    const removeEmoji = () => {}; // handler for removing emoji
-    // need a handler for adding emoji
+    useEffect(() => {
+        socket = io();
+        console.log("connected (reactions)");
+        socket.on("react", (react) => {
+            dispatch(loadChannelMessagesThunk(channelId))
+        })
 
-    // make this websockets
+        return (() => {
+            console.log("disconnected (reactions)");
+            socket.disconnect();
+        })
+    }, [dispatch, channelId]); // reactId?
+
+    const removeEmoji = (e) => {
+        e.preventDefault();
+        console.log(e.target.className)
+        // only if userId == ownerId to reaction
+        if (e.target.className === "your-reaction") {
+            socket.emit("delete_reaction", {"message_id": parseInt(message.id), "owner_id": parseInt(userId), emoji: e.target.value})
+        }
+    }
 
     return (
         <div>
@@ -35,18 +61,17 @@ function ReactionsPanel({ message, userId }) {
                 let className = "";
                 const val = "&#x" + reaction.emoji + ";"
                 if (reaction.ownerIds.indexOf(userId) >= 0) {
-                    className += 'your-reaction'
+                    className += "your-reaction"
                 }
                 return (
                     <span>
-                        <button dangerouslySetInnerHTML={{__html: sanitizeHtml(val)}} className={className} onClick={removeEmoji} />
+                        <button dangerouslySetInnerHTML={{__html: sanitizeHtml(val)}} className={className} onClick={removeEmoji} value={reaction.emoji} />
                         {reaction.frequency}
                     </span>
                 )
             }
             )}
-            +
-            {/* Button to open something to add to emojis */}
+            <OpenModalButton buttonText={"+"} modalComponent={<ReactionSelector channelId={channelId} messageId={message.id} userId={userId} />} />
         </div>
     );
 };

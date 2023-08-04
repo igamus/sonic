@@ -18,10 +18,10 @@ export const createServerAction = (server) => ({
   payload: server,
 });
 
-export const updateServersAction = (servers) => {
+export const updateServerAction = (server) => {
   return {
     type: UPDATE_SERVER,
-    servers,
+    server,
   };
 };
 
@@ -73,19 +73,20 @@ export const createServerThunk = (formData) => async (dispatch) => {
   }
 };
 
-export const updateServerThunk = (server) => async (dispatch) => {
-  const res = await fetch(`/api/servers/${server.id}`, {
+
+export const updateServerThunk = (form) => async (dispatch) => {
+  console.log('server form dispatch', form)
+  const res = await fetch(`/api/servers/${form.get('id')}`, {
     method: "PUT",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(server),
+    body: form,
   });
+  const updatedServer = await res.json();
   if (res.ok) {
-    const updatedServer = await res.json();
-    dispatch(updateServersAction(updatedServer));
+
+    dispatch(updateServerAction(updatedServer));
     return updatedServer;
   } else {
-    const errors = await res.json();
-    return errors;
+    return updatedServer;
   }
 };
 
@@ -104,6 +105,13 @@ export const deleteServerThunk = (serverId) => async (dispatch) => {
     return errors;
   }
 };
+
+export const leaveServerThunk = (serverId) => async (dispatch) => {
+  const res = await fetch(`/api/servers/${serverId}/leave`, {
+    method: "DELETE"
+  })
+  return res;
+}
 
 export const loadSingleServerThunk = (serverId) => async (dispatch) => {
   const res = await fetch(`/api/servers/${serverId}`, {
@@ -177,6 +185,8 @@ const serversReducer = (state = initialState, action) => {
         allServers: remainingServers,
       };
     case LOAD_SINGLE_SERVER:
+      newState = { ...state, singleServer: {} };
+      newState.singleServer = {...action.server}
       return {
         ...state,
         singleServer: action.server,

@@ -9,12 +9,16 @@ import DeleteModal from '../DeleteModal';
 import UpdateChannelFormModal from '../UpdateChannelFormModal';
 
 function ChannelsList({ server }) {
-    const dispatch = useDispatch();
-    useEffect(() => {
-        dispatch(loadServerChannelsThunk(server.id));
-    }, [dispatch]);
-    const channels = useSelector(state => Object.values(state.channels.serverChannels));
-    const userId = useSelector(state => state.session.user.id);
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(loadServerChannelsThunk(server.id));
+  }, [dispatch, server]);
+
+  const channels = useSelector((state) =>
+    Object.values(state.channels.serverChannels)
+  );
+  const userId = useSelector((state) => state.session.user.id);
 
     const [activeChannel, setActiveChannel] = useState(null);
     // open modal
