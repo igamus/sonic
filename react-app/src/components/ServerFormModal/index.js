@@ -37,8 +37,16 @@ export default function ServerFormModal({ }) {
     return (
         <div>
             <form onSubmit={handleSubmit}>
-                <input type='text' value={name} onChange={(e) => setName(e.target.value)} />
-                <input type='text' value={description} onChange={(e) => setDescription(e.target.value)} />
+                <input
+                    type='text'
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder="What would you like to call this server?" />
+                <input
+                    type='text'
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                    placeholder="Please describe this server." />
                 <input type='file' required onChange={(e) => setServerImage(e.target.files[0])} accept='image/*' />
                 <input type='file' required onChange={(e) => setServerBannerImage(e.target.files[0])} accept='image/*' />
                 <button type='submit'>
