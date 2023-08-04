@@ -13,7 +13,6 @@ const Chat = ({ channelId }) => {
     const [messages, setMessages] = useState([]);
     const [isSending, setisSending]= useState(false);
     const [savedChannelId, setSavedChannelId] = useState(0);
-    const [channelFlip, setChannelFlip] = useState(false);
 
     if (channelId !== savedChannelId) {
         setChatInput("");
@@ -66,8 +65,7 @@ const Chat = ({ channelId }) => {
                         ?
                     <>{msgList.map((message, ind) => (
                         <div>
-                            <MessageCard key={ind} message={message} userId={user.id} />
-                            {console.log(message)}
+                            <MessageCard key={ind} message={message} userId={user.id} channelId={channelId} />
                             {message.owner_id === user.id ? <button onClick={deleteMessage} value={message.id}>Delete message?</button> : null}
                         </div>
                     ))}</>
