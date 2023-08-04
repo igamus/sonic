@@ -12,7 +12,7 @@ const LandingPage = () => {
   const logout = (e) => {
     e.preventDefault();
     dispatch(sessionActions.logout());
-    history.push('/me');
+    history.push('/login');
   };
 
   return (

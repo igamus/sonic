@@ -6,7 +6,6 @@ import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
-import UserHome from "./components/UserHome";
 import NotFound from "./components/ErrorPage/Errorpage";
 import LandingPage from "./components/LandingPage/LandingPage";
 import Home from "./components/UserHome/UserHome";
@@ -26,8 +25,9 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          <Route exact path="/" component={NewLandingPage} />
-          <ProtectedRoute path="/ahh" component={UserHome} />
+
+          <Route exact path="/" component={LandingPage} />
+          <ProtectedRoute path="/ahh" component={Home} />
           <ProtectedRoute path="/me" component={Home} />
           <ProtectedRoute exact path="/servers/explore" component={ExplorePage} />
           <ProtectedRoute exact path="/servers/:serverId/:channelId" component={Channel} />
