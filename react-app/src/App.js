@@ -25,6 +25,7 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
+
           <Route exact path="/" component={LandingPage} />
           <ProtectedRoute path="/ahh" component={Home} />
           <ProtectedRoute path="/me" component={Home} />
