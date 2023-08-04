@@ -1,7 +1,7 @@
 import React from "react";
 import classes from "./UserHome.module.css";
 import { useEffect, useState } from "react";
-import { loadUserServersThunk } from "../../store/servers";
+import { deleteServerThunk, loadUserServersThunk } from "../../store/servers";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import OpenModalButton from "../OpenModalButton";
@@ -21,15 +21,23 @@ const Home = () => {
   const [activeServer, setActiveServer] = useState(servers[0]);
   const user = useSelector(state => state.session.user);
 
+  const handleDeleteServer = (serverId) => {
+    dispatch(deleteServerThunk(serverId));
+  };
+
   return (
     <body>
       <nav className={classes.sidenav}>
         <div className={classes.wrapper}>
           <button>Sonic</button>
           {servers.map((server) => (
-            <Link key={server.id} to={`/servers/${server.id}`}>
-              <button>{server.name}</button>
-            </Link>
+           <div key={server.id}>
+              <Link to={`/servers/${server.id}`}>
+                <button>{server.name}</button>
+              </Link>
+              <button onClick={() => handleDeleteServer(server.id)}>Delete</button>
+            </div>
+
           ))}
           <OpenModalButton modalComponent={<ServerFormModal title='Create Server' />} buttonText='+' />
         </div>
