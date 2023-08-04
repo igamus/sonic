@@ -2,11 +2,12 @@ import React from "react";
 import { NavLink, useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import classes from "./LandingPage.module.css";
 import * as sessionActions from '../../store/session';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 const LandingPage = () => {
   const dispatch = useDispatch();
   const history = useHistory();
+  const user = useSelector(state => state.session.user)
 
   const logout = (e) => {
     e.preventDefault();
@@ -31,6 +32,10 @@ const LandingPage = () => {
         </NavLink>
       </div>
       <button onClick={logout}>Log Out</button>
+      {user ? <button onClick={(e) => {
+        e.preventDefault();
+        history.push('/me');
+      }}>Go to your servers!</button> : null}
     </>
   );
 };
