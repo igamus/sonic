@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, session, request
 from app.models import User, Server, Channel, db
-from app.forms import CreateServerForm
+from app.forms import CreateServerForm, UpdateServerForm
 from flask_login import current_user, login_required
 from ..forms.createchannel_form import CreateChannelForm
 from ..models import db, Channel
@@ -131,48 +131,74 @@ def edit_server(serverId):
     # Updates the server information based on the provided server_id.
     # Only the owner of the server can perform this action.
     server = Server.query.get(serverId)
-
+    print ('************************************************************************')
+    print('put', server.name, server.description)
     if server is None:
         return jsonify({"message": "Server doesn't exist"}), 404
 
 
     if current_user.id != server.owner_id:
-        return jsonify({'message': 'You do not have permission to delete this server'}), 403
+        return jsonify({'message': 'You do not have permission to edit this server'}), 403
 
 
-    data = request.get_json()
+    form = UpdateServerForm()
+    print('form')
+    print( form['name'])
+    print(form.description)
+    form['csrf_token'].data = request.cookies['csrf_token']
+    print ('csrf', form['csrf_token'].data)
+    print ('v ', form.validate_on_submit())
+    if form.validate_on_submit():
+        print ('form', form)
+        new_name = form.data['name']
+        if new_name is not None and new_name != server.name:
+            print ('attempt at name change')
+            duplicate_name_server = Server.query.filter_by(name=new_name).first()
+            if duplicate_name_server:
+                return jsonify(error = 'Server name already in use'), 400
+            server.name = new_name
 
-    new_name = data.get('name')
-    if new_name is not None and new_name != server.name:
+        new_description = form.data['description']
+        if new_description is not None and new_description != server.description:
+            print ('attempt at description change')
+            server.description = new_description
+        print(form.data)
+        server_image = form.data['server_image']
+        if server_image:
+            server_image_filename = ''
+            if server.server_image:
+                server_image_filename = server.server_image
+            else:
+                server_image_filename = get_unique_filename(server_image.get('filename'))
+            
+            uploadServerImage = upload_file_to_s3(server_image, server_image_filename)
+            if 'url' not in uploadServerImage:
+                return jsonify(error=uploadServerImage), 400
+            server.server_image = uploadServerImage['url']
 
-        existing_server = Server.query.filter_by(name=new_name).first()
-        if existing_server:
-            return jsonify(error = 'Server name already in use'), 400
-        server.name = new_name
+        banner_image = form.data['banner_image']
+        if banner_image:
+            banner_image_filename = ''
+            if server.banner_image:
+                banner_image_filename = server.banner_image
+            else:
+                banner_image_filename = get_unique_filename(banner_image.get('filename'))
+            uploadBannerImage = upload_file_to_s3(banner_image, banner_image_filename)
+            if 'url' not in uploadBannerImage:
+                return jsonify(error=uploadBannerImage), 400
+            server.banner_image = uploadBannerImage['url']
+        print('put2', server.name, server.description)
+        try:
+            db.session.commit()
+            return jsonify(message="Server updated successfully"), 200
+        except Exception as e:
+            # Handle any errors that might occur during the update process
+            db.session.rollback()
+            return jsonify(error="An error occurred while updating the server"), 500
 
-    server_image = data.get('serverImage')
-    if server_image:
-        server_image_filename = get_unique_filename(server_image.get('filename'))
-        uploadServerImage = upload_file_to_s3(server_image, server_image_filename)
-        if 'url' not in uploadServerImage:
-            return jsonify(error=uploadServerImage), 400
-        server.server_image = uploadServerImage['url']
-
-    banner_image = data.get('bannerImage')
-    if banner_image:
-        banner_image_filename = get_unique_filename(banner_image.get('filename'))
-        uploadBannerImage = upload_file_to_s3(banner_image, banner_image_filename)
-        if 'url' not in uploadBannerImage:
-            return jsonify(error=uploadBannerImage), 400
-        server.banner_image = uploadBannerImage['url']
-    try:
-        db.session.commit()
-        return jsonify(message="Server updated successfully"), 200
-    except Exception as e:
-        # Handle any errors that might occur during the update process
-        db.session.rollback()
-        return jsonify(error="An error occurred while updating the server"), 500
-
+        return server.to_dict()
+    print (form.errors)
+    return {"error": "An unknown error has occcured in the PUT method of server_routes.py"} 
 @server_routes.route('/<int:server_id>/channels', methods=["POST"])
 @login_required
 def create_channel(server_id):

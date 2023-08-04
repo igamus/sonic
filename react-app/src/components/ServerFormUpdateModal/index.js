@@ -1,30 +1,31 @@
-import './ServerFormModal.css'
+import './ServerFormUpdateModal.css'
 import { useDispatch } from 'react-redux'
 import { useModal } from '../../context/Modal'
 import { useState } from 'react'
-import { createServerThunk } from '../../store/servers'
+import { updateServerThunk } from '../../store/servers'
 import { useHistory } from 'react-router-dom'
 
-export default function ServerFormModal({ }) {
+export default function ServerFormUpdateModal({ server }) {
     const dispatch = useDispatch()
     const history = useHistory()
     const { closeModal } = useModal()
-    const [name, setName] = useState('')
-    const [description, setDescription] = useState('')
+    const [name, setName] = useState(server.name)
+    const [description, setDescription] = useState(server.description)
     const [serverImage, setServerImage] = useState('')
     const [serverBannerImage, setServerBannerImage] = useState('')
     const [error, setError] = useState(null);
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+        console.log('update prep', name, description, serverImage, serverBannerImage, 'x')
         const form = new FormData()
         form.append('name', name);
         form.append('description', description)
-        form.append('server_image', serverImage)
-        form.append('banner_image', serverBannerImage)
+        form.append('serverImage', serverImage)
+        form.append('bannerImage', serverBannerImage)
+        form.append('id', server.id)
+        console.log('update name', name)
         console.log(form);
-        console.log('create form')
-        dispatch(createServerThunk(form)).then((responseData) => {
+        dispatch(updateServerThunk(form)).then((responseData) => {
             if (responseData.error) {
                 setError(responseData.error)
             } else {
@@ -39,10 +40,10 @@ export default function ServerFormModal({ }) {
             <form onSubmit={handleSubmit}>
                 <input type='text' value={name} onChange={(e) => setName(e.target.value)} />
                 <input type='text' value={description} onChange={(e) => setDescription(e.target.value)} />
-                <input type='file' required onChange={(e) => setServerImage(e.target.files[0])} accept='image/*' />
-                <input type='file' required onChange={(e) => setServerBannerImage(e.target.files[0])} accept='image/*' />
+                <input type='file' onChange={(e) => setServerImage(e.target.files[0])} accept='image/*' />
+                <input type='file' onChange={(e) => setServerBannerImage(e.target.files[0])} accept='image/*' />
                 <button type='submit'>
-                    Create Form
+                    Update Server
                 </button>
             </form>
         </div>
