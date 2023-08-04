@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { io } from "socket.io-client";
 import { loadChannelMessagesThunk } from "../../store/messages";
+import OpenModalButton from "../OpenModalButton"; // test the text set
 
 let socket;
 
@@ -51,7 +52,7 @@ function ReactionsPanel({ message, userId, channelId }) {
     const addSmileEmoji = (e) => {
         e.preventDefault();
         console.log("Yeah, you're sending this")
-        console.log("Hey:", {owner_id: userId, message_id: message.id, emoji: "1F600"})
+        console.log("Hey:", {owner_id: userId, message_id: message.id, emoji: "1F600"}); // can probably open a modal and save an emoji value to context or something
         socket.emit("react", {owner_id: userId, message_id: message.id, emoji: "1F600" });
     }
 
@@ -81,6 +82,7 @@ function ReactionsPanel({ message, userId, channelId }) {
             }
             )}
             <button onClick={e => addSmileEmoji(e)}>Add smiley face</button>
+            <OpenModalButton buttonText={"Test"} />
         </div>
     );
 };
