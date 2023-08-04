@@ -33,9 +33,6 @@ function ReactionsPanel({ message, userId, channelId }) {
         return acc;
     }, []);
 
-    const removeEmoji = () => {}; // handler for removing emoji
-    // need a handler for adding emoji
-
     useEffect(() => {
         socket = io();
         console.log("connected (reactions)");
@@ -49,13 +46,13 @@ function ReactionsPanel({ message, userId, channelId }) {
         })
     }, []); // reactId?
 
-    const removeSmileEmoji = (e) => {
+    const removeEmoji = (e) => {
         e.preventDefault();
-        // need to id the emoji
-        // need to emit to the socket to remove it
-        // need, like, a factory to generate for each emoji
-        // do you need to redo everything to give each react a value?
-        // do you just need the values pertinent to the user?
+        console.log(e.target.className)
+        // only if userId == ownerId to reaction
+        if (e.target.className === "your-reaction") {
+            socket.emit("delete_reaction", {"message_id": parseInt(message.id), "owner_id": parseInt(userId), emoji: e.target.value})
+        }
     }
 
     return (
@@ -64,11 +61,11 @@ function ReactionsPanel({ message, userId, channelId }) {
                 let className = "";
                 const val = "&#x" + reaction.emoji + ";"
                 if (reaction.ownerIds.indexOf(userId) >= 0) {
-                    className += 'your-reaction'
+                    className += "your-reaction"
                 }
                 return (
                     <span>
-                        <button dangerouslySetInnerHTML={{__html: sanitizeHtml(val)}} className={className} onClick={removeEmoji} />
+                        <button dangerouslySetInnerHTML={{__html: sanitizeHtml(val)}} className={className} onClick={removeEmoji} value={reaction.emoji} />
                         {reaction.frequency}
                     </span>
                 )
