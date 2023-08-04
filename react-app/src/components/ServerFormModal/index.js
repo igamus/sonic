@@ -35,12 +35,12 @@ export default function ServerFormModal({ }) {
     }
 
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
-                <input type='text' value={name} onChange={(e) => setName(e.target.value)} />
-                <input type='text' value={description} onChange={(e) => setDescription(e.target.value)} />
-                <input type='file' required onChange={(e) => setServerImage(e.target.files[0])} accept='image/*' />
-                <input type='file' required onChange={(e) => setServerBannerImage(e.target.files[0])} accept='image/*' />
+        <div id='server-form-container'>
+            <form id='server-form' onSubmit={handleSubmit}>
+                <input id='server-form-text-field' type='text' value={name} onChange={(e) => setName(e.target.value)} />
+                <input id='server-form-text-field' type='text' value={description} onChange={(e) => setDescription(e.target.value)} />
+                <input id='server-form-file-field' type='file' required onChange={(e) => setServerImage(e.target.files[0])} accept='image/*' />
+                <input id='server-form-file-field' type='file' required onChange={(e) => setServerBannerImage(e.target.files[0])} accept='image/*' />
                 <button type='submit'>
                     Create Form
                 </button>
