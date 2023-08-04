@@ -13,6 +13,7 @@ import Home from "./components/UserHome/UserHome";
 import SingleSpot from "./components/Servers/IndivudalSever";
 import Channel from "./components/Channel";
 import ExplorePage from "./components/Servers/ExplorePage/ExplorePage";
+import NewLandingPage from "./components/LandingPage/NewLandingPage";
 
 function App() {
   const dispatch = useDispatch();
