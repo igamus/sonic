@@ -27,16 +27,13 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route exact path="/" component={LandingPage} />
-          <ProtectedRoute path="/ahh">
-            <UserHome />
-          </ProtectedRoute>
+          <ProtectedRoute path="/ahh" component={UserHome} />
+          <ProtectedRoute path="/me" component={Home} />
           <ProtectedRoute exact path="/servers/explore" component={ExplorePage} />
           <ProtectedRoute exact path="/servers/:serverId/:channelId" component={Channel} />
           <ProtectedRoute exact path="/servers/:serverId" component={SingleSpot} />
           <Route path="/login" component={LoginFormPage} />
           <Route path="/signup" component={SignupFormPage} />
-          <ProtectedRoute path="/me" component={Home} />
-          <Route path="/test" component={Home} />
           <Route path="*" component={NotFound} />
         </Switch>
       )}
