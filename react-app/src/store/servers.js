@@ -106,6 +106,13 @@ export const deleteServerThunk = (serverId) => async (dispatch) => {
   }
 };
 
+export const leaveServerThunk = (serverId) => async (dispatch) => {
+  const res = await fetch(`/api/servers/${serverId}/leave`, {
+    method: "DELETE"
+  })
+  return res;
+}
+
 export const loadSingleServerThunk = (serverId) => async (dispatch) => {
   const res = await fetch(`/api/servers/${serverId}`, {
     method: "GET",

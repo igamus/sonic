@@ -126,6 +126,19 @@ def delete_server(serverId):
     return jsonify({'message': 'Server deleted success'}), 200
 
 @login_required
+@server_routes.route('/<int:serverId>/leave', methods = ['DELETE'])
+def leave_server(serverId):
+    print ('leave server attempt ---------------------------------------------------------')
+    server = Server.query.get(serverId)
+    print ('leave server info ---------------------------------------------------------')
+    print (server.server_memberships)
+    if server is None:
+        return jsonify({'message': "Server doesn't exist"}),404
+    print(')))))))))))))))))))))))))))))))))))))))))))))))')
+    server.server_memberships.remove(current_user)
+    db.session.commit()
+
+@login_required
 @server_routes.route('/<int:serverId>', methods = ['PUT'])
 def edit_server(serverId):
     # Updates the server information based on the provided server_id.

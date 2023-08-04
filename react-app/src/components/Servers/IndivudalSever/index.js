@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { loadSingleServerThunk } from '../../../store/servers';
-import { Link, useParams } from 'react-router-dom/cjs/react-router-dom.min';
+import { loadSingleServerThunk, leaveServerThunk } from '../../../store/servers';
+import { Link, useParams, useHistory } from 'react-router-dom/';
 import { loadServerChannelsThunk } from '../../../store/channels';
 
 import ServerFormUpdateModal from '../../ServerFormUpdateModal'
@@ -14,7 +14,7 @@ import CreateChannelModal from '../../Channel/Create/CreateChannelModal';
 const SingleSpot = () => {
   const { serverId } = useParams();
   const dispatch = useDispatch();
-
+  const history = useHistory();
   useEffect(() => {
     dispatch(loadSingleServerThunk(serverId));
     dispatch(loadServerChannelsThunk(serverId));
@@ -32,6 +32,17 @@ const SingleSpot = () => {
   ownerUser = ownerUser[0]
   console.log('o2', ownerUser)
   const userId = user.id;
+  const isOwner = userId === server.ownerId
+  const leaveServer = async () => {
+
+    dispatch(leaveServerThunk(serverId)).then(responseData => {
+      if (responseData.error) {
+        // pray
+      } else {
+        history.push('/me')
+      }
+    });
+  }
   return (
     <div>
       {server ?
@@ -45,7 +56,7 @@ const SingleSpot = () => {
             {/* Display channels */}
             <h2>Channels:</h2>
             {
-              userId === server.ownerId
+              isOwner
                 ?
                 <OpenModalButton
                   modalComponent={<CreateChannelModal serverId={server.id} />}
@@ -59,7 +70,7 @@ const SingleSpot = () => {
                 <Link to={`/servers/${serverId}/${channel.id}`}>
                   <p>{channel.name}</p>
                 </Link>
-                {userId === server.ownerId ? (
+                {isOwner ? (
                   <>
                     <OpenModalButton
                       modalComponent={<UpdateChannelModal channel={channel} />}
@@ -76,10 +87,14 @@ const SingleSpot = () => {
             <h3>Users:</h3>
             {server.users?.map((user) => (<p><p>Name: {user.username} </p><img src={user.profilePic} /></p>))}
             {channels.length === 0 && <p>No channels available for this server.</p>}
-            {user.id == server.ownerId ?
+            {isOwner ?
               (<OpenModalButton
-                modalComponent={<ServerFormUpdateModal title='Update Server' server={server} />}
-                buttonText='Update Server' />) : (<div />)}
+                modalComponent={<ServerFormUpdateModal
+                  title='Update Server'
+                  server={server} />}
+                buttonText='Update Server' />) :
+              (<button onClick={leaveServer}>Leave Server</button>)}
+
           </div>
         )
         : (
