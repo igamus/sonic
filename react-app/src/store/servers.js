@@ -185,6 +185,8 @@ const serversReducer = (state = initialState, action) => {
         allServers: remainingServers,
       };
     case LOAD_SINGLE_SERVER:
+      newState = { ...state, singleServer: {} };
+      newState.singleServer = {...action.server}
       return {
         ...state,
         singleServer: action.server,

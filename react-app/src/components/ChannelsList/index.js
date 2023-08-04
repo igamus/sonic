@@ -12,7 +12,8 @@ function ChannelsList({ server }) {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(loadServerChannelsThunk(server.id));
-  }, [dispatch]);
+  }, [dispatch, server]);
+
   const channels = useSelector((state) =>
     Object.values(state.channels.serverChannels)
   );

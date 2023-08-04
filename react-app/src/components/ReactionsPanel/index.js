@@ -44,7 +44,7 @@ function ReactionsPanel({ message, userId, channelId }) {
             console.log("disconnected (reactions)");
             socket.disconnect();
         })
-    }, []); // reactId?
+    }, [dispatch, channelId]); // reactId?
 
     const removeEmoji = (e) => {
         e.preventDefault();

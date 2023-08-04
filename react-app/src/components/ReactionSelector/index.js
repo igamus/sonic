@@ -23,7 +23,7 @@ function ReactionSelector({ channelId, userId, messageId }) {
                 socket.disconnect();
             }, 60000)
         })
-    }, []);
+    }, [dispatch, channelId]);
 
     const handleClick = (e, emoji) => {
         e.preventDefault();
