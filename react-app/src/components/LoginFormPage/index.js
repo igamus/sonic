@@ -15,6 +15,8 @@ function LoginFormPage() {
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
   const history = useHistory();
+  const [forgotPasswordClicked, setForgotPasswordClicked] = useState(false);
+
 
   if (sessionUser) return <Redirect to="/me" />;
 
@@ -45,6 +47,11 @@ function LoginFormPage() {
     return dispatch(login(demoUserInfo.email, demoUserInfo.password))
       .then(history.push('/me'));
   }
+  const handleForgotPasswordClick = (e) => {
+    e.preventDefault();
+    setForgotPasswordClicked(true);
+    alert("Coming soon! Forgot password functionality will be available soon.");
+  };
 
   return (
 
@@ -80,7 +87,7 @@ function LoginFormPage() {
                   required
                 />
               </label>
-              <a href="" >
+              <a href="" onClick={handleForgotPasswordClick}>
                 <div className="forgotten">Forgot your password?</div>
               </a>
               <br></br>
