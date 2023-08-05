@@ -24,13 +24,13 @@ const NewLandingPage = () => {
                 </a>
               </li>
               <li className="nav-item">
-                <a href="#" className="nav-link">
+                <a href="#bottom" className="nav-link">
                   Creators
                 </a>
               </li>
               <li className="nav-item">
                 <a href="#" className="nav-link">
-                  Why discord
+                  Why Sonic
                 </a>
               </li>
               <li className="nav-item">
@@ -192,7 +192,7 @@ const NewLandingPage = () => {
         </div>
       </section>
 
-      <footer className="main-footer">
+      <footer className="main-footer" id="bottom">
         <div className="row container">
           <div className="info-box">
             <h4 className="footer-title">Your place to talk</h4>
@@ -216,28 +216,28 @@ const NewLandingPage = () => {
 
           <div className="footer-links-group">
             <h5 className="footer-title">Product</h5>
-            <a href="#" className="footer-link">
+            <a href="#bottom" className="footer-link">
               Click
             </a>
           </div>
 
           <div className="footer-links-group">
             <h5 className="footer-title">Product</h5>
-            <a href="#" className="footer-link">
+            <a href="#bottom" className="footer-link">
               Each
             </a>
           </div>
 
           <div className="footer-links-group">
             <h5 className="footer-title">Product</h5>
-            <a href="#" className="footer-link">
+            <a href="#bottom" className="footer-link">
               Github
             </a>
           </div>
 
           <div className="footer-links-group">
             <h5 className="footer-title">Product</h5>
-            <a href="#" className="footer-link">
+            <a href="#bottom" className="footer-link">
               Icon
             </a>
           </div>
@@ -246,7 +246,7 @@ const NewLandingPage = () => {
         </div>
 
         <div className="row container remove-grid">
-          <a href="#" className="logo">
+          <a href="#bottom" className="logo">
             <img src={logo} alt="" />
           </a>
           <NavLink to="/login" className="btn btn-small btn-brand">
