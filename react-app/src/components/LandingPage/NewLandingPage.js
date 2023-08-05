@@ -186,9 +186,9 @@ const NewLandingPage = () => {
         <div className="row container remove-grid">
           <img src={Section5} alt="" className="sparkles" />
           <h2>Ready to start your journey</h2>
-          <a href="#" className="btn btn-large btn-brand">
+          <NavLink to="/me" className="btn btn-large btn-brand">
             <i className="bx bx-download"></i> Open Sonic
-          </a>
+          </NavLink>
         </div>
       </section>
 
