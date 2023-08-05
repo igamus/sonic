@@ -14,7 +14,7 @@
 }
 
 .all {
-  font-size: 62.5%;
+  /* font-size: 62.5%; */
   font-size: var(--general-font-size);
   font-family: var(--main-font-family-light);
 }
@@ -49,7 +49,7 @@ body {
   --container-width: 126rem;
 }
 
-#img {
+#imgg {
   max-width: 100%;
   display: block;
 }
@@ -225,3 +225,276 @@ body {
 .wave-inverted {
     transform: matrix(1,0,0,-1,0,0);
 }
+
+
+
+/* Final sec */
+
+.video-call{
+    background-color: var(--off-white-clr);
+}
+
+.video-call .row{
+    padding-bottom: 8rem;
+}
+
+.video-call .text-group {
+    grid-column: span var(--num-of-grid-columns);
+    margin-top: 0;
+}
+
+.video-call .text-group p{
+    margin-top: 2.4rem;
+}
+
+
+.video-call .grid-image {
+    width: 100%;
+    grid-column: span var(--num-of-grid-columns);
+    margin-top: 2.4rem;
+}
+
+
+/* Open SOnic */
+
+.download {
+    background-color: var(--off-white-clr);
+    position: relative;
+}
+
+.download .remove-grid{
+    display: block;
+    padding-top: 0;
+    text-align: center;
+}
+
+.sparkles {
+    display: inline-block;
+}
+
+.download h2 {
+    font-size: 3.2rem;
+    font-family: var(--main-font-family-medium);
+}
+
+
+.btn-brand {
+    background-color: var(--brand-clr);
+    color: var(--light-clr);
+    transition: background-color .5s;
+}
+.download .btn-brand {
+    margin-top: 4rem;
+}
+.btn-brand:hover {
+background-color: #8ea1e1
+}
+
+
+/*
+FOot */
+
+
+.main-footer {
+    background-color: var(--dark-clr);
+    color: var(--light-clr);
+    padding: 8rem 2.4rem 6.4rem;
+}
+
+.main-footer .row {
+    padding: 0;
+}
+
+.info-box {
+    grid-column: span 4;
+    margin-bottom: 5.6rem;
+}
+
+.footer-title {
+    color:var(--brand-clr)
+
+}
+
+.info-box .footer-title {
+    font-size: 3.2rem;
+    font-family: var(--main-font-family-medium);
+}
+
+
+.languages {
+    margin: 2.4rem 0;
+    display: flex;
+    align-items: center;
+    font-size: 1.4rem;
+}
+
+.languages img {
+    width: 2.4rem;
+}
+
+.languages span {
+    margin: 0.8rem;
+}
+
+.sm-link {
+    font-size: 2.3rem;
+    color: inherit;
+    margin-right: 2rem;
+}
+
+.spacer {
+    display: none;
+}
+
+.footer-links-group {
+    font-size: 1.6rem;
+    margin-bottom: 4rem;
+    grid-column: span 2;
+
+}
+
+
+.footer-links-group .footer-title{
+    font-size: inherit;
+    padding-top: .8rem;
+    font-weight: 100;
+}
+
+.footer-link {
+    display: block;
+    margin-top: 1.2rem;
+    color: inherit;
+
+}
+
+
+.divider {
+    grid-column: 1/-1;
+    height: 1px;
+    background-color: var(--brand-clr);
+    margin-bottom: 3.2rem;
+    grid-column: 1/-1;
+}
+
+.main-footer .remove-grid {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.main-footer .btn-brand {
+    line-height: 1.8;
+}
+
+
+@media screen and (min-width: 768px) {
+    :root {
+        --primary-title-font-size: 5.6rem;
+        --secondary-title-font-size: 4.8rem;
+        --num-of-grid-columns: 8;
+        --section-spacing: 8rem 4rem;
+      }
+
+    .hero {
+        min-height: 62.6rem;
+    }
+
+    .hero-content-wrap {
+        grid-column: span 5;
+
+    }
+
+    .hero-description {
+        margin: 4rem 0 .8rem;
+    }
+
+    .grid-image {
+        margin: auto 0;
+    }
+
+    .text-group {
+        margin-top: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .order-1 {
+        order: 1
+    }
+
+    .order-2 {
+        order: 2;
+    }
+
+    .video-call {
+        text-align: center;
+    }
+
+    .info-box {
+        grid-column: span 3;
+        grid-row: span 2;
+    }
+
+    .spacer {
+        display: block;
+        grid-row: span 2;
+    }
+}
+
+
+@media screen and (min-width: 1024px) {
+    :root {
+        --num-of-grid-columns: 12;
+        --section-spacing: 12rem 4rem;
+      }
+
+
+      .nav-list {
+        display: flex;
+        list-style: none;
+      }
+
+      .nav-link {
+        font-size: 1.6rem;
+        color: var(--light-clr);
+        margin: 0 1rem;
+        padding: 1rem;
+        font-weight: bold;
+      }
+
+      .nav-link:hover {
+        text-decoration: underline;
+      }
+
+      .hero-content-wrap {
+        grid-column: 3/span 8;
+        text-align: center;
+      }
+
+      .mobile-toggle{
+        display: none;
+      }
+
+      .grid-image{
+        grid-column: span 7;
+        margin: 0;
+      }
+
+      .text-group{
+        grid-column: 9/-1;
+      }
+
+      .order-1{
+        grid-column: 1/span 4;
+      }
+
+      .order-2{
+        grid-column: 6/-1;
+      }
+
+
+      .video-call .text-group {
+        grid-column: 2/span 10;
+      }
+    }
