@@ -3,13 +3,14 @@ import classes from "./UserHome.module.css";
 import { useEffect, useState } from "react";
 import { deleteServerThunk, loadUserServersThunk } from "../../store/servers";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import { Link, useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import OpenModalButton from "../OpenModalButton";
 import ServerFormModal from '../ServerFormModal'
 import LoggedInUserDisplay from "../LoggedInUserDisplay";
 
 const Home = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   useEffect(() => {
     dispatch(loadUserServersThunk());
@@ -25,13 +26,17 @@ const Home = () => {
     dispatch(deleteServerThunk(serverId));
   };
 
+  const explore = () => {
+    history.push('/servers/explore')
+  }
+
   return (
     <body>
       <nav className={classes.sidenav}>
         <div className={classes.wrapper}>
           <button>Sonic</button>
           {servers.map((server) => (
-           <div key={server.id}>
+            <div key={server.id}>
               <Link to={`/servers/${server.id}`}>
                 <button>{server.name}</button>
               </Link>
@@ -40,6 +45,7 @@ const Home = () => {
 
           ))}
           <OpenModalButton modalComponent={<ServerFormModal title='Create Server' />} buttonText='+' />
+          <button onClick={explore}>'Explore'</button>
         </div>
       </nav>
       <nav className={classes.friends}>
