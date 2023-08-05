@@ -3,7 +3,7 @@ import logo from "./assets/images/d1.svg";
 import Section1 from "./assets/images/Sec1.svg";
 import Section2 from "./assets/images/Sec2.svg";
 import Section3 from "./assets/images/Sec3.svg";
-import Section4 from "./assets/images/Sec4.svg";
+import Section4 from "./assets/images/section-4.svg";
 import Section5 from "./assets/images/sparkles.svg";
 import Flag from "./assets/images/flag.png";
 import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
@@ -140,8 +140,8 @@ const NewLandingPage = () => {
 
       <section className="moderation-tools">
         <div className="row container">
-          <img src={Section3} alt="" className="grid-image order-2" />
-          <div className="text-group order-1">
+          <img src={Section3} alt="" className="grid-image" />
+          <div className="text-group ">
             <h2 className="title secondary-title">From few to a fandom</h2>
             <p>
               Get any community running with moderation tools and custom member
