@@ -217,88 +217,28 @@ const NewLandingPage = () => {
           <div className="footer-links-group">
             <h5 className="footer-title">Product</h5>
             <a href="#" className="footer-link">
-              Download
-            </a>
-            <a href="#" className="footer-link">
-              Download
-            </a>
-            <a href="#" className="footer-link">
-              Download
-            </a>
-            <a href="#" className="footer-link">
-              Download
-            </a>
-            <a href="#" className="footer-link">
-              Download
-            </a>
-            <a href="#" className="footer-link">
-              Download
+              Click
             </a>
           </div>
 
           <div className="footer-links-group">
             <h5 className="footer-title">Product</h5>
             <a href="#" className="footer-link">
-              Download
-            </a>
-            <a href="#" className="footer-link">
-              Download
-            </a>
-            <a href="#" className="footer-link">
-              Download
-            </a>
-            <a href="#" className="footer-link">
-              Download
-            </a>
-            <a href="#" className="footer-link">
-              Download
-            </a>
-            <a href="#" className="footer-link">
-              Download
+              Each
             </a>
           </div>
 
           <div className="footer-links-group">
             <h5 className="footer-title">Product</h5>
             <a href="#" className="footer-link">
-              Download
-            </a>
-            <a href="#" className="footer-link">
-              Download
-            </a>
-            <a href="#" className="footer-link">
-              Download
-            </a>
-            <a href="#" className="footer-link">
-              Download
-            </a>
-            <a href="#" className="footer-link">
-              Download
-            </a>
-            <a href="#" className="footer-link">
-              Download
+              Github
             </a>
           </div>
 
           <div className="footer-links-group">
             <h5 className="footer-title">Product</h5>
             <a href="#" className="footer-link">
-              Download
-            </a>
-            <a href="#" className="footer-link">
-              Download
-            </a>
-            <a href="#" className="footer-link">
-              Download
-            </a>
-            <a href="#" className="footer-link">
-              Download
-            </a>
-            <a href="#" className="footer-link">
-              Download
-            </a>
-            <a href="#" className="footer-link">
-              Download
+              Icon
             </a>
           </div>
 
@@ -306,7 +246,7 @@ const NewLandingPage = () => {
         </div>
 
         <div className="row container remove-grid">
-          <a href="index.html" className="logo">
+          <a href="#" className="logo">
             <img src={logo} alt="" />
           </a>
           <NavLink to="/login" className="btn btn-small btn-brand">

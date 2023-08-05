@@ -53,6 +53,7 @@ body {
   max-width: 100%;
   display: block;
 }
+/* header.png */
 .hero {
   background: url("./assets/images/header.png") center/cover;
 
