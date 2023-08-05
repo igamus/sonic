@@ -7,7 +7,6 @@ import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import NotFound from "./components/ErrorPage/Errorpage";
-import LandingPage from "./components/LandingPage/LandingPage";
 import Home from "./components/UserHome/UserHome";
 import SingleSpot from "./components/Servers/IndivudalSever";
 import Channel from "./components/Channel";
