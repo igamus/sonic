@@ -58,7 +58,6 @@ function LoginFormPage() {
     <div className="tst">
       <div className="login-box">
         <div className="login-io-box">
-
           <div className="sol-box">
             <h2>Welcome Back!</h2>
             <span>We're so excited to see you again!</span>
@@ -69,7 +68,7 @@ function LoginFormPage() {
                 ))}
               </ul>
               <label>
-                <h5>Email</h5>
+                <h5>Email  <i style={{ color: 'red' }}>*</i></h5>
                 <input
                   type="text"
                   value={email}
@@ -79,7 +78,7 @@ function LoginFormPage() {
               </label>
 
               <label>
-                <h5>Password</h5>
+                <h5>Password  <i style={{ color: 'red' }}>*</i></h5>
                 <input
                   type="password"
                   value={password}

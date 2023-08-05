@@ -1,21 +1,20 @@
-.tst{
+.signback {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
     z-index: -1;
-    background: url(AT_BG5.jpg) no-repeat;
+    background: url(1319211.png) no-repeat;
     background-size: cover;
     color: #8e9297;
     line-height: 10px;
     font-family: "gg sans", "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 
 }
-
-.login-box {
-    width: 781px;
-    height: 370px;
+.signupbox {
+    width: 425px;
+    height: 600px;
     background-color: #36393f;
     position: absolute;
     top: 50%;
@@ -23,37 +22,33 @@
     transform: translate(-50%, -50%);
     border-radius: 5px;
     padding: 28px;
-}
 
-.login-io-box {
+}
+.signiobox{
     display: flex;
     align-content: stretch;
     justify-content: space-around;
     flex-wrap: nowrap;
     flex-direction: row;
     align-items: center;
+
 }
 
-.sol-box {
+.siobox {
     width:450px
 }
 
-.sol-box h2 {
+.siobox h2 {
     color: white;
-    font-family: "gg sans", "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
     text-align: center;
+    font-family: "gg sans", "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-.sol-box span {
-    margin-top: 5px;
-    color: #b9bbbe;
-    align-items: center;
-    text-align: center;
-}
-.form-box {
+.formzbox {
     font-size: 16px;
 }
-.sol-box input {
+
+.siobox input {
     color: white;
     box-sizing: border-box;
     width: 100%;
@@ -63,16 +58,12 @@
     padding: 13px;
 }
 
-.sol-box input, select, text {
+.siobox input, select, text {
     color: white;
 }
-.sing{
-    color: #00aff4;
-    margin-top: 10px;
-    text-decoration: none;
-    font-size: 14px;
-}
-.login-bttn {
+
+.signupbbtn {
+    margin-top: 15px;
     text-align: center;
     background-color: #5865f2;
     padding: 15px;
@@ -80,28 +71,5 @@
     color: white;
     border: none;
     font-weight: 700;
-}
-
-.account {
-    color: #72767d;
-    font-size: 14px;
-    line-height: 40px;
-}
-
-.sag-box {
-    right: 10px;
-    width: 250px;
-    text-align: center;
-    line-height: 20px;
-}
-
-.sag-box h2 {
-    color: white;
-}
-
-
-@media only screen and (max-width:760px) {
-    .sag-box {
-        display: none;
-    }
+    margin-bottom: 15px;
 }
