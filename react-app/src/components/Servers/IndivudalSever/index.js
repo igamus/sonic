@@ -34,7 +34,6 @@ const SingleSpot = () => {
   const userId = user.id;
   const isOwner = userId === server.ownerId
   const leaveServer = async () => {
-
     dispatch(leaveServerThunk(serverId)).then(responseData => {
       if (responseData.error) {
         // pray
