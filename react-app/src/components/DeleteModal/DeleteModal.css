@@ -1,1 +1,50 @@
-/* TODO: DeleteModal specific styling */
+#delete-header {
+    color: #f2f3f5;
+}
+
+#delete-modal {
+    background-color: #2b2d31;
+    color: #b5bac1;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+#warning {
+    color: red;
+    margin: 0px;
+}
+
+.deleter-button {
+    background-color: red;
+    border-color: red;
+    color: white;
+    border-radius: 15px;
+    margin-right: 10px;
+}
+
+.deleter-button:hover {
+    cursor: pointer;
+    background-color: red;
+    color: transparent;
+    border-color: black;
+    box-shadow: inset 2.5px 2.5px rgb(163, 40, 40);
+    text-shadow: 1.5px 1.5px white;
+}
+
+.simple-button {
+    background-color: #b5bac1;
+    border-color: #b5bac1;
+    color: white;
+    border-radius: 15px
+}
+
+.simple-button:hover {
+    cursor: pointer;
+    background-color: #b5bac1;
+    color: transparent;
+    border-color: black;
+    box-shadow: inset 2.5px 2.5px #9ca0a7;
+    text-shadow: 1.5px 1.5px white;
+}

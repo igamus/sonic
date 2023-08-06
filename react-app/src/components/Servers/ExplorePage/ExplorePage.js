@@ -20,9 +20,11 @@ const ExplorePage = () => {
     <div>
       <button onClick={back}>Back</button>
       <h1>Explore Servers</h1>
-      {servers.map((server) => (
-        <ExploreServer server={server} />
-      ))}
+      <div id='explore-servers-container'>
+        {servers.map((server) => (
+          <ExploreServer server={server} />
+        ))}
+      </div>
     </div>
   );
 };
