@@ -156,14 +156,15 @@ button {
 /** styling status bar **/
 
 .panel {
-	width: 256px;
+	width: 30%;
+	/* width: 256px; */
 	display: flex;
 	align-items: center;
 	padding: 0.5rem 1rem;
-	z-index: 1;
+	z-index: 10;
 	position: fixed;
 	bottom: 0;
-	left: 80px;
+	left: 4.5%;
 	background: var(--color-grey-dark);
 }
 .panel:hover .tag,
@@ -183,7 +184,7 @@ button {
 
 .user-info {
 	display: flex;
-	flex-grow: 1;
+	flex-grow: .15;
 	position: relative;
 	align-items: center;
 }
@@ -310,12 +311,12 @@ button {
 .main {
     justify-content: flex-start;
     height: 100%;
-    width: 60%;
+    width: 40%;
     position: fixed;
     overflow-x: hidden;
     padding-top: 20px;
     background-color: #313338;
-    margin-left: 19%;
+    margin-left: 30%;
     top: 0;
     left: 0;
   }
