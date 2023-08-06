@@ -1,4 +1,4 @@
-.tst{
+.tst {
     position: fixed;
     top: 0;
     left: 0;
@@ -35,7 +35,7 @@
 }
 
 .sol-box {
-    width:450px
+    width: 450px
 }
 
 .sol-box h2 {
@@ -50,9 +50,11 @@
     align-items: center;
     text-align: center;
 }
+
 .form-box {
     font-size: 16px;
 }
+
 .sol-box input {
     color: white;
     box-sizing: border-box;
@@ -63,15 +65,19 @@
     padding: 13px;
 }
 
-.sol-box input, select, text {
+.sol-box input,
+select,
+text {
     color: white;
 }
-.sing{
+
+.sing {
     color: #00aff4;
     margin-top: 10px;
     text-decoration: none;
     font-size: 14px;
 }
+
 .login-bttn {
     text-align: center;
     background-color: #5865f2;
@@ -99,6 +105,9 @@
     color: white;
 }
 
+#login-form-single-error {
+    color: red
+}
 
 @media only screen and (max-width:760px) {
     .sag-box {
