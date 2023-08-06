@@ -23,7 +23,7 @@ const Channel = () => {
     <div>
       <div className='sidenavz'>
         <div className='flexbacker'>
-      <button onClick={back}>Back</button>
+        <button onClick={back} className='back special-btncond'>&#11013; Back</button>
       </div>
       </div>
       {channel && (
