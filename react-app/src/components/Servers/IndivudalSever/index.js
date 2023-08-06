@@ -42,8 +42,12 @@ const SingleSpot = () => {
       }
     });
   }
+  const back = () => {
+    history.push('/me')
+  }
   return (
     <div>
+      <button onClick={back}>Back</button>
       {server ?
         (
           <div>

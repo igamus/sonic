@@ -72,7 +72,7 @@ export default function ServerFormModal({ }) {
                         accept='.jpg, .jpeg, .png' />
                 </div>
                 <button id='server-form-submit-button' type='submit'>
-                    Create Form
+                    Create Server
                 </button>
             </form>
         </div>

@@ -4,7 +4,6 @@ import { Route, Switch, useLocation } from "react-router-dom";
 import SignupFormPage from "./components/SignupFormPage";
 import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
-import Navigation from "./components/Navigation";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import NotFound from "./components/ErrorPage/Errorpage";
 import Home from "./components/UserHome/UserHome";
@@ -25,17 +24,25 @@ function App() {
 
   return (
     <>
-      {location.pathname !== "/"  && <Navigation isLoaded={isLoaded} />}
       {isLoaded && (
         <Switch>
           <Route exact path="/" component={NewLandingPage} />
-          <ProtectedRoute path="/ahh" component={Home} />
           <ProtectedRoute path="/me" component={Home} />
-          <ProtectedRoute exact path="/servers/explore" component={ExplorePage} />
-          <ProtectedRoute exact path="/servers/:serverId/:channelId" component={Channel} />
-          <ProtectedRoute exact path="/servers/:serverId" component={SingleSpot} />
+          <ProtectedRoute exact path="/servers/explore">
+            <ExplorePage />
+          </ProtectedRoute>
+          <ProtectedRoute
+            exact
+            path="/servers/:serverId/:channelId"
+            component={Channel}
+          />
+          <ProtectedRoute
+            exact
+            path="/servers/:serverId"
+            component={SingleSpot}
+          />
           <Route path="/login" component={LoginFormPage} />
-          <Route expact path ="/test" component={Nav}/>
+          <Route expact path="/test" component={Nav} />
           <Route path="/signup" component={SignupFormPage} />
           <Route path="*" component={NotFound} />
         </Switch>
