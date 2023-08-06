@@ -6,12 +6,10 @@ import { loadServerChannelsThunk } from '../../../store/channels';
 
 import "./IndividualServer.css";
 
-import ServerFormUpdateModal from '../../ServerFormUpdateModal'
 import OpenModalButton from "../../OpenModalButton";
 
 import DeleteModal from '../../DeleteModal';
 import UpdateChannelModal from '../../Channel/Update/UpdateChannelModal';
-import CreateChannelModal from '../../Channel/Create/CreateChannelModal';
 
 import ServerManagerModal from '../ServerManagerModal';
 

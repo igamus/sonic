@@ -1,4 +1,52 @@
-/* TODO: Component-specific styling */
+.chatbox {
+    width: 90%;
+    resize: vertical;
+}
+
+.message-input {
+    color: #e5ecf2;
+}
+
 .chat-error {
     color: red
+}
+
+.chat-button {
+    background-color: transparent;
+    border: none;
+    color: white;
+    margin: 5px;
+}
+
+.chat-button:disabled {
+    color: black;
+}
+
+.delete-message-button {
+    background-color: transparent;
+    border: none;
+    color: red;
+    margin-top: 5px;
+}
+
+.delete-message-button:hover {
+    cursor: pointer;
+    background-color: #404249;
+}
+
+.message-form {
+    margin-top: 30px;
+}
+
+.message-main {
+    margin-bottom: 100px;
+    height: 80vh;
+    overflow-y: scroll;
+}
+
+.mainz {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 100px;
+    justify-content: space-between;
 }

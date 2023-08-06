@@ -1,1 +1,28 @@
-/* TODO: Component-specific styling */
+.message-card {
+    color: #e5ecf2;
+    margin-top: 30px;
+}
+
+.message-username {
+    color: #e5ecf2;
+    margin: 0px;
+}
+
+.user-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 50px;
+}
+
+.react-button {
+    background-color: #5662e9;
+    border: 1px solid black;
+    color: #e5ecf2;
+    border-radius: 5px;
+}
+
+.react-button:hover {
+    cursor: pointer;
+    background-color: #944bd3;
+}

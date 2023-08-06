@@ -183,7 +183,7 @@ def edit_server(serverId):
                 server_image_filename = server.server_image
             else:
                 server_image_filename = get_unique_filename(server_image.get('filename'))
-            
+
             uploadServerImage = upload_file_to_s3(server_image, server_image_filename)
             if 'url' not in uploadServerImage:
                 return jsonify(error=uploadServerImage), 400
@@ -211,7 +211,7 @@ def edit_server(serverId):
 
         return server.to_dict()
     print (form.errors)
-    return {"error": "An unknown error has occcured in the PUT method of server_routes.py"} 
+    return {"error": "An unknown error has occcured in the PUT method of server_routes.py"}
 @server_routes.route('/<int:server_id>/channels', methods=["POST"])
 @login_required
 def create_channel(server_id):
