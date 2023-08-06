@@ -25,7 +25,7 @@ function App() {
 
   return (
     <>
-      {location.pathname !== "/"  && <Nav isLoaded={isLoaded} />}
+      {location.pathname !== "/"  && <Navigation isLoaded={isLoaded} />}
       {isLoaded && (
         <Switch>
           <Route exact path="/" component={NewLandingPage} />
@@ -35,7 +35,7 @@ function App() {
           <ProtectedRoute exact path="/servers/:serverId/:channelId" component={Channel} />
           <ProtectedRoute exact path="/servers/:serverId" component={SingleSpot} />
           <Route path="/login" component={LoginFormPage} />
-          {/* <Route expact path ="/test" component={Nav}/> */}
+          <Route expact path ="/test" component={Nav}/>
           <Route path="/signup" component={SignupFormPage} />
           <Route path="*" component={NotFound} />
         </Switch>

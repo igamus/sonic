@@ -27,10 +27,10 @@ button {
   font: inherit;
 }
 .nav-wrap {
-	/* background: var(--color-dark);
+	background: var(--color-dark);
 	font-family: "Open Sans", sans-serif;
 	color: var(--color-full-white);
-	min-height: 100vh; */
+	min-height: 100vh;
 }
 
 .nav-wrap nav {

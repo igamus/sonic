@@ -13,7 +13,7 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 import "./Nav.css";
 
-const Nav = () => {
+const Nav = ({isLoaded}) => {
   const dispatch = useDispatch();
   const history = useHistory();
   useEffect(() => {
@@ -179,7 +179,11 @@ const Nav = () => {
           </div>
         </section>
       </nav>
+      {isLoaded && (
+				<div>
 
+				</div>
+			)}
     </div>
 
   );
