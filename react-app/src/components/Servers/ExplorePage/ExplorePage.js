@@ -6,28 +6,29 @@ import './ExplorePage.css'
 import { loadAllServersThunk } from '../../../store/servers';
 
 const ExplorePage = () => {
-    const dispatch = useDispatch();
-    const servers = useSelector((state) => Object.values(state.servers.allServers));
+  const dispatch = useDispatch();
+  const servers = useSelector((state) => Object.values(state.servers.allServers));
 
-    useEffect(() => {
-      dispatch(loadAllServersThunk());
-    }, [dispatch]);
+  useEffect(() => {
+    dispatch(loadAllServersThunk());
+  }, [dispatch]);
 
-    return (
-      <div>
-        <h1>Explore Servers</h1>
-        {servers.map((server) => (
-          <div key={server.id} className="server">
-            <Link to={`/servers/${server.id}`}>
-              <h2>{server.name}</h2>
-              <img src={server.bannerImage} alt="Server Banner" />
-              <p>{server.description}</p>
-              <img src={server.serverImage} alt="Server Image" />
-            </Link>
-          </div>
-        ))}
-      </div>
-    );
-  };
+  return (
+    <div>
+      <h1>Explore Servers</h1>
+      {servers.map((server) => (
+        <div key={server.id} className="server">
+          <Link to={`/servers/${server.id}`}>
+            <h2>{server.name}</h2>
+            <img src={server.bannerImage} alt="Server Banner" />
+            <p>{server.description}</p>
+            <img src={server.serverImage} alt="Server Image" />
+            <button>Join Server</button>
+          </Link>
+        </div>
+      ))}
+    </div>
+  );
+};
 
-  export default ExplorePage;
+export default ExplorePage;
