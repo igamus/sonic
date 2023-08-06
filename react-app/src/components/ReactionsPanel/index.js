@@ -1,11 +1,9 @@
 import './ReactionsPanel.css'
 import sanitizeHtml from 'sanitize-html';
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { io } from "socket.io-client";
 import { loadChannelMessagesThunk } from "../../store/messages";
-import OpenModalButton from "../OpenModalButton"; // test the text set
-import ReactionSelector from '../ReactionSelector';
 
 let socket;
 
@@ -48,20 +46,18 @@ function ReactionsPanel({ message, userId, channelId }) {
 
     const removeEmoji = (e) => {
         e.preventDefault();
-        console.log(e.target.className)
-        // only if userId == ownerId to reaction
         if (e.target.className === "your-reaction") {
             socket.emit("delete_reaction", {"message_id": parseInt(message.id), "owner_id": parseInt(userId), emoji: e.target.value})
         }
     }
 
     return (
-        <div>
+        <div className='reactions-panel'>
             {reducedReactions.map(reaction => {
-                let className = "";
+                let className = "reaction";
                 const val = "&#x" + reaction.emoji + ";"
                 if (reaction.ownerIds.indexOf(userId) >= 0) {
-                    className += "your-reaction"
+                    className += " your-reaction"
                 }
                 return (
                     <span>
@@ -71,7 +67,6 @@ function ReactionsPanel({ message, userId, channelId }) {
                 )
             }
             )}
-            <OpenModalButton buttonText={"+"} modalComponent={<ReactionSelector channelId={channelId} messageId={message.id} userId={userId} />} />
         </div>
     );
 };

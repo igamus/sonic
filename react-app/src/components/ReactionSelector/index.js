@@ -21,7 +21,7 @@ function ReactionSelector({ channelId, userId, messageId }) {
             setTimeout(() => {
                 console.log("disconnected (reaction selector)");
                 socket.disconnect();
-            }, 60000)
+            }, 30000)
         })
     }, [dispatch, channelId]);
 
@@ -33,7 +33,7 @@ function ReactionSelector({ channelId, userId, messageId }) {
         closeModal();
     };
     return (
-        <div>
+        <div className="panel-selector">
             {emojiList.map(emoji => {
                 const val = "&#x" + emoji + ";"
                 return (<span className="panel-reaction" onClick={(e) => handleClick(e, emoji)} value={`${emoji}`} dangerouslySetInnerHTML={{__html: sanitizeHtml(val)}} />)

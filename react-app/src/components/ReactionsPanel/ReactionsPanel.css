@@ -1,4 +1,20 @@
-/* TODO: Add component-specific styling */
+.reactions-panel {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.reaction {
+    border-radius: 10px;
+    background-color: #313338;
+    padding: 2.5px;
+    margin: 0px 5px;
+}
+
+.reaction:hover {
+    cursor: pointer;
+    background-color: white;
+}
+
 .your-reaction {
-    background-color: aqua;
+    background-color: #944bd3;
 }

@@ -9,35 +9,30 @@ const Channel = () => {
   const { channelId } = useParams();
   const dispatch = useDispatch();
   const channel = useSelector((state) => state.channels.singleChannel);
-  const messages = useSelector((state) => Object.values(state.messages));
   const history = useHistory();
   useEffect(() => {
     dispatch(loadSingleChannelThunk(channelId));
     dispatch(loadChannelMessagesThunk(channelId)); // Fetch messages for the channel
   }, [dispatch, channelId]);
   const back = () => {
-    history.push('/me')
+    history.push(`/servers/${channel.server_id}`)
   }
 
   return (
-    <div>
+    <div className='channel-page'>
       <div className='sidenavz'>
-        <div className='flexbacker'>
-        <button onClick={back} className='back special-btncond'>&#11013; Back</button>
-      </div>
+      <button className="back-button" onClick={back}>&#11013; Back</button>
       </div>
       {channel && (
-          <>
-        <div className='friendsz'>
-        <div className='flexbacker'>
-          <h2>Channel : {channel.name}</h2>
-          <p>Description: {channel.description}</p>
-          </div>
+        <>
+          <div className='friendsz'>
+            <h1>{channel.name}</h1>
+            <p>{channel.description}</p>
           </div>
 
           <div className='mainz'>
-          <h2>Messages:</h2>
-          <Chat channelId={channel.id} />
+            <h2>Messages:</h2>
+            <Chat channelId={channel.id} />
           </div>
         </>
       )}
