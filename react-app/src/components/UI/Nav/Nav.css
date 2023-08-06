@@ -68,6 +68,7 @@ button {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+    z-index: 8;
 }
 .squircle:hover {
 	border-radius: 36%;
@@ -116,6 +117,7 @@ button {
 }
 
 .popper-boi {
+    z-index: 8;
 	background: var(--color-actually-black);
 	padding: 0.68rem 1rem;
 	position: absolute;
@@ -302,4 +304,62 @@ button {
   opacity: 1;
 
   transition-delay: 500ms;
+}
+
+
+.main {
+    justify-content: flex-start;
+    height: 100%;
+    width: 60%;
+    position: fixed;
+    overflow-x: hidden;
+    padding-top: 20px;
+    background-color: #313338;
+    margin-left: 19%;
+    top: 0;
+    left: 0;
+  }
+  .wraps {
+    margin-right: 105px;
+  }
+ .wraps input {
+    margin-top: 15px;
+    color: white;
+    box-sizing: border-box;
+    width: 50%;
+    border-radius: 4px;
+    background-color: #1e1f22;
+    border: 1px solid #212327;
+    padding: 13px;
+ }
+ .wraps h1 {
+    padding: 50px;
+ }
+
+
+  /* .input-group {
+    position: relative;
+    display: inline-block;
+  } */
+
+  /* .input-group input {
+    padding-right: 40px;
+  } */
+
+  /* .input-group button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+  } */
+
+  .login-bttns {
+    text-align: center;
+    background-color: #5865f2;
+    padding: 15px;
+    width: 235px;
+    color: white;
+    border: none;
+    font-weight: 700;
+    border-radius: 5px;
 }
