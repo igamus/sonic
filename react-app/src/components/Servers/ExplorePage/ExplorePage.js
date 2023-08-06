@@ -7,7 +7,6 @@ import ExploreServer from './ExploreServer'
 const ExplorePage = () => {
   const dispatch = useDispatch();
   const servers = useSelector((state) => Object.values(state.servers.allServers));
-
   useEffect(() => {
     dispatch(loadAllServersThunk());
   }, [dispatch]);
