@@ -106,6 +106,13 @@ export const deleteServerThunk = (serverId) => async (dispatch) => {
   }
 };
 
+export const joinServerThunk = (serverId) => async (dispatch) => {
+  const res = await fetch(`/api/servers/${serverId}/join`, {
+    method: "GET"
+  })
+  return res;
+}
+
 export const leaveServerThunk = (serverId) => async (dispatch) => {
   const res = await fetch(`/api/servers/${serverId}/leave`, {
     method: "DELETE"
@@ -186,7 +193,7 @@ const serversReducer = (state = initialState, action) => {
       };
     case LOAD_SINGLE_SERVER:
       newState = { ...state, singleServer: {} };
-      newState.singleServer = {...action.server}
+      newState.singleServer = { ...action.server }
       return {
         ...state,
         singleServer: action.server,

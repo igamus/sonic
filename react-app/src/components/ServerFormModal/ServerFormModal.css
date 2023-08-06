@@ -1,0 +1,16 @@
+#server-form-container {
+    width: 500px;
+    height: 40%;
+    padding: 10px;
+}
+
+#server-form-text-row {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#server-form-text-field {
+    width: 47%;
+}

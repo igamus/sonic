@@ -236,6 +236,14 @@ def create_channel(server_id):
         return form.errors
     return {"error": "An unknown error has occcured"} # need error messages
 
+@server_routes.route('/<int:serverId>/join', methods=['GET'])
+@login_required
+def join_server(serverId):
+    server = Server.query.get(serverId)
+    server.server_memberships.append(current_user)
+    db.session.commit()
+    return {}
+
 @login_required
 @server_routes.route('/<int:serverId>', methods=['GET'])
 def get_single_server(serverId):

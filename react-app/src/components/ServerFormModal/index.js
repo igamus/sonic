@@ -35,14 +35,46 @@ export default function ServerFormModal({ }) {
     }
 
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
-                <input type='text' value={name} onChange={(e) => setName(e.target.value)} />
-                <input type='text' value={description} onChange={(e) => setDescription(e.target.value)} />
-                <input type='file' required onChange={(e) => setServerImage(e.target.files[0])} accept='image/*' />
-                <input type='file' required onChange={(e) => setServerBannerImage(e.target.files[0])} accept='image/*' />
-                <button type='submit'>
-                    Create Form
+        <div id='server-form-container'>
+            <form id='server-form' onSubmit={handleSubmit}>
+                <div id='server-form-text-row'>
+                    <input
+                        id='server-form-text-field'
+                        type='text'
+                        value={name}
+                        required
+                        onChange={(e) => setName(e.target.value)}
+                        placeholder="What would you like to call this server?" />
+                    <input
+                        id='server-form-text-field'
+                        type='text'
+                        value={description}
+                        required
+                        onChange={(e) => setDescription(e.target.value)}
+                        placeholder="Please describe this server." />
+                </div>
+                <div>
+                    <label for='server-form-server-image'>Choose a Server Image</label>
+                    <input
+                        type='file'
+                        id='server-form-server-image'
+                        name='server-form-server-image'
+                        required
+                        onChange={(e) => setServerImage(e.target.files[0])}
+                        accept='.jpg, .jpeg, .png' />
+                </div>
+                <div>
+                    <label for='server-form-banner-image'>Choose a Banner Image</label>
+                    <input
+                        id='server-form-banner-image'
+                        name='server-form-banner-image'
+                        type='file'
+                        required
+                        onChange={(e) => setServerBannerImage(e.target.files[0])}
+                        accept='.jpg, .jpeg, .png' />
+                </div>
+                <button id='server-form-submit-button' type='submit'>
+                    Create Server
                 </button>
             </form>
         </div>

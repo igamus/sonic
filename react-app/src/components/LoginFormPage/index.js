@@ -15,6 +15,8 @@ function LoginFormPage() {
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
   const history = useHistory();
+  const [forgotPasswordClicked, setForgotPasswordClicked] = useState(false);
+
 
   if (sessionUser) return <Redirect to="/me" />;
 
@@ -45,13 +47,17 @@ function LoginFormPage() {
     return dispatch(login(demoUserInfo.email, demoUserInfo.password))
       .then(history.push('/me'));
   }
+  const handleForgotPasswordClick = (e) => {
+    e.preventDefault();
+    setForgotPasswordClicked(true);
+    alert("Coming soon! Forgot password functionality will be available soon.");
+  };
 
   return (
 
     <div className="tst">
       <div className="login-box">
         <div className="login-io-box">
-
           <div className="sol-box">
             <h2>Welcome Back!</h2>
             <span>We're so excited to see you again!</span>
@@ -62,7 +68,7 @@ function LoginFormPage() {
                 ))}
               </ul>
               <label>
-                <h5>Email</h5>
+                <h5>Email  <i style={{ color: 'red' }}>*</i></h5>
                 <input
                   type="text"
                   value={email}
@@ -72,7 +78,7 @@ function LoginFormPage() {
               </label>
 
               <label>
-                <h5>Password</h5>
+                <h5>Password  <i style={{ color: 'red' }}>*</i></h5>
                 <input
                   type="password"
                   value={password}
@@ -80,7 +86,7 @@ function LoginFormPage() {
                   required
                 />
               </label>
-              <a href="" >
+              <a href="" onClick={handleForgotPasswordClick}>
                 <div className="forgotten">Forgot your password?</div>
               </a>
               <br></br>

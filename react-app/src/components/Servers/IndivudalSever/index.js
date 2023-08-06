@@ -11,6 +11,8 @@ import DeleteChannelModal from '../../Channel/Delete/DeleteChannelModal';
 import UpdateChannelModal from '../../Channel/Update/UpdateChannelModal';
 import CreateChannelModal from '../../Channel/Create/CreateChannelModal';
 
+import DeleteModal from '../../DeleteModal';
+
 const SingleSpot = () => {
   const { serverId } = useParams();
   const dispatch = useDispatch();
@@ -28,13 +30,15 @@ const SingleSpot = () => {
   if (!ownerUser) {
     return null;
   }
+
+  const deleteVisible = user.id === server.ownerId;
+
   console.log('o1', ownerUser)
   ownerUser = ownerUser[0]
   console.log('o2', ownerUser)
   const userId = user.id;
   const isOwner = userId === server.ownerId
   const leaveServer = async () => {
-
     dispatch(leaveServerThunk(serverId)).then(responseData => {
       if (responseData.error) {
         // pray
@@ -43,8 +47,12 @@ const SingleSpot = () => {
       }
     });
   }
+  const back = () => {
+    history.push('/me')
+  }
   return (
     <div>
+      <button onClick={back}>Back</button>
       {server ?
         (
           <div>
@@ -52,6 +60,7 @@ const SingleSpot = () => {
             <p>Name: {server.name}</p>
             <p>Description: {server.description}</p>
             <p>Owner: {ownerUser.username}</p>
+            {deleteVisible ? <OpenModalButton buttonText={"Delete Server"}  modalComponent={<DeleteModal type="server" id={server.id} />} /> : null}
             <img src={server.serverImage} alt="Server Image" />
             {/* Display channels */}
             <h2>Channels:</h2>
