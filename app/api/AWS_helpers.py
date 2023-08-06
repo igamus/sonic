@@ -26,7 +26,8 @@ def upload_file_to_s3(file, acl="public-read"):
         print ('acl', acl)
         print ('file', file)
         print ('content type ', file.content_type)
-        
+        print (os.environ.get("S3_KEY"))
+        print (os.environ.get("S3_SECRET"))
         s3.upload_fileobj(
             file,
             BUCKET_NAME,
