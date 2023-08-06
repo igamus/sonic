@@ -5,18 +5,24 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import { useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react';
 const ExploreServer = ({ server }) => {
-    let isMember = 'false';
     const user = useSelector((state) => state.session.user);
     const dispatch = useDispatch()
+    const [isMember, setIsMember] = useState('')
     const join = () => {
         dispatch(joinServerThunk(server.id))
+        setIsMember('hide-explore-server-join')
     }
-    console.log(server.users)
+
+    useEffect(() => {
+
+    }, [isMember])
+
     for (let member of server.users) {
         //console.log(member.id, user.id)
-        if (member.id === user.id) {
-            isMember = 'hide-explore-server-join';
+        if (member.id === user.id && isMember != 'hide-explore-server-join') {
+            setIsMember('hide-explore-server-join');
         }
     }
 
