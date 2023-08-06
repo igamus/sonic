@@ -27,7 +27,7 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route exact path="/" component={NewLandingPage} />
-          <ProtectedRoute path="/me" component={Home} />
+          <ProtectedRoute path="/me" component={Nav} />
           <ProtectedRoute exact path="/servers/explore">
             <ExplorePage />
           </ProtectedRoute>
@@ -42,7 +42,7 @@ function App() {
             component={SingleSpot}
           />
           <Route path="/login" component={LoginFormPage} />
-          <Route expact path="/test" component={Nav} />
+          <Route expact path="/test" component={Home} />
           <Route path="/signup" component={SignupFormPage} />
           <Route path="*" component={NotFound} />
         </Switch>

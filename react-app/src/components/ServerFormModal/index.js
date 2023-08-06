@@ -42,12 +42,14 @@ export default function ServerFormModal({ }) {
                         id='server-form-text-field'
                         type='text'
                         value={name}
+                        required
                         onChange={(e) => setName(e.target.value)}
                         placeholder="What would you like to call this server?" />
                     <input
                         id='server-form-text-field'
                         type='text'
                         value={description}
+                        required
                         onChange={(e) => setDescription(e.target.value)}
                         placeholder="Please describe this server." />
                 </div>
