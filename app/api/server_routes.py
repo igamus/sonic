@@ -240,8 +240,8 @@ def create_channel(server_id):
 @login_required
 def join_server(serverId):
     server = Server.query.get(serverId)
-    server.server_memberships.remove(current_user)
-    db.commit()
+    server.server_memberships.append(current_user)
+    db.session.commit()
     return {}
 
 @login_required
