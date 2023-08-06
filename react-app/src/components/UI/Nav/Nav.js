@@ -28,7 +28,6 @@ const Nav = ({isLoaded}) => {
     dispatch(logout());
     history.push("/me");
   };
-  const [activeServer, setActiveServer] = useState(servers[0]);
   const user = useSelector((state) => state.session.user);
 
   const handleButtonClick = (event) => {

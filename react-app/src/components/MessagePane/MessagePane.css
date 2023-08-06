@@ -1,4 +1,23 @@
-/* TODO: Component-specific styling */
+.chatbox {
+    width: 50%;
+    resize: vertical;
+}
+
+.message-input {
+    color: #e5ecf2;
+}
+
 .chat-error {
     color: red
+}
+
+.chat-button {
+    background-color: transparent;
+    border: none;
+    color: white;
+    margin: 5px;
+}
+
+.chat-button:disabled {
+    color: black;
 }

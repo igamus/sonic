@@ -82,17 +82,19 @@ const Chat = ({ channelId }) => {
                         </div>
                     ))}</>
                         :
-                        <p>Be the first to say something!</p>
+                    <p>Be the first to say something!</p>
                 }
             </div>
             <form onSubmit={sendChat}>
-                <input
+                <textarea
+                    rows={3}
+                    className='chatbox'
                     value={chatInput}
                     onChange={updateChatInput}
                 />
-                <button disabled={!!disableButton} type="submit">Send</button>
+                <button className='chat-button' disabled={!!disableButton} type="submit">Send</button>
                 {disableButton ? <span className='chat-error'>Messages must be less than 500 characters.</span> : null}
-                <p className={inputClassName}>Character count: {chatInput.length}/500</p>
+                <p className={inputClassName + " message-input"}>Character count: {chatInput.length}/500</p>
             </form>
         </div>
     )

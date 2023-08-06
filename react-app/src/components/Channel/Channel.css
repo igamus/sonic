@@ -15,7 +15,7 @@
   .friendsz {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-evenly;
     height: 100%;
     width: 14%;
     position: fixed;
@@ -41,3 +41,17 @@
     top: 0;
     left: 0;
   }
+
+.channel-page {
+  color: #e5ecf2
+}
+
+.back-button {
+  background-color: transparent;
+  border: none;
+  color: #e5ecf2
+}
+
+.back-button:hover {
+  cursor: pointer;
+}
