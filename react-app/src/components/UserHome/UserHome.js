@@ -1,7 +1,7 @@
 import React from "react";
 import classes from "./UserHome.module.css";
 import { useEffect, useState } from "react";
-import { deleteServerThunk, loadUserServersThunk } from "../../store/servers";
+import { loadUserServersThunk } from "../../store/servers";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import OpenModalButton from "../OpenModalButton";
@@ -22,10 +22,6 @@ const Home = () => {
   const [activeServer, setActiveServer] = useState(servers[0]);
   const user = useSelector(state => state.session.user);
 
-  const handleDeleteServer = (serverId) => {
-    dispatch(deleteServerThunk(serverId));
-  };
-
   const explore = () => {
     history.push('/servers/explore')
   }
@@ -40,7 +36,6 @@ const Home = () => {
               <Link to={`/servers/${server.id}`}>
                 <button>{server.name}</button>
               </Link>
-              <button onClick={() => handleDeleteServer(server.id)}>Delete</button>
             </div>
 
           ))}
