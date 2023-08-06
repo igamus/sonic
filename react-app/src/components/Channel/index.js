@@ -22,13 +22,17 @@ const Channel = () => {
   return (
     <div>
       <div className='sidenavz'>
+        <div className='flexbacker'>
       <button onClick={back}>Back</button>
+      </div>
       </div>
       {channel && (
           <>
         <div className='friendsz'>
-          <h1>Channel Name: {channel.name}</h1>
+        <div className='flexbacker'>
+          <h2>Channel : {channel.name}</h2>
           <p>Description: {channel.description}</p>
+          </div>
           </div>
 
           <div className='mainz'>

@@ -10,9 +10,11 @@
     align-items: center;
     padding-top: 20px;
     z-index: -5;
+    align-items: center;
   }
 
   .friendsz {
+    color: white;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -40,4 +42,16 @@
     margin-left: 19%;
     top: 0;
     left: 0;
+  }
+.mainz h2 {
+  text-align: center;
+  color: white;
+}
+
+  .flexbacker {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-direction: column;
+    width: 100%;;
   }
