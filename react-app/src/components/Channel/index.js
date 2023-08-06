@@ -4,7 +4,7 @@ import { useParams, useHistory } from 'react-router-dom';
 import { loadChannelMessagesThunk } from '../../store/messages';
 import { loadSingleChannelThunk } from '../../store/channels';
 import Chat from '../MessagePane';
-
+import './Channel.css'
 const Channel = () => {
   const { channelId } = useParams();
   const dispatch = useDispatch();
@@ -18,17 +18,24 @@ const Channel = () => {
   const back = () => {
     history.push('/me')
   }
+
   return (
     <div>
+      <div className='sidenavz'>
       <button onClick={back}>Back</button>
+      </div>
       {channel && (
-        <div>
+          <>
+        <div className='friendsz'>
           <h1>Channel Name: {channel.name}</h1>
           <p>Description: {channel.description}</p>
-          Display messages
+          </div>
+
+          <div className='mainz'>
           <h2>Messages:</h2>
           <Chat channelId={channel.id} />
-        </div>
+          </div>
+        </>
       )}
     </div>
   );
