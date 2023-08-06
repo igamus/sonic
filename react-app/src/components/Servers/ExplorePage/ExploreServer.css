@@ -1,3 +1,35 @@
 .hide-explore-server-join {
     display: none;
 }
+
+#explore-server-container {
+    width: 300px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+}
+
+#explore-server-banner {
+    width: 280px;
+    height: 200px;
+    padding: 10px;
+}
+
+#explore-server-icon {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    border-radius: 50%;
+}
+
+#explore-server-below-banner {
+    display: flex;
+    flex-direction: row;
+    width: 280px;
+    height: 120px;
+    padding: 10px;
+}
+
+#explore-server-description {
+    height: 80px;
+}
