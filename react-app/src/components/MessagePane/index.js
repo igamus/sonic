@@ -13,6 +13,8 @@ const Chat = ({ channelId }) => {
     const [messages, setMessages] = useState([]);
     const [isSending, setisSending]= useState(false);
     const [savedChannelId, setSavedChannelId] = useState(0);
+    const [disableButton, setDisableButton] = useState(false);
+    const [inputClassName, setInputClassName] = useState("");
 
     if (channelId !== savedChannelId) {
         setChatInput("");
@@ -38,7 +40,17 @@ const Chat = ({ channelId }) => {
             console.log('disconnect');
             socket.disconnect()
         })
-    }, [channelId])
+    }, [channelId]);
+
+    useEffect(() => {
+        setDisableButton(false);
+        setInputClassName("")
+
+        if (chatInput.length > 500) {
+            setDisableButton(true);
+            setInputClassName("chat-error");
+        }
+    }, [chatInput]); // disabling isn't working
 
     const updateChatInput = (e) => {
         setChatInput(e.target.value)
@@ -78,7 +90,9 @@ const Chat = ({ channelId }) => {
                     value={chatInput}
                     onChange={updateChatInput}
                 />
-                <button type="submit">Send</button>
+                <button disabled={!!disableButton} type="submit">Send</button>
+                {disableButton ? <span className='chat-error'>Messages must be less than 500 characters.</span> : null}
+                <p className={inputClassName}>Character count: {chatInput.length}/500</p>
             </form>
         </div>
     )
