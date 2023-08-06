@@ -1,4 +1,19 @@
-/* TODO: Add component-specific styling */
+.panel-selector {
+    background-color: #2b2d31;
+    display: flex;
+    flex-direction: row;
+    padding: 5px;
+    width: 50vh;
+    height: 50vh;
+    flex-wrap: wrap;
+    overflow-y: auto;
+}
+
+.panel-reaction {
+    border-radius: 5px;
+    padding: 5px;
+}
+
 .panel-reaction:hover {
-    background-color: aqua;
+    background-color: #944bd3;
 }

@@ -15,6 +15,7 @@ const Chat = ({ channelId }) => {
     const [savedChannelId, setSavedChannelId] = useState(0);
     const [disableButton, setDisableButton] = useState(false);
     const [inputClassName, setInputClassName] = useState("");
+    const [enterWarning, setEnterWarning] = useState(false);
 
     if (channelId !== savedChannelId) {
         setChatInput("");
@@ -44,11 +45,16 @@ const Chat = ({ channelId }) => {
 
     useEffect(() => {
         setDisableButton(false);
+        setEnterWarning(false)
         setInputClassName("")
 
         if (chatInput.length > 500) {
             setDisableButton(true);
             setInputClassName("chat-error");
+        }
+
+        if (chatInput.indexOf("\n") > 0) {
+            setEnterWarning(true);
         }
     }, [chatInput]); // disabling isn't working
 
@@ -69,8 +75,19 @@ const Chat = ({ channelId }) => {
         socket.emit("delete_message", {"message_id": parseInt(e.target.value)})
     }
 
+    const handleEnter = (e) => {
+        e.preventDefault();
+        if (e.shiftKey) {
+            return setEnterWarning(true);
+        }
+        if (e.key === "Enter" && !disableButton) {
+            console.log("keypress is Enter")
+            sendChat(e);
+        }
+    }
+
     return (messages && (
-        <div>
+        <div className='message-main'>
             <div>
                 {
                     channelMessages && msgList?.length > 0
@@ -78,22 +95,24 @@ const Chat = ({ channelId }) => {
                     <>{msgList.map((message, ind) => (
                         <div>
                             <MessageCard key={ind} message={message} userId={user.id} channelId={channelId} />
-                            {message.owner_id === user.id ? <button onClick={deleteMessage} value={message.id}>Delete message?</button> : null}
+                            {message.owner_id === user.id ? <button onClick={deleteMessage} value={message.id} className="delete-message-button">Pretend this never happened (Delete)</button> : null}
                         </div>
                     ))}</>
                         :
                     <p>Be the first to say something!</p>
                 }
             </div>
-            <form onSubmit={sendChat}>
+            <form className='message-form' onSubmit={sendChat}>
                 <textarea
                     rows={3}
                     className='chatbox'
                     value={chatInput}
                     onChange={updateChatInput}
+                    onKeyUp={(e) => handleEnter(e)}
                 />
                 <button className='chat-button' disabled={!!disableButton} type="submit">Send</button>
-                {disableButton ? <span className='chat-error'>Messages must be less than 500 characters.</span> : null}
+                {disableButton ? <p className='chat-error'>Messages must be less than 500 characters.</p> : null}
+                {enterWarning ? <p className='chat-error'> Note: Line breaks are not preserved</p> : null}
                 <p className={inputClassName + " message-input"}>Character count: {chatInput.length}/500</p>
             </form>
         </div>
