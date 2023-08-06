@@ -11,6 +11,7 @@ import SingleSpot from "./components/Servers/IndivudalSever";
 import Channel from "./components/Channel";
 import ExplorePage from "./components/Servers/ExplorePage/ExplorePage";
 import NewLandingPage from "./components/LandingPage/NewLandingPage";
+import Nav from "./components/UI/Nav/Nav";
 
 function App() {
   const dispatch = useDispatch();
@@ -28,12 +29,20 @@ function App() {
           <Route exact path="/" component={NewLandingPage} />
           <ProtectedRoute path="/me" component={Home} />
           <ProtectedRoute exact path="/servers/explore">
-
             <ExplorePage />
           </ProtectedRoute>
-          <ProtectedRoute exact path="/servers/:serverId/:channelId" component={Channel} />
-          <ProtectedRoute exact path="/servers/:serverId" component={SingleSpot} />
+          <ProtectedRoute
+            exact
+            path="/servers/:serverId/:channelId"
+            component={Channel}
+          />
+          <ProtectedRoute
+            exact
+            path="/servers/:serverId"
+            component={SingleSpot}
+          />
           <Route path="/login" component={LoginFormPage} />
+          <Route expact path="/test" component={Nav} />
           <Route path="/signup" component={SignupFormPage} />
           <Route path="*" component={NotFound} />
         </Switch>
