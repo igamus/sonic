@@ -71,7 +71,7 @@ const Nav = ({isLoaded}) => {
           ))}
 
           <li className="squircle green-boi">
-            <svg
+            {/* <svg
               className="circleIcon-LvPL6c"
               aria-hidden="false"
               width="24"
@@ -82,15 +82,16 @@ const Nav = ({isLoaded}) => {
                 fill="currentColor"
                 d="M20 11.1111H12.8889V4H11.1111V11.1111H4V12.8889H11.1111V20H12.8889V12.8889H20V11.1111Z"
               ></path>
-            </svg>
+            </svg> */}
+            <OpenModalButton
+              modalComponent={<ServerFormModal title="Create Server" />}
+              buttonText="&#43;"
+              className="open-create-server"
+            />
             <div className="popper-boi">
               <h4 className="popper-text">Add Server</h4>
             </div>
           </li>
-          <OpenModalButton
-            modalComponent={<ServerFormModal title="Create Server" />}
-            buttonText="+"
-          />
           <NavLink to="/servers/explore">
             <li className="squircle green-boi">
               <svg

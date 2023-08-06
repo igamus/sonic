@@ -1,0 +1,39 @@
+.manage-modal {
+    background-color: #2b2d31;
+    color: #b5bac1;
+    padding: 20px;
+}
+
+.manage-header {
+    color: #f2f3f5;
+    margin: 0px;
+}
+
+.modal-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.server-button {
+    padding-left: 10px;
+    background-color: transparent;
+    border: none;
+    color: #b5bac1;
+    text-align: left;
+    margin: 5px;
+    font-size: 1.2em;
+}
+
+.server-button:hover {
+    cursor: pointer;
+    background-color: #404249;
+}
+
+#delete {
+    color: red;
+}
+
+#delete:hover {
+    color: #b5bac1;
+    background-color: rgb(163, 40, 40);
+}
