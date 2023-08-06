@@ -364,3 +364,18 @@ button {
     font-weight: 700;
     border-radius: 5px;
 }
+
+/* Add server */
+.open-create-server {
+	color: #00ae7a;
+	font-size: 2em;
+	background-color: transparent;
+	border: none;
+	width: fill;
+	height: fill;
+}
+
+.open-create-server:hover {
+	cursor: pointer;
+	color: white;
+}
