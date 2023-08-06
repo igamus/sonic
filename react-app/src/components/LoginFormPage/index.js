@@ -24,6 +24,7 @@ function LoginFormPage() {
     e.preventDefault();
     const data = await dispatch(login(email, password));
     if (data) {
+      data[0] = (data[0].split(':'))[1]
       setErrors(data);
     }
   };
@@ -64,7 +65,7 @@ function LoginFormPage() {
             <form className="form-box" onSubmit={handleSubmit}>
               <ul>
                 {errors.map((error, idx) => (
-                  <li key={idx}>{error}</li>
+                  <li id='login-form-single-error' key={idx}>{error}</li>
                 ))}
               </ul>
               <label>

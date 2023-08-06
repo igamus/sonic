@@ -1,9 +1,13 @@
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
-
+import './ErrorPage.css'
+import Sonic from './Sonic.gif'
 const NotFound = () => {
   return (
+    <div className="backblue">
     <main>
       <h2>Silly Goose this is not a Page</h2>
+      <div className="wrapboth">
+      <div className="grey-back">
       <p>
         Once upon a time in the whimsical land of the internet, a mischievous
         tech-savvy character, let's call him "Hacker Harry," decided to take on
@@ -23,10 +27,17 @@ const NotFound = () => {
         a bruised ego and a newfound respect for the enchanted realm of
         cybersecurity.
       </p>
-      <div>
+      </div>
+      <div className="gifcontrol">
+        <img src={Sonic} alt=""/>
+        <div className="linkback">
         Go to the <Link to="/" >Main Page</Link>
       </div>
+      </div>
+      </div>
+
     </main>
+    </div>
   );
 };
 

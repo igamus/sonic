@@ -27,12 +27,14 @@ const ExploreServer = ({ server }) => {
     }
 
 
-    return (<div key={server.id} className="server">
+    return (<div key={server.id} className="server" id='explore-server-container'>
         <Link to={`/servers/${server.id}`}>
             <h2>{server.name}</h2>
-            <img src={server.bannerImage} alt="Server Banner" />
-            <p>{server.description}</p>
-            <img src={server.serverImage} alt="Server Image" />
+            <img id='explore-server-banner' src={server.bannerImage} alt="Server Banner" />
+            <div id='explore-server-below-banner'>
+                <img id='explore-server-icon' src={server.serverImage} alt="Server Image" />
+                <p id='explore-server-description'>{server.description}</p>
+            </div>
         </Link>
         <button class={isMember} onClick={join}>Join Server</button>
     </div>)

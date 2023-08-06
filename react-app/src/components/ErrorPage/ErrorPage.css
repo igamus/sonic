@@ -1,0 +1,45 @@
+
+.backblue {
+background: url("./pxfuel.jpg") no-repeat;
+position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+
+    background-size: cover;
+    color: #243B53;
+    line-height: 30px;
+    font-family: "gg sans", "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.backblue h2 {
+    margin-right: 50px;
+    background-color: #243B53;
+    color: aliceblue;
+    margin: 0px;
+    margin-top: 0;
+    text-align: center;
+}
+
+.wrapboth {
+    display: flex;
+    gap: 500px;
+    justify-content: row;
+}
+
+.grey-back {
+
+    width: 400px;
+    background-color: #F0F4F8
+}
+.linkback {
+    display: flex;
+    justify-content: row;
+    font-size: 50px;
+    text-align: center;
+    background-color: #243B53;
+    color: aliceblue;
+    height: 90px;
+}
