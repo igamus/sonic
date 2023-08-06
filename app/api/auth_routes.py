@@ -82,7 +82,7 @@ def sign_up():
         print('upload result', uploadProfileImage)
         if 'url' not in uploadProfileImage:
             print ('url was not in uploadProfileImage')
-            return  uploadProfileImage
+            return  uploadProfileImage, 400
         else:
            print ('url exists')
            user.profile_picture = uploadProfileImage['url']
