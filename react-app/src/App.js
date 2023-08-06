@@ -28,7 +28,7 @@ function App() {
           <Route exact path="/" component={NewLandingPage} />
           <ProtectedRoute path="/me" component={Home} />
           <ProtectedRoute exact path="/servers/explore">
-            <Home />
+
             <ExplorePage />
           </ProtectedRoute>
           <ProtectedRoute exact path="/servers/:serverId/:channelId" component={Channel} />

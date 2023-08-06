@@ -23,8 +23,8 @@ const ExplorePage = () => {
             <img src={server.bannerImage} alt="Server Banner" />
             <p>{server.description}</p>
             <img src={server.serverImage} alt="Server Image" />
-            <button>Join Server</button>
           </Link>
+          <button>Join Server</button>
         </div>
       ))}
     </div>
