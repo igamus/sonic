@@ -31,8 +31,9 @@ const Nav = ({isLoaded}) => {
   const [activeServer, setActiveServer] = useState(servers[0]);
   const user = useSelector((state) => state.session.user);
 
-  const handleDeleteServer = (serverId) => {
-    dispatch(deleteServerThunk(serverId));
+  const handleButtonClick = (event) => {
+    event.preventDefault();
+    window.alert('Coming Soon');
   };
 
   return (
@@ -179,11 +180,21 @@ const Nav = ({isLoaded}) => {
           </div>
         </section>
       </nav>
-      {isLoaded && (
-				<div>
+      <nav className="main">
+        <section className="wraps">
+          <h2>Add Friend</h2>
+          <div>Enter a Username#000 </div>
+          <form>
+      <div className="input-group">
+        <input type="text" placeholder="You can add friends with their Discord username" />
+        <button type="submit" className="login-bttns" onClick={handleButtonClick}>
+          Send a Friend Request
+        </button>
+      </div>
+    </form>
+        </section>
+      </nav>
 
-				</div>
-			)}
     </div>
 
   );
