@@ -1,12 +1,11 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+
 import './Navigation.css';
-import OpenModalButton from '../OpenModalButton';
-import ServerFormModal from '../ServerFormModal'
+
 
 function Navigation({ isLoaded }) {
-	const sessionUser = useSelector(state => state.session.user);
+
 
 	return (
 		<ul>
