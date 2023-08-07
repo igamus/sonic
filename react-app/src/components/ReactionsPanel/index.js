@@ -41,7 +41,7 @@ function ReactionsPanel({ message, userId, channelId }) {
                 }
                 return (
                     <span>
-                        <button dangerouslySetInnerHTML={{__html: sanitizeHtml(val)}} className={className} value={reaction.emoji} />
+                        <span dangerouslySetInnerHTML={{__html: sanitizeHtml(val)}} className={className} value={reaction.emoji} />
                         {reaction.frequency}
                     </span>
                 )

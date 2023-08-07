@@ -47,7 +47,7 @@ function ReactionSelector({ channelId, userId, message }) {
                 let className = "panel-reaction";
                 if (userReactions.includes(emoji)) className += " user-owns";
                 const val = "&#x" + emoji + ";"
-                return (<span className={className} onClick={(e) => handleClick(e, emoji)} value={`${emoji}`} dangerouslySetInnerHTML={{__html: sanitizeHtml(val)}} />)
+                return (<span key={`emoji-panel-${emoji}`} className={className} onClick={(e) => handleClick(e, emoji)} value={`${emoji}`} dangerouslySetInnerHTML={{__html: sanitizeHtml(val)}} />)
             })}
         </div>
     );
