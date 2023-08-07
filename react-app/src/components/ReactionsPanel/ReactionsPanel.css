@@ -10,14 +10,14 @@
     margin: 0px 5px;
 }
 
-.reaction:hover {
+/* .reaction:hover {
     cursor: pointer;
-}
+} */
 
-.reaction:hover {
+/* .reaction:hover {
     cursor: pointer;
     background-color: white;
-}
+} */
 
 .your-reaction {
     background-color: #944bd3;
