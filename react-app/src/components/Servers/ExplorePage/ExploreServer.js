@@ -18,9 +18,7 @@ const ExploreServer = ({ server }) => {
 
     let memberFlag = false;
     for (let member of server.users) {
-        console.log("server ", server.id, "member ", member.id, "current user ", user.id)
         if (member.id === user.id) {
-            console.log('hiding server join for ', server.id)
             memberFlag = true;
         }
     }
@@ -28,10 +26,6 @@ const ExploreServer = ({ server }) => {
     const [isMember, setIsMember] = useState(memberFlag ? "hide-explore-server-join" : "");
     useEffect(() => { }, [isMember]);
 
-    console.log(server.id, isMember)
-
-
-    console.log(server.id, isMember)
     return (
         <div className='greyyy'>
             <div key={server.id} className="server" id="explore-server-container">
