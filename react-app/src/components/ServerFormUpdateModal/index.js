@@ -37,6 +37,7 @@ export default function ServerFormUpdateModal({ server }) {
 
     return (
         <div className='backgroundgreyyy'>
+             <div className='wrapchanel'>
             <div>
             <form onSubmit={handleSubmit} encType='multipart/form-data'>
                 <input type='text' value={name} onChange={(e) => setName(e.target.value)} />
@@ -47,6 +48,7 @@ export default function ServerFormUpdateModal({ server }) {
                     Update Server
                 </button>
             </form>
+              </div>
               </div>
         </div>
     )
