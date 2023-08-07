@@ -20,9 +20,6 @@ const Channel = () => {
     dispatch(loadChannelMessagesThunk(channelId)); // Fetch messages for the channel
   }, [dispatch, channelId]);
 
-  console.log("channel:", channel)
-
-
   const back = () => {
     history.push(`/servers/${channel.server_id}`)
   }
