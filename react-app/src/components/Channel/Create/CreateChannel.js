@@ -19,9 +19,11 @@ function CreateChannel({ type, formData }) {
             description
         }
 
-        const updatedErrors = {};
-        if (!name.length) updatedErrors.name = "Must include a name";
-        if (Object.values(updatedErrors).length) {
+        const updatedErrors = [];
+        if (!name.length) updatedErrors.push("Must include a name");
+        if (name.length > 255) updatedErrors.push(`Name exceeded maxiumum length (255 characters allowed. ${name.length} used.)`)
+        if (description.length > 255) updatedErrors.push(`Description exceeded maxiumum length (255 characters allowed. ${description.length} used.)`)
+        if (updatedErrors.length) {
             setErrors(updatedErrors);
             return;
         }
@@ -48,7 +50,7 @@ function CreateChannel({ type, formData }) {
     return (
         <div>
             <h1>{type === "create" ? "Add Channel" : "Update Channel"}</h1>
-            {Object.values(errors).map(e => (<p className='error'>{e}</p>))}
+            {errors.length ? errors.map(e => (<p className='error'>{e}</p>)) : null}
             <form id="channel-form" onSubmit={handleSubmit}>
                 <label htmlFor="channel-name">
                     New Channel Name
