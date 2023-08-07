@@ -61,7 +61,7 @@ export default function ServerFormModal({ }) {
 
             {error.length ? error.map(e => <p className="create-error">{e}</p>) : null}
             <form id='server-form' onSubmit={handleSubmit} encType='multipart/form-data'>
-                <div id='server-form-text-row'>
+               
 
                     <input
                         id='server-form-text-field'
