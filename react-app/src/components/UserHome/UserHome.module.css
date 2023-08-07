@@ -29,7 +29,7 @@
   z-index: -5;
 }
 
-.main {
+.mainzz {
   justify-content: flex-start;
   height: 100%;
   width: 60%;
@@ -68,5 +68,3 @@
   padding: 0;
 
 }
-
-
