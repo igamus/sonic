@@ -79,16 +79,16 @@
     background-color:#5d6aff
 }
 
-/* Styling for the ul element with className="signuperrorc" */
+
 .signuperrorc {
-    list-style: none; /* Remove default list bullets */
-    padding: 0; /* Remove default padding */
+    list-style: none;
+    padding: 0;
   }
 
-  /* Styling for the li elements with className="signuperror" */
+
   .signuperror {
-    color: red; /* Make the text red */
-    margin-bottom: 10px; /* Add spacing gap of 10px between list items */
+    color: red;
+    margin-bottom: 10px;
   }
   .signback ul {
 color: red;
