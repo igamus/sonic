@@ -56,22 +56,24 @@ export default function ServerFormModal({ }) {
                 <div>
                     <label for='server-form-server-image'>Choose a Server Image</label>
                     <input
-                        type='file'
+                        type='text'
                         id='server-form-server-image'
                         name='server-form-server-image'
                         required
-                        onChange={(e) => setServerImage(e.target.files[0])}
-                        accept='.jpg, .jpeg, .png' />
+                        value={serverImage}
+                        onChange={(e) => setServerImage(e.target.value)}
+                    />
                 </div>
                 <div>
                     <label for='server-form-banner-image'>Choose a Banner Image</label>
                     <input
                         id='server-form-banner-image'
                         name='server-form-banner-image'
-                        type='file'
+                        type='text'
                         required
-                        onChange={(e) => setServerBannerImage(e.target.files[0])}
-                        accept='.jpg, .jpeg, .png' />
+                        value={serverBannerImage}
+                        onChange={(e) => setServerBannerImage(e.target.value)}
+                    />
                 </div>
                 <button id='server-form-submit-button' type='submit'>
                     Create Server

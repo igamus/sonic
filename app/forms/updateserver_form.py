@@ -8,7 +8,7 @@ from ..api.AWS_helpers import ALLOWED_EXTENSIONS
 class UpdateServerForm(FlaskForm):
     name = StringField("Name", validators=[DataRequired()])
     public = BooleanField("Public")
-    server_image = FileField("Server Image", validators=[ FileAllowed(list(ALLOWED_EXTENSIONS))])
-    banner_image = FileField("Banner Image", validators=[ FileAllowed(list(ALLOWED_EXTENSIONS))])
+    server_image = StringField("Server Image")
+    banner_image = StringField("Banner Image")
     description = StringField("Description")
     submit = SubmitField("Submit")

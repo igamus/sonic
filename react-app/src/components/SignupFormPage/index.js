@@ -75,10 +75,10 @@ function SignupFormPage() {
               <label>
                 <h5>ProfilePicture  <i style={{ color: 'red' }}>*</i></h5>
                 <input
-                  type="file"
+                  type="text"
                   required
-                  onChange={(e) => setProfileImage(e.target.files[0])}
-                  accept="image/*"
+                  value={profileImage}
+                  onChange={(e) => setProfileImage(e.target.event)}
                 />
               </label>
               <label>
