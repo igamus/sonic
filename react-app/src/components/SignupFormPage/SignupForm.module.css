@@ -14,7 +14,7 @@
 }
 .signupbox {
     width: 425px;
-    height: 600px;
+    height: 640px;
     background-color: #36393f;
     position: absolute;
     top: 50%;
@@ -78,3 +78,26 @@
     cursor: pointer;
     background-color:#5d6aff
 }
+
+
+.signuperrorc {
+    list-style: none;
+    padding: 0;
+  }
+
+
+  .signuperror {
+    color: red;
+    margin-bottom: 10px;
+  }
+  .signback ul {
+color: red;
+
+
+}
+
+.signback li {
+    margin-bottom: 10px;
+
+
+    }

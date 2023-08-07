@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { loadSingleServerThunk, leaveServerThunk, joinServerThunk } from '../../../store/servers';
 import { Link, useParams, useHistory } from 'react-router-dom/';
 import { loadServerChannelsThunk } from '../../../store/channels';
-
+import { clearMessages } from "../../../store/messages";
 
 import "./IndividualServer.css";
 
@@ -23,6 +23,7 @@ const SingleSpot = () => {
   useEffect(() => {
     dispatch(loadSingleServerThunk(serverId));
     dispatch(loadServerChannelsThunk(serverId));
+    dispatch(clearMessages());
   }, [dispatch, serverId]);
 
   const server = useSelector((state) => state.servers.singleServer);
@@ -44,6 +45,7 @@ const SingleSpot = () => {
   console.log("o2", ownerUser);
   const userId = user.id;
   const isOwner = userId === server.ownerId;
+  const inServer = serverUsers.includes(userId);
   const leaveServer = async () => {
     dispatch(leaveServerThunk(serverId)).then((responseData) => {
       if (responseData.error) {
@@ -88,7 +90,7 @@ const SingleSpot = () => {
       {server ? (
         <div>
           <div className="friendsz">
-            <h1>
+            <h1 className="server-name">
               {server.name}
               {isOwner ? " " : null}
               {isOwner ? (
@@ -102,25 +104,25 @@ const SingleSpot = () => {
             <img
               className="singleimgban"
               src={server.bannerImage}
-              alt="Server Image"
+              alt="Banner Image"
             />
             <img
               className="singleimg"
               src={server.serverImage}
               alt="Server Image"
             />
-            <p>{server.description}</p>
+            <p className="server-name">{server.description}</p>
 
             <p>Owner: {ownerUser.username} {user.username === ownerUser.username ? "(you!)" : null}</p>
-          
-            {!isOwner && serverUsers.includes(userId) ? <button onClick={leaveServer} className='leave-button'>Leave Server</button> : null }
-            {!serverUsers.includes(userId) ? <button onClick={joinServer} id='greenjoin'>Join Server</button> : null}
+
+            {!isOwner && inServer ? <button onClick={leaveServer} className='leave-button'>Leave Server</button> : null }
+            {!inServer ? <button onClick={joinServer} id='greenjoin'>Join Server</button> : null}
             {/* Display channels */}
           </div>
           <div className="mainzz">
             <h2 className="whitenme">Channels:</h2>
             <div className="fontzme">
-            {channels.map((channel) => (
+            {inServer ? channels.map((channel) => (
               <p key={channel.id}>
                 <Link to={`/servers/${serverId}/${channel.id}`}>
                   {channel.name}
@@ -142,7 +144,12 @@ const SingleSpot = () => {
                   </>
                 ) : null}
               </p>
-            ))}
+            )) :
+            <div>
+              <h2 className="whitenme">Join {server.name} to join the conversation!</h2>
+              <div className="whitenme">{channels.map((channel) => <p>{channel.name}</p>)}</div>
+            </div>}
+            {channels.length === 0 && <p className="whitenme">No channels available for this server.</p>}
             </div>
           </div>
           <div className="statuszz">
@@ -154,9 +161,6 @@ const SingleSpot = () => {
                   <img id="logged-in-user-image" src={user.profilePic} />
                 </p>
               ))}
-              {channels.length === 0 && (
-                <p>No channels available for this server.</p>
-              )}
             </div>
           </div>
         </div>

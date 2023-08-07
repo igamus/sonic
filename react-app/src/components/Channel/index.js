@@ -30,7 +30,7 @@ const Channel = () => {
 
   if (users && userId) {
     const userTest = users.filter(user => user.id === userId);
-    if (!userTest.length) back();
+    if (!userTest.length) history.push(`/servers/${serverId}`);
   }
 
   return (
@@ -58,7 +58,7 @@ const Channel = () => {
       {channel && (
         <>
           <div className='friendsz'>
-            <h1>{channel.name}</h1>
+            <h1 className='channel-name'>{channel.name}</h1>
             <p>{channel.description}</p>
           </div>
 
