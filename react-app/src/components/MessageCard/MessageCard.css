@@ -26,3 +26,8 @@
     cursor: pointer;
     background-color: #944bd3;
 }
+
+.message-text {
+    overflow-wrap: break-word;
+    padding-right: 60px;
+}

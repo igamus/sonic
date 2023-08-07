@@ -33,3 +33,59 @@
 .back:hover {
     cursor: pointer;
 }
+
+.singleimg {
+    width: 150px;
+    height: 150px;
+}
+
+.mainzz {
+    justify-content: flex-start;
+    height: 100%;
+    width: 60%;
+    position: fixed;
+    overflow-x: hidden;
+    padding-top: 20px;
+    background-color: #313338;
+    margin-left: 19%;
+    top: 0;
+    left: 0;
+  }
+
+
+  .statuszz {
+    font-family: var(--main-font-family-bold);
+    justify-content: flex-start;
+    height: 100%;
+    width: 21%;
+    position: fixed;
+    overflow-x: hidden;
+    padding-top: 20px;
+    background-color: #313338;
+    margin-left: 69%;
+    top: 0;
+    right: 0;
+    border-left: 2px solid #000000;
+  }
+
+  .wrapperzz {
+    font-family: var(--main-font-family-bold);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .singleimgban {
+    margin-top: none;
+width: 100%;
+  }
+
+  .whitenme {
+    color: white;
+  }
+
+  .fontzme {
+    font-size: xx-large;
+  }
