@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useModal } from '../../../context/Modal';
 import { createChannelThunk,updateChannelThunk } from '../../../store/channels';
-
+import './CreateChannel.css'
 function CreateChannel({ type, formData }) {
     const dispatch = useDispatch();
     const { closeModal } = useModal();
@@ -46,10 +46,11 @@ function CreateChannel({ type, formData }) {
     };
 
     return (
-        <div>
+        <div className='backgroundgreyyy'>
+            <div className='wrapchanel'>
             <h1>{type === "create" ? "Add Channel" : "Update Channel"}</h1>
             {Object.values(errors).map(e => (<p className='error'>{e}</p>))}
-            <form id="channel-form" onSubmit={handleSubmit}>
+            <form className='specialchanform sol-box' id="channel-form" onSubmit={handleSubmit}>
                 <label htmlFor="channel-name">
                     New Channel Name
                 </label>
@@ -72,8 +73,9 @@ function CreateChannel({ type, formData }) {
                     onChange={e => setDescription(e.target.value)}
                 />
 
-                <button type="submit">{type === "create" ? "Create Channel" : "Update Channel"}</button>
+                <button className='signupbbtn ' id='specialactchannel' type="submit">{type === "create" ? "Create Channel" : "Update Channel"}</button>
             </form>
+            </div>
         </div>
     );
 };

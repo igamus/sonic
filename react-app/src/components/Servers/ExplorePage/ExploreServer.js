@@ -44,7 +44,7 @@ const ExploreServer = ({ server }) => {
           <p id="explore-server-description">{server.description}</p>
         </div>
       </NavLink>
-      <button  class={isMember} onClick={join}>
+      <button  class={isMember} id="greenjoin" onClick={join}>
         Join Server
       </button>
     </div>
