@@ -1,10 +1,11 @@
-#server-form-container {
-    width: 500px;
-    height: 40%;
-    padding: 10px;
+#server-form{
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    justify-content: center;
 }
 
-#server-form-text-row {
+/* #server-form-text-row {
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -13,4 +14,23 @@
 
 #server-form-text-field {
     width: 47%;
+} */
+
+
+.servercreateback {
+    color: white;
+    width: 450px;
+    height: 600px;
+    background-color: #36393f;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 5px;
+    padding: 28px;
+}
+.servercreateback h1 {
+    margin-top: 0;
+    color: white;
+    text-align: center;
 }

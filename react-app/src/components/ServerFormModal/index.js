@@ -19,8 +19,8 @@ export default function ServerFormModal({ }) {
         e.preventDefault();
         const newErrors = [];
 
-        if (!name.length) newErrors.push("Name must be between 1 and 255 characters");
-        if (!description.length) newErrors.push("Name must be between 1 and 255 characters");
+        if (!name.length || name.length > 255) newErrors.push("Name must be between 1 and 255 characters");
+        if (!description.length || description.length > 255) newErrors.push("Name must be between 1 and 255 characters");
         if (newErrors.length) {
             setError(newErrors);
             setDisableButton(true);
@@ -49,17 +49,22 @@ export default function ServerFormModal({ }) {
     useEffect(() => {
         setDisableButton(false);
         const newErrors = [];
-        if (name.length > 255) newErrors.push("Name must be between 1 and 255 characters");
-        if (description.length > 255) newErrors.push("Description must be between 1 and 255 characters");
+        if (!name.length || name.length > 255) newErrors.push("Name must be between 1 and 255 characters");
+        if (!description.length || description.length > 255) newErrors.push("Description must be between 1 and 255 characters");
         if (newErrors.length) setDisableButton(true);
     }, [name, description]);
 
     return (
-        <div id='server-form-container'>
+        <div className='servercreateback' id='server-form-container'>
+             <div className='wrapchanel'>
             <h1>Create a server</h1>
-            { error.length ? error.map(e => <p className="create-error">{e}</p>) : null}
-            <form id='server-form' onSubmit={handleSubmit} encType='multipart/form-data'>
-                <div id='server-form-text-row'>
+
+            {error.length ? error.map(e => <p className="create-error">{e}</p>) : null}
+            <form  className='specialchanform sol-box' id='server-form' onSubmit={handleSubmit} encType='multipart/form-data'>
+
+                <label htmlFor="server-create-name">
+                  Server Name
+                </label>
                     <input
                         id='server-form-text-field'
                         type='text'
@@ -67,6 +72,9 @@ export default function ServerFormModal({ }) {
                         required
                         onChange={(e) => setName(e.target.value)}
                         placeholder="What would you like to call this server?" />
+                         <label htmlFor="server-create-name">
+                  Server Description
+                </label>
                     <input
                         id='server-form-text-field'
                         type='text'
@@ -74,9 +82,9 @@ export default function ServerFormModal({ }) {
                         required
                         onChange={(e) => setDescription(e.target.value)}
                         placeholder="Please describe this server." />
-                </div>
-                <div>
-                    <label for='server-form-server-image'>Choose a Server Image</label>
+
+
+                    <label for='server-form-server-image'>Enter a Server Image Url</label>
                     <input
                         type='text'
                         id='server-form-server-image'
@@ -85,9 +93,9 @@ export default function ServerFormModal({ }) {
                         value={serverImage}
                         onChange={(e) => setServerImage(e.target.value)}
                     />
-                </div>
-                <div>
-                    <label for='server-form-banner-image'>Choose a Banner Image</label>
+
+
+                    <label for='server-form-banner-image'>Enter a Banner Image Url</label>
                     <input
                         id='server-form-banner-image'
                         name='server-form-banner-image'
@@ -96,11 +104,12 @@ export default function ServerFormModal({ }) {
                         value={serverBannerImage}
                         onChange={(e) => setServerBannerImage(e.target.value)}
                     />
-                </div>
-                <button id='server-form-submit-button' type='submit' disabled={disableButton}>
+
+                <button className='signupbbtn' id='server-form-submit-button' type='submit' disabled={disableButton}>
                     Create Server
                 </button>
             </form>
+            </div>
         </div>
     )
 }
