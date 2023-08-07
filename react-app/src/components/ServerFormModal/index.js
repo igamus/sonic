@@ -1,7 +1,7 @@
 import './ServerFormModal.css'
 import { useDispatch } from 'react-redux'
 import { useModal } from '../../context/Modal'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { createServerThunk } from '../../store/servers'
 import { useHistory } from 'react-router-dom'
 
@@ -14,8 +14,19 @@ export default function ServerFormModal({ }) {
     const [serverImage, setServerImage] = useState('')
     const [serverBannerImage, setServerBannerImage] = useState('')
     const [error, setError] = useState(null);
+    const [disableButton, setDisableButton] = useState(true);
     const handleSubmit = async (e) => {
         e.preventDefault();
+        const newErrors = {};
+
+        if (!name.length) newErrors.name = "Name must be between 1 and 255 characters"
+        if (!description.length) newErrors.description = "Name must be between 1 and 255 characters"
+        if (Object.values(newErrors).length) {
+            setError(newErrors);
+            return;
+        };
+
+
 
         const form = new FormData()
         form.append('name', name);
@@ -34,8 +45,22 @@ export default function ServerFormModal({ }) {
         })
     }
 
+    useEffect(() => {
+        setDisableButton(false);
+        console.log(name.length)
+        console.log("name:", name)
+        console.log("description:", description)
+        const newErrors = {};
+        if (name.length > 255) newErrors.name = "Name must be between 1 and 255 characters"
+        if (description.length > 255) newErrors.description = "Description must be between 1 and 255 characters"
+        if (Object.values(newErrors).length) setDisableButton(true);
+        console.log('new errors:', newErrors)
+    }, [name, description]);
+
     return (
         <div id='server-form-container'>
+            <h1>Create a server</h1>
+            { (error?.name || error?.description) ? Object.values(error).map(e => <p className="create-error">{e}</p>) : null}
             <form id='server-form' onSubmit={handleSubmit} encType='multipart/form-data'>
                 <div id='server-form-text-row'>
                     <input
@@ -73,7 +98,7 @@ export default function ServerFormModal({ }) {
                         onChange={(e) => setServerBannerImage(e.target.files[0])}
                         accept='.jpg, .jpeg, .png' />
                 </div>
-                <button id='server-form-submit-button' type='submit'>
+                <button id='server-form-submit-button' type='submit' disabled={disableButton}>
                     Create Server
                 </button>
             </form>
