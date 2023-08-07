@@ -56,7 +56,7 @@ const Chat = ({ channelId }) => {
         if (chatInput.indexOf("\n") > 0) {
             setEnterWarning(true);
         }
-    }, [chatInput]); // disabling isn't working
+    }, [chatInput]);
 
     const updateChatInput = (e) => {
         setChatInput(e.target.value)
