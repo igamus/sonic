@@ -70,7 +70,7 @@ function SignupFormPage() {
           <div className={classes.siobox}>
             <h2>Create an account</h2>
             <form className={classes.formzbox} encType='multipart/form-data' onSubmit={handleSubmit}>
-              <ul>
+              <ul className="signuperrorc">
                 {errors.map((error, idx) => (
                   <li key={idx}>{error}</li>
                 ))}
