@@ -31,5 +31,13 @@
 }
 
 #explore-server-description {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: white;
     height: 80px;
+}
+
+
+.greyyy h2 {
+    color: white;
+    text-decoration: none;
 }

@@ -17,8 +17,8 @@ const ExplorePage = () => {
     history.push('/me')
   }
   return (
-    <div>
-      <button onClick={back}>Back</button>
+    <div className='greyyy'>
+      <button onClick={back} className='back  f23'>&#11013; Back</button>
       <h1>Explore Servers</h1>
       <div id='explore-servers-container'>
         {servers.map((server) => (
