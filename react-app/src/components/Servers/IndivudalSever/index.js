@@ -149,6 +149,7 @@ const SingleSpot = () => {
               <h2 className="whitenme">Join {server.name} to join the conversation!</h2>
               <div className="whitenme">{channels.map((channel) => <p>{channel.name}</p>)}</div>
             </div>}
+            {channels.length === 0 && <p className="whitenme">No channels available for this server.</p>}
             </div>
           </div>
           <div className="statuszz">
