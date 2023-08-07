@@ -379,3 +379,7 @@ button {
 	cursor: pointer;
 	color: white;
 }
+
+.hideng {
+	display: none;
+}
