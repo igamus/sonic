@@ -60,9 +60,11 @@ export default function ServerFormModal({ }) {
             <h1>Create a server</h1>
 
             {error.length ? error.map(e => <p className="create-error">{e}</p>) : null}
-            <form id='server-form' onSubmit={handleSubmit} encType='multipart/form-data'>
-               
+            <form  className='specialchanform sol-box' id='server-form' onSubmit={handleSubmit} encType='multipart/form-data'>
 
+                <label htmlFor="server-create-name">
+                  Server Name
+                </label>
                     <input
                         id='server-form-text-field'
                         type='text'
