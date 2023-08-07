@@ -3,38 +3,6 @@ import botocore
 import os
 import uuid
 
-def __getattr__client(self, item):
-	if item not in vars(self):
-		raise AttributeError
-
-	event_name = "getattr.%s.%s" % (self._service_model.service_id.hyphenize(), item)
-	handler, event_response = self.meta.events.emit_until_response(
-		event_name, client=self
-	)
-
-	if event_response is not None:
-		return event_response
-
-	raise AttributeError(
-		"'%s' object has no attribute '%s'" % (self.__class__.__name__, item)
-	)
-
-botocore.client.BaseClient.__getattr__ = __getattr__client
-
-def __getattr__errorfactory(self, name):
-	if name not in vars(self):
-		raise AttributeError
-
-	exception_cls_names = [
-		exception_cls.__name__ for exception_cls in self._code_to_exception.values()
-	]
-	raise AttributeError(
-		"%r object has no attribute %r. Valid exceptions are: %s"
-		% (self, name, ", ".join(exception_cls_names))
-	)
-
-botocore.errorfactory.BaseClientExceptions.__getattr__ = __getattr__errorfactory
-
 BUCKET_NAME = os.environ.get("S3_BUCKET")
 S3_LOCATION = f"http://{BUCKET_NAME}.s3.amazonaws.com/"
 ALLOWED_EXTENSIONS = {"pdf", "png", "jpg", "jpeg", "gif"}
