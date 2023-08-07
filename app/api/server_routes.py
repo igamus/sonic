@@ -139,6 +139,7 @@ def leave_server(serverId):
     print(')))))))))))))))))))))))))))))))))))))))))))))))')
     server.server_memberships.remove(current_user)
     db.session.commit()
+    return jsonify({'message': 'Server successfully left.'}), 200
 
 @login_required
 @server_routes.route('/<int:serverId>', methods = ['PUT'])

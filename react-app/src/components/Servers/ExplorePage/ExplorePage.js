@@ -22,7 +22,7 @@ const ExplorePage = () => {
       <h1>Explore Servers</h1>
       <div id='explore-servers-container'>
         {servers.map((server) => (
-          <ExploreServer server={server} />
+          <ExploreServer key={server.id} server={server} />
         ))}
       </div>
     </div>
