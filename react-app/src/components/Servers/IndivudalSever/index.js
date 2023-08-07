@@ -103,7 +103,7 @@ const SingleSpot = () => {
             <img
               className="singleimgban"
               src={server.bannerImage}
-              alt="Server Image"
+              alt="Banner Image"
             />
             <img
               className="singleimg"
