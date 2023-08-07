@@ -42,8 +42,8 @@ export default function ServerFormUpdateModal({ server }) {
             <form onSubmit={handleSubmit} encType='multipart/form-data'>
                 <input type='text' value={name} onChange={(e) => setName(e.target.value)} />
                 <input type='text' value={description} onChange={(e) => setDescription(e.target.value)} />
-                <input type='file' onChange={(e) => setServerImage(e.target.files[0])} accept='image/*' />
-                <input type='file' onChange={(e) => setServerBannerImage(e.target.files[0])} accept='image/*' />
+                <input type='text' value={serverImage} onChange={(e) => setServerImage(e.target.value)} accept='image/*' />
+                <input type='text' value={serverBannerImage} onChange={(e) => setServerBannerImage(e.target.value)} accept='image/*' />
                 <button type='submit'>
                     Update Server
                 </button>

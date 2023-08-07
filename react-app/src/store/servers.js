@@ -5,6 +5,7 @@ const UPDATE_SERVER = "sonic/servers/UPDATE_SERVERS";
 const DELETE_SERVER = "sonic/servers/DELETE_SERVER";
 const LOAD_SINGLE_SERVER = "sonic/servers/LOAD_SINGLE_SERVER";
 const LOAD_ALL_SERVERS = "sonic/servers/LOAD_ALL_SERVERS";
+const CLEAR_SERVERS = 'sonic/servers/CLEAR_SERVERS'
 // action creators ---------------------------------------------------
 export const loadUserServersAction = (servers) => {
   return {
@@ -12,6 +13,10 @@ export const loadUserServersAction = (servers) => {
     servers,
   };
 };
+
+export const clearServers = (data) => ({
+  type: CLEAR_SERVERS
+})
 
 export const createServerAction = (server) => ({
   type: CREATE_SERVER,
@@ -161,6 +166,9 @@ const serversReducer = (state = initialState, action) => {
   let newState;
 
   switch (action.type) {
+    case CLEAR_SERVERS:
+      newState = { allServers: {}, singleServer: {} }
+      return newState;
     case LOAD_USER_SERVERS:
       newState = { ...state, allServers: {} };
       action.servers.forEach(
