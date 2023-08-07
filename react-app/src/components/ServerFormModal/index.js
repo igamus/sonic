@@ -19,8 +19,8 @@ export default function ServerFormModal({ }) {
         e.preventDefault();
         const newErrors = [];
 
-        if (!name.length) newErrors.push("Name must be between 1 and 255 characters");
-        if (!description.length) newErrors.push("Name must be between 1 and 255 characters");
+        if (!name.length || name.length > 255) newErrors.push("Name must be between 1 and 255 characters");
+        if (!description.length || description.length > 255) newErrors.push("Name must be between 1 and 255 characters");
         if (newErrors.length) {
             setError(newErrors);
             setDisableButton(true);
@@ -49,8 +49,8 @@ export default function ServerFormModal({ }) {
     useEffect(() => {
         setDisableButton(false);
         const newErrors = [];
-        if (name.length > 255) newErrors.push("Name must be between 1 and 255 characters");
-        if (description.length > 255) newErrors.push("Description must be between 1 and 255 characters");
+        if (!name.length || name.length > 255) newErrors.push("Name must be between 1 and 255 characters");
+        if (!description.length || description.length > 255) newErrors.push("Description must be between 1 and 255 characters");
         if (newErrors.length) setDisableButton(true);
     }, [name, description]);
 
@@ -58,12 +58,11 @@ export default function ServerFormModal({ }) {
         <div className='servercreateback' id='server-form-container'>
              <div className='wrapchanel'>
             <h1>Create a server</h1>
-            { error.length ? error.map(e => <p className="create-error">{e}</p>) : null}
-            <form  className='specialchanform sol-box' id='server-form' onSubmit={handleSubmit} encType='multipart/form-data'>
 
-                <label htmlFor="server-create-name">
-                  Server Name
-                </label>
+            {error.length ? error.map(e => <p className="create-error">{e}</p>) : null}
+            <form id='server-form' onSubmit={handleSubmit} encType='multipart/form-data'>
+                <div id='server-form-text-row'>
+
                     <input
                         id='server-form-text-field'
                         type='text'
