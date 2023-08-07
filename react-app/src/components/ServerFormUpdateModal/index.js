@@ -1,7 +1,7 @@
 import './ServerFormUpdateModal.css'
 import { useDispatch } from 'react-redux'
 import { useModal } from '../../context/Modal'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { updateServerThunk } from '../../store/servers'
 import { useHistory } from 'react-router-dom'
 
@@ -14,9 +14,21 @@ export default function ServerFormUpdateModal({ server }) {
     const [serverImage, setServerImage] = useState('')
     const [serverBannerImage, setServerBannerImage] = useState('')
     const [error, setError] = useState(null);
+    const [disableButton, setDisableButton] = useState(true);
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log('update prep', name, description, serverImage, serverBannerImage, 'x')
+
+        const newErrors = [];
+
+        if (!name.length || name.length > 255) newErrors.push("Name must be between 1 and 255 characters");
+        if (!description.length || description.length > 255) newErrors.push("Name must be between 1 and 255 characters");
+        if (newErrors.length) {
+            setError(newErrors);
+            setDisableButton(true);
+            return;
+        };
+
         const form = new FormData()
         form.append('name', name);
         form.append('description', description)
@@ -35,17 +47,42 @@ export default function ServerFormUpdateModal({ server }) {
         })
     }
 
+    useEffect(() => {
+        setDisableButton(false);
+        const newErrors = [];
+        if (!name.length || name.length > 255) newErrors.push("Name must be between 1 and 255 characters");
+        if (!description.length || description.length > 255) newErrors.push("Description must be between 1 and 255 characters");
+        if (newErrors.length) setDisableButton(true);
+    }, [name, description]);
+
     return (
-        <div>
-            <form onSubmit={handleSubmit} encType='multipart/form-data'>
-                <input type='text' value={name} onChange={(e) => setName(e.target.value)} />
-                <input type='text' value={description} onChange={(e) => setDescription(e.target.value)} />
-                <input type='text' value={serverImage} onChange={(e) => setServerImage(e.target.value)} accept='image/*' />
-                <input type='text' value={serverBannerImage} onChange={(e) => setServerBannerImage(e.target.value)} accept='image/*' />
-                <button type='submit'>
-                    Update Server
-                </button>
-            </form>
+        <div className='backgundgreyyy'>
+            <div className='wrapchanel'>
+                <div>
+                    <h1>Update Server</h1>
+                    <form className='specialchanform sol-box' onSubmit={handleSubmit} encType='multipart/form-data'>
+                        <label htmlFor="server-description">
+                            New Server Name
+                        </label>
+                        <input type='text' value={name} onChange={(e) => setName(e.target.value)} />
+                        <label htmlFor="server-description">
+                            New Server Description
+                        </label>
+                        <input type='text' value={description} onChange={(e) => setDescription(e.target.value)} />
+                        <label htmlFor="server-image">
+                            New Server Image
+                        </label>
+                        <input type='text' value={serverImage} onChange={(e) => setServerImage(e.target.value)} accept='image/*' />
+                        <label htmlFor="banner-image">
+                            New Banner Image
+                        </label>
+                        <input type='text' value={serverBannerImage} onChange={(e) => setServerBannerImage(e.target.value)} accept='image/*' />
+                        <button className='signupbbtn' type='submit' disabled={disableButton}>
+                            Update Server
+                        </button>
+                    </form>
+                </div>
+            </div>
         </div>
     )
 }

@@ -3,7 +3,8 @@ const LOAD_SERVER_CHANNELS = 'sonic/channels/LOAD_SERVER_CHANNELS';
 const CREATE_CHANNEL = 'sonic/channels/CREATE_CHANNEL';
 const DELETE_CHANNEL = 'sonic/channels/DELETE_CHANNEL';
 const UPDATE_CHANNEL = 'sonic/channels/UPDATE_CHANNEL';
-const LOAD_SINGLE_CHANNEL =  'sonic/channels/LOAD_SINGLE_CHANNEL';
+const LOAD_SINGLE_CHANNEL = 'sonic/channels/LOAD_SINGLE_CHANNEL';
+const CLEAR_CHANNELS = 'sonic/channels/CLEAR_CHANNEL'
 // action creators
 export const loadServerChannelsAction = channels => {
     return {
@@ -11,6 +12,12 @@ export const loadServerChannelsAction = channels => {
         channels
     }
 };
+
+export const clearChannels = data => {
+    return {
+        type: CLEAR_CHANNELS
+    }
+}
 
 export const createChannelAction = channel => {
     return {
@@ -82,7 +89,7 @@ export const deleteChannelThunk = channelId => async dispatch => {
     if (res.ok) {
         return dispatch(deleteChannelAction(channelId));
     } else {
-        return {"message": "There was a problem deleting the channel"};
+        return { "message": "There was a problem deleting the channel" };
     }
 };
 
@@ -93,7 +100,7 @@ export const updateChannelThunk = formData => async dispatch => {
 
     const res = await fetch(`/api/channels/${formData.channelId}`, {
         method: "PUT",
-        headers: {"Content-Type": "application/json"},
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(submission)
     });
 
@@ -122,12 +129,15 @@ export const loadSingleChannelThunk = channelId => async dispatch => {
 };
 
 // reducer
-const initialState = { serverChannels: {}, singleChannel: {}  }
+const initialState = { serverChannels: {}, singleChannel: {} }
 
 const channelsReducer = (state = initialState, action) => {
     let newState;
 
     switch (action.type) {
+        case CLEAR_CHANNELS:
+            newState = { serverChannels: {}, singleChannel: {} }
+            return newState;
         case LOAD_SERVER_CHANNELS:
             newState = { ...state, serverChannels: {} };
             action.channels.forEach(
@@ -135,7 +145,7 @@ const channelsReducer = (state = initialState, action) => {
             );
             return newState;
         case CREATE_CHANNEL:
-            newState  = {
+            newState = {
                 ...state,
                 serverChannels: {
                     ...state.serverChannels,
@@ -165,10 +175,10 @@ const channelsReducer = (state = initialState, action) => {
 
             // newState.serverChannels[action.formData.id] = { ...newState.serverChannels[action.formData.id], ...action.formData };
             return newState;
-            case LOAD_SINGLE_CHANNEL:
-                newState = { ...state, singleChannel: {} };
-                newState.singleChannel = { ...action.channel }
-                return newState;
+        case LOAD_SINGLE_CHANNEL:
+            newState = { ...state, singleChannel: {} };
+            newState.singleChannel = { ...action.channel }
+            return newState;
         default:
             return state;
     };

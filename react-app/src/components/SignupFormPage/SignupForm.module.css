@@ -73,3 +73,8 @@
     font-weight: 700;
     margin-bottom: 15px;
 }
+
+.signupbbtn:hover {
+    cursor: pointer;
+    background-color:#5d6aff
+}

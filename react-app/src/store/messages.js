@@ -1,6 +1,7 @@
 // action types
 const LOAD_CHANNEL_MESSAGES = 'sonic/messages/LOAD_CHANNEL_MESSAGES';
 const DELETE_MESSAGE = 'sonic/messages/DELETE_MESSAGE';
+const CLEAR_MESSAGES = 'sonic/messages/CLEAR_MESSAGES'
 
 // action creators
 export const loadChannelMessagesAction = messages => {
@@ -9,6 +10,12 @@ export const loadChannelMessagesAction = messages => {
         messages
     }
 };
+
+export const clearMessages = data => {
+    return {
+        type: CLEAR_MESSAGES
+    }
+}
 
 export const deleteMessageAction = messageId => {
     return {
@@ -19,10 +26,12 @@ export const deleteMessageAction = messageId => {
 
 // thunk action creators
 export const loadChannelMessagesThunk = channelId => async dispatch => {
-    const res = await fetch(`/api/channels/${channelId}/messages`, {"headers": {
-        "method": "GET",
-        "Content-Type": "application/json"
-    }});
+    const res = await fetch(`/api/channels/${channelId}/messages`, {
+        "headers": {
+            "method": "GET",
+            "Content-Type": "application/json"
+        }
+    });
     const data = await res.json();
     return dispatch(loadChannelMessagesAction(data));
 };
@@ -35,7 +44,7 @@ export const deleteMessageThunk = messageId => async dispatch => {
     if (res.ok) {
         return dispatch(deleteMessageAction(messageId));
     } else {
-        return {"message": "There was a problem deleting the channel"};
+        return { "message": "There was a problem deleting the channel" };
     }
 };
 
@@ -46,6 +55,9 @@ const messagesReducer = (state = initialState, action) => {
     let newState;
 
     switch (action.type) {
+        case CLEAR_MESSAGES:
+            newState = {}
+            return newState;
         case LOAD_CHANNEL_MESSAGES:
             newState = {};
             action.messages.forEach(
@@ -53,7 +65,7 @@ const messagesReducer = (state = initialState, action) => {
             );
             return newState;
         case DELETE_MESSAGE:
-            newState = { ...state};
+            newState = { ...state };
             delete newState[action.messageId];
             return newState;
         default:

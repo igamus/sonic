@@ -49,7 +49,11 @@ def handle_react(data):
 
 @socketio.on("delete_reaction")
 def handle_delete_reaction(data):
+    print(data["owner_id"])
+    print(data['emoji'])
+    print(data['message_id'])
     target_reaction = db.session.query(Reaction).filter(Reaction.owner_id == data["owner_id"]).filter(Reaction.emoji == data['emoji']).filter(Reaction.message_id == data['message_id']).first()
+    print(target_reaction)
     db.session.delete(target_reaction)
     db.session.commit()
     emit("react", data, broadcast=True)

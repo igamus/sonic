@@ -18,3 +18,13 @@
     background-color: #944bd3;
     cursor: pointer;
 }
+
+.user-owns {
+    background-color: #944bd3;
+    cursor: pointer;
+}
+
+.panel-reaction:hover {
+    background-color: white;
+    cursor: pointer;
+}

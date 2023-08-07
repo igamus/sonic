@@ -31,28 +31,6 @@ function ReactionsPanel({ message, userId, channelId }) {
         return acc;
     }, []);
 
-    useEffect(() => {
-        socket = io();
-        console.log("connected (reactions)");
-        socket.on("react", (react) => {
-            dispatch(loadChannelMessagesThunk(channelId))
-        })
-
-        return (() => {
-            console.log("disconnected (reactions)");
-            socket.disconnect();
-        })
-    }, [dispatch, channelId]); // reactId?
-
-    const removeEmoji = (e) => {
-        e.preventDefault();
-        console.log('clicked "remove"');
-        console.log(e.target.className);
-        if (e.target.className === "reaction your-reaction") {
-            socket.emit("delete_reaction", {"message_id": parseInt(message.id), "owner_id": parseInt(userId), emoji: e.target.value})
-        }
-    }
-
     return (
         <div className='reactions-panel'>
             {reducedReactions.map(reaction => {
@@ -63,7 +41,7 @@ function ReactionsPanel({ message, userId, channelId }) {
                 }
                 return (
                     <span>
-                        <button dangerouslySetInnerHTML={{__html: sanitizeHtml(val)}} className={className} onClick={removeEmoji} value={reaction.emoji} />
+                        <button dangerouslySetInnerHTML={{__html: sanitizeHtml(val)}} className={className} value={reaction.emoji} />
                         {reaction.frequency}
                     </span>
                 )

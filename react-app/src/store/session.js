@@ -1,4 +1,9 @@
 // constants
+import { useDispatch } from "react-redux";
+import { clearChannels } from "./channels";
+import { clearMessages } from "./messages";
+import { clearServers } from "./servers";
+
 const SET_USER = "session/SET_USER";
 const REMOVE_USER = "session/REMOVE_USER";
 
@@ -56,6 +61,7 @@ export const login = (email, password) => async (dispatch) => {
 };
 
 export const logout = () => async (dispatch) => {
+
 	const response = await fetch("/api/auth/logout", {
 		headers: {
 			"Content-Type": "application/json",
@@ -63,6 +69,9 @@ export const logout = () => async (dispatch) => {
 	});
 
 	if (response.ok) {
+		dispatch(clearServers())
+		dispatch(clearMessages())
+		dispatch(clearChannels())
 		dispatch(removeUser());
 	}
 };

@@ -1,0 +1,61 @@
+.backgroundgreyyy {
+    color: white;
+    width: 450px;
+    height: 400px;
+    background-color: #36393f;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 5px;
+    padding: 28px;
+}
+.backgroundgreyyy h1 {
+    margin-top: 0;
+    color: white;
+    text-align: center;
+}
+
+
+
+.wrapchan {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+.specialchanform {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    justify-content: center;
+}
+
+
+
+#specialactchannel {
+
+}
+
+.sol-box input {
+    color: white;
+    box-sizing: border-box;
+    width: 100%;
+    border-radius: 4px;
+    background-color: #303338;
+    border: 1px solid #212327;
+    padding: 13px;
+}
+
+.signupbbtn {
+    margin-top: 15px;
+    text-align: center;
+    background-color: #5865f2;
+    padding: 15px;
+    width: 100%;
+    color: white;
+    border: none;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
