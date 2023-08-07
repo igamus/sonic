@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { loadSingleServerThunk, leaveServerThunk } from '../../../store/servers';
+import { loadSingleServerThunk, leaveServerThunk, joinServerThunk } from '../../../store/servers';
 import { Link, useParams, useHistory } from 'react-router-dom/';
 import { loadServerChannelsThunk } from '../../../store/channels';
 
@@ -24,6 +24,9 @@ const SingleSpot = () => {
 
   const server = useSelector((state) => state.servers.singleServer);
   const channels = useSelector((state) => Object.values(state.channels.serverChannels));
+  const serverUserObjects = useSelector((state) => state.servers.singleServer.users);
+  const serverUsers = serverUserObjects?.map(user => user.id) || '';
+  console.log('serverusrers:', serverUsers)
 
   const user = useSelector((state) => state.session.user)
   let ownerUser = (server.users?.filter(user => user.id == server.ownerId));
@@ -46,6 +49,11 @@ const SingleSpot = () => {
       }
     });
   }
+
+  const joinServer = async () => {
+    dispatch(joinServerThunk(serverId)).then(() => history.push("/me"));
+  };
+
   const back = () => {
     history.push('/me')
   }
@@ -63,8 +71,9 @@ const SingleSpot = () => {
             </h1>
             <p>{server.description}</p>
             <p>Owner: {ownerUser.username} {user.username === ownerUser.username ? "(you!)" : null}</p>
-            <img src={server.serverImage} alt="Server Image" />
-            {!isOwner ? <button onClick={leaveServer} className='leave-button'>Leave Server</button> : null }
+            <div><img src={server.serverImage} alt="Server Image" /></div>
+            {!isOwner && serverUsers.includes(userId) ? <button onClick={leaveServer} className='leave-button'>Leave Server</button> : null }
+            {!serverUsers.includes(userId) ? <button onClick={joinServer} id='greenjoin'>Join Server</button> : null}
             {/* Display channels */}
             <h2>Channels:</h2>
             {channels.map((channel) => (
