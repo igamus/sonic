@@ -24,6 +24,9 @@ const SingleSpot = () => {
 
   const server = useSelector((state) => state.servers.singleServer);
   const channels = useSelector((state) => Object.values(state.channels.serverChannels));
+  const serverUserObjects = useSelector((state) => state.servers.singleServer.users);
+  const serverUsers = serverUserObjects?.map(user => user.id) || '';
+  console.log('serverusrers:', serverUsers)
 
   const user = useSelector((state) => state.session.user)
   let ownerUser = (server.users?.filter(user => user.id == server.ownerId));
@@ -64,7 +67,7 @@ const SingleSpot = () => {
             <p>{server.description}</p>
             <p>Owner: {ownerUser.username} {user.username === ownerUser.username ? "(you!)" : null}</p>
             <img src={server.serverImage} alt="Server Image" />
-            {!isOwner ? <button onClick={leaveServer} className='leave-button'>Leave Server</button> : null }
+            {!isOwner && serverUsers.includes(userId) ? <button onClick={leaveServer} className='leave-button'>Leave Server</button> : null }
             {/* Display channels */}
             <h2>Channels:</h2>
             {channels.map((channel) => (
