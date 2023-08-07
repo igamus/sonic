@@ -112,7 +112,7 @@ const SingleSpot = () => {
             <p>{server.description}</p>
 
             <p>Owner: {ownerUser.username} {user.username === ownerUser.username ? "(you!)" : null}</p>
-            <div><img src={server.serverImage} alt="Server Image" /></div>
+          
             {!isOwner && serverUsers.includes(userId) ? <button onClick={leaveServer} className='leave-button'>Leave Server</button> : null }
             {!serverUsers.includes(userId) ? <button onClick={joinServer} id='greenjoin'>Join Server</button> : null}
             {/* Display channels */}
