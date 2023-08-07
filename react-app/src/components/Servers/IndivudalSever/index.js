@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { loadSingleServerThunk, leaveServerThunk, joinServerThunk } from '../../../store/servers';
 import { Link, useParams, useHistory } from 'react-router-dom/';
 import { loadServerChannelsThunk } from '../../../store/channels';
-
+import { clearMessages } from "../../../store/messages";
 
 import "./IndividualServer.css";
 
@@ -23,6 +23,7 @@ const SingleSpot = () => {
   useEffect(() => {
     dispatch(loadSingleServerThunk(serverId));
     dispatch(loadServerChannelsThunk(serverId));
+    dispatch(clearMessages());
   }, [dispatch, serverId]);
 
   const server = useSelector((state) => state.servers.singleServer);
@@ -103,7 +104,7 @@ const SingleSpot = () => {
             <img
               className="singleimgban"
               src={server.bannerImage}
-              alt="Server Image"
+              alt="Banner Image"
             />
             <img
               className="singleimg"
@@ -159,9 +160,6 @@ const SingleSpot = () => {
                   <img id="logged-in-user-image" src={user.profilePic} />
                 </p>
               ))}
-              {channels.length === 0 && (
-                <p>No channels available for this server.</p>
-              )}
             </div>
           </div>
         </div>
