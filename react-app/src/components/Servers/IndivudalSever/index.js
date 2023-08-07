@@ -1,12 +1,12 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import {
-  loadSingleServerThunk,
-  leaveServerThunk,
-} from "../../../store/servers";
-import { Link, useParams, useHistory } from "react-router-dom/";
-import { loadServerChannelsThunk } from "../../../store/channels";
+
 import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { loadSingleServerThunk, leaveServerThunk, joinServerThunk } from '../../../store/servers';
+import { Link, useParams, useHistory } from 'react-router-dom/';
+import { loadServerChannelsThunk } from '../../../store/channels';
+
+
 import "./IndividualServer.css";
 
 import OpenModalButton from "../../OpenModalButton";
@@ -26,9 +26,12 @@ const SingleSpot = () => {
   }, [dispatch, serverId]);
 
   const server = useSelector((state) => state.servers.singleServer);
-  const channels = useSelector((state) =>
-    Object.values(state.channels.serverChannels)
-  );
+
+  const channels = useSelector((state) => Object.values(state.channels.serverChannels));
+  const serverUserObjects = useSelector((state) => state.servers.singleServer.users);
+  const serverUsers = serverUserObjects?.map(user => user.id) || '';
+  console.log('serverusrers:', serverUsers)
+
 
   const user = useSelector((state) => state.session.user);
   let ownerUser = server.users?.filter((user) => user.id == server.ownerId);
@@ -49,7 +52,14 @@ const SingleSpot = () => {
         history.push("/me");
       }
     });
+
+  }
+
+  const joinServer = async () => {
+    dispatch(joinServerThunk(serverId)).then(() => history.push("/me"));
   };
+
+
   const back = () => {
     history.push("/me");
   };
@@ -100,15 +110,11 @@ const SingleSpot = () => {
               alt="Server Image"
             />
             <p>{server.description}</p>
-            <p>
-              Owner: {ownerUser.username}{" "}
-              {user.username === ownerUser.username ? "(you!)" : null}
-            </p>
-            {!isOwner ? (
-              <button onClick={leaveServer} className="leave-button">
-                Leave Server
-              </button>
-            ) : null}
+
+            <p>Owner: {ownerUser.username} {user.username === ownerUser.username ? "(you!)" : null}</p>
+            <div><img src={server.serverImage} alt="Server Image" /></div>
+            {!isOwner && serverUsers.includes(userId) ? <button onClick={leaveServer} className='leave-button'>Leave Server</button> : null }
+            {!serverUsers.includes(userId) ? <button onClick={joinServer} id='greenjoin'>Join Server</button> : null}
             {/* Display channels */}
           </div>
           <div className="mainzz">

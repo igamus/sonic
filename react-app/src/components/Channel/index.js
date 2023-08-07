@@ -5,23 +5,38 @@ import { loadChannelMessagesThunk } from '../../store/messages';
 import { loadSingleChannelThunk } from '../../store/channels';
 import Chat from '../MessagePane';
 import './Channel.css'
+
 import { NavLink } from 'react-router-dom/cjs/react-router-dom.min';
+
+import { loadSingleServerThunk } from '../../store/servers';
+
 const Channel = () => {
-  const { channelId } = useParams();
+  const { serverId, channelId } = useParams();
   const dispatch = useDispatch();
   const channel = useSelector((state) => state.channels.singleChannel);
+  const users = useSelector((state) => state.servers.singleServer.users);
+  const userId = useSelector((state) => state.session.user.id)
   const history = useHistory();
+
   useEffect(() => {
+    dispatch(loadSingleServerThunk(serverId));
     dispatch(loadSingleChannelThunk(channelId));
     dispatch(loadChannelMessagesThunk(channelId)); // Fetch messages for the channel
   }, [dispatch, channelId]);
+
   const back = () => {
     history.push(`/servers/${channel.server_id}`)
+  }
+
+  if (users && userId) {
+    const userTest = users.filter(user => user.id === userId);
+    if (!userTest.length) back();
   }
 
   return (
     <div className='channel-page'>
       <div className='sidenavz'>
+
       <div className="wrapperzz">
           <NavLink to="/me" className="squircle purple-boi  purlink">
             <svg aria-hidden="false" width="28" height="20" viewBox="0 0 28 20">
@@ -38,6 +53,7 @@ const Channel = () => {
             &#11013; Back
           </button>
         </div>
+
       </div>
       {channel && (
         <>
