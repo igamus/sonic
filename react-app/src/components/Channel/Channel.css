@@ -108,3 +108,7 @@
   .special-btncond {
     color: #f6f6f6;
   }
+
+  .channel-name {
+    text-overflow: anywhere;
+  }

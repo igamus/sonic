@@ -89,3 +89,10 @@ width: 100%;
   .fontzme {
     font-size: xx-large;
   }
+
+  .server-name {
+    white-space: break-spaces;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 100%;
+  }

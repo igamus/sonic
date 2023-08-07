@@ -58,7 +58,7 @@ const Channel = () => {
       {channel && (
         <>
           <div className='friendsz'>
-            <h1>{channel.name}</h1>
+            <h1 className='channel-name'>{channel.name}</h1>
             <p>{channel.description}</p>
           </div>
 

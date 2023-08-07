@@ -89,7 +89,7 @@ const SingleSpot = () => {
       {server ? (
         <div>
           <div className="friendsz">
-            <h1>
+            <h1 className="server-name">
               {server.name}
               {isOwner ? " " : null}
               {isOwner ? (
@@ -110,7 +110,7 @@ const SingleSpot = () => {
               src={server.serverImage}
               alt="Server Image"
             />
-            <p>{server.description}</p>
+            <p className="server-name">{server.description}</p>
 
             <p>Owner: {ownerUser.username} {user.username === ownerUser.username ? "(you!)" : null}</p>
 
