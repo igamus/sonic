@@ -13,15 +13,15 @@ export default function ServerFormModal({ }) {
     const [description, setDescription] = useState('')
     const [serverImage, setServerImage] = useState('')
     const [serverBannerImage, setServerBannerImage] = useState('')
-    const [error, setError] = useState(null);
+    const [error, setError] = useState({});
     const [disableButton, setDisableButton] = useState(true);
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const newErrors = {};
+        const newErrors = [];
 
-        if (!name.length) newErrors.name = "Name must be between 1 and 255 characters"
-        if (!description.length) newErrors.description = "Name must be between 1 and 255 characters"
-        if (Object.values(newErrors).length) {
+        if (!name.length) newErrors.push("Name must be between 1 and 255 characters");
+        if (!description.length) newErrors.push("Name must be between 1 and 255 characters");
+        if (newErrors.length) {
             setError(newErrors);
             setDisableButton(true);
             return;
@@ -48,17 +48,16 @@ export default function ServerFormModal({ }) {
 
     useEffect(() => {
         setDisableButton(false);
-        const newErrors = {};
-        if (name.length > 255) newErrors.name = "Name must be between 1 and 255 characters"
-        if (description.length > 255) newErrors.description = "Description must be between 1 and 255 characters"
-        if (Object.values(newErrors).length) setDisableButton(true);
-        console.log('new errors:', newErrors)
+        const newErrors = [];
+        if (name.length > 255) newErrors.push("Name must be between 1 and 255 characters");
+        if (description.length > 255) newErrors.push("Description must be between 1 and 255 characters");
+        if (newErrors.length) setDisableButton(true);
     }, [name, description]);
 
     return (
         <div id='server-form-container'>
             <h1>Create a server</h1>
-            { (disableButton) ? Object.values(error).map(e => <p className="create-error">{e}</p>) : null}
+            { error.length ? error.map(e => <p className="create-error">{e}</p>) : null}
             <form id='server-form' onSubmit={handleSubmit} encType='multipart/form-data'>
                 <div id='server-form-text-row'>
                     <input
