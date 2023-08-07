@@ -23,6 +23,7 @@ export default function ServerFormModal({ }) {
         if (!description.length) newErrors.description = "Name must be between 1 and 255 characters"
         if (Object.values(newErrors).length) {
             setError(newErrors);
+            setDisableButton(true);
             return;
         };
 
@@ -47,9 +48,6 @@ export default function ServerFormModal({ }) {
 
     useEffect(() => {
         setDisableButton(false);
-        console.log(name.length)
-        console.log("name:", name)
-        console.log("description:", description)
         const newErrors = {};
         if (name.length > 255) newErrors.name = "Name must be between 1 and 255 characters"
         if (description.length > 255) newErrors.description = "Description must be between 1 and 255 characters"
@@ -60,7 +58,7 @@ export default function ServerFormModal({ }) {
     return (
         <div id='server-form-container'>
             <h1>Create a server</h1>
-            { (error?.name || error?.description) ? Object.values(error).map(e => <p className="create-error">{e}</p>) : null}
+            { (disableButton) ? Object.values(error).map(e => <p className="create-error">{e}</p>) : null}
             <form id='server-form' onSubmit={handleSubmit} encType='multipart/form-data'>
                 <div id='server-form-text-row'>
                     <input
