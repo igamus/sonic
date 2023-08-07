@@ -108,9 +108,9 @@ function LoginFormPage() {
           </div>
         </div>
       </div>
-      <div>
-        <button onClick={LoginDemoUserMarnie}>Demo User Marnie</button>
-        <button onClick={LoginDemoUserBobbie}>Demo User Bobbie</button>
+      <div className="demobttncontrol">
+        <button className="marniebttn" onClick={LoginDemoUserMarnie}>Demo User Marnie</button>
+        <button className="bobbiebttn" onClick={LoginDemoUserBobbie}>Demo User Bobbie</button>
       </div>
 
 
