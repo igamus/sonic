@@ -112,7 +112,7 @@ const SingleSpot = () => {
             <p>{server.description}</p>
 
             <p>Owner: {ownerUser.username} {user.username === ownerUser.username ? "(you!)" : null}</p>
-          
+
             {!isOwner && serverUsers.includes(userId) ? <button onClick={leaveServer} className='leave-button'>Leave Server</button> : null }
             {!serverUsers.includes(userId) ? <button onClick={joinServer} id='greenjoin'>Join Server</button> : null}
             {/* Display channels */}
@@ -143,6 +143,9 @@ const SingleSpot = () => {
                 ) : null}
               </p>
             ))}
+              {channels.length === 0 && (
+                <p className="whitenme">No channels available for this server.</p>
+              )}
             </div>
           </div>
           <div className="statuszz">
@@ -154,9 +157,6 @@ const SingleSpot = () => {
                   <img id="logged-in-user-image" src={user.profilePic} />
                 </p>
               ))}
-              {channels.length === 0 && (
-                <p>No channels available for this server.</p>
-              )}
             </div>
           </div>
         </div>
