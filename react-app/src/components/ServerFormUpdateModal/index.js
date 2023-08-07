@@ -41,17 +41,23 @@ export default function ServerFormUpdateModal({ server }) {
             <div>
                 <h1>Update Server</h1>
             <form className='specialchanform sol-box' onSubmit={handleSubmit} encType='multipart/form-data'>
-            <label htmlFor="channel-server">
+            <label htmlFor="server-description">
                     New Server Name
                 </label>
                 <input type='text' value={name} onChange={(e) => setName(e.target.value)} />
                 <label htmlFor="server-description">
-                    New Server Name
+                    New Server Description
                 </label>
                 <input type='text' value={description} onChange={(e) => setDescription(e.target.value)} />
+                <label htmlFor="server-image">
+                    New Server Image
+                </label>
                 <input type='text' value={serverImage} onChange={(e) => setServerImage(e.target.value)} accept='image/*' />
+                <label htmlFor="banner-image">
+                    New Banner Image
+                </label>
                 <input type='text' value={serverBannerImage} onChange={(e) => setServerBannerImage(e.target.value)} accept='image/*' />
-                <button type='submit'>
+                <button className='signupbbtn' type='submit'>
                     Update Server
                 </button>
             </form>
