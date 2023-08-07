@@ -52,7 +52,7 @@ function CreateChannel({ type, formData }) {
             <div className='wrapchanel'>
             <h1>{type === "create" ? "Add Channel" : "Update Channel"}</h1>
             {errors.length ? errors.map(e => (<p className='error'>{e}</p>)) : null}
-            <form id="channel-form" onSubmit={handleSubmit}>
+            <form className='specialchanform sol-box' id="channel-form" onSubmit={handleSubmit}>
                 <label htmlFor="channel-name">
                     New Channel Name
                 </label>
