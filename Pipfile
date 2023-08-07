@@ -29,6 +29,7 @@ flask-socketio = "*"
 boto3 = "*"
 eventlet = "==0.30.2"
 botocore = "==1.29.146"
+gevent = "*"
 
 [dev-packages]
 
