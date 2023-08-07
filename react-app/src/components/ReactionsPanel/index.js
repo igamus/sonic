@@ -46,7 +46,9 @@ function ReactionsPanel({ message, userId, channelId }) {
 
     const removeEmoji = (e) => {
         e.preventDefault();
-        if (e.target.className === "your-reaction") {
+        console.log('clicked "remove"');
+        console.log(e.target.className);
+        if (e.target.className === "reaction your-reaction") {
             socket.emit("delete_reaction", {"message_id": parseInt(message.id), "owner_id": parseInt(userId), emoji: e.target.value})
         }
     }

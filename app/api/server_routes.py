@@ -67,26 +67,28 @@ def create_server():
     if form.validate_on_submit():
         newServer = Server(
             name=form.data['name'],
-            owner_id=current_user.id)
+            owner_id=current_user.id,
+            server_image=form.data['server_image'],
+            banner_image=form.data['banner_image'])
 
         description = form.data['description']
         newServer.description = description if description != None else ""
 
-        server_image = form.data['server_image']
-        server_image.filename = get_unique_filename(server_image.filename)
-        uploadServerImage = upload_file_to_s3(server_image)
-        if 'url' not in uploadServerImage:
-            return uploadServerImage
-        else:
-            newServer.server_image = uploadServerImage['url']
+        # server_image = form.data['server_image']
+        # server_image.filename = get_unique_filename(server_image.filename)
+        # uploadServerImage = upload_file_to_s3(server_image)
+        # if 'url' not in uploadServerImage:
+        #     return uploadServerImage
+        # else:
+        #     newServer.server_image = uploadServerImage['url']
 
-        banner_image = form.data['banner_image']
-        banner_image.filename = get_unique_filename(banner_image.filename)
-        uploadBannerImage = upload_file_to_s3(banner_image)
-        if 'url' not in uploadBannerImage:
-            return uploadBannerImage
-        else:
-            newServer.banner_image = uploadBannerImage['url']
+        # banner_image = form.data['banner_image']
+        # banner_image.filename = get_unique_filename(banner_image.filename)
+        # uploadBannerImage = upload_file_to_s3(banner_image)
+        # if 'url' not in uploadBannerImage:
+        #     return uploadBannerImage
+        # else:
+        #     newServer.banner_image = uploadBannerImage['url']
 
         db.session.add(newServer)
         db.session.commit()
@@ -175,31 +177,41 @@ def edit_server(serverId):
         if new_description is not None and new_description != server.description:
             print ('attempt at description change')
             server.description = new_description
+
         print(form.data)
+
         server_image = form.data['server_image']
         if server_image:
-            server_image_filename = ''
-            if server.server_image:
-                server_image_filename = server.server_image
-            else:
-                server_image_filename = get_unique_filename(server_image.get('filename'))
-
-            uploadServerImage = upload_file_to_s3(server_image, server_image_filename)
-            if 'url' not in uploadServerImage:
-                return jsonify(error=uploadServerImage), 400
-            server.server_image = uploadServerImage['url']
+            server.server_image = form.data['server_image']
 
         banner_image = form.data['banner_image']
         if banner_image:
-            banner_image_filename = ''
-            if server.banner_image:
-                banner_image_filename = server.banner_image
-            else:
-                banner_image_filename = get_unique_filename(banner_image.get('filename'))
-            uploadBannerImage = upload_file_to_s3(banner_image, banner_image_filename)
-            if 'url' not in uploadBannerImage:
-                return jsonify(error=uploadBannerImage), 400
-            server.banner_image = uploadBannerImage['url']
+            server.banner_image = banner_image
+
+        # server_image = form.data['server_image']
+        # if server_image:
+        #     server_image_filename = ''
+        #     if server.server_image:
+        #         server_image_filename = server.server_image
+        #     else:
+        #         server_image_filename = get_unique_filename(server_image.get('filename'))
+
+        #     uploadServerImage = upload_file_to_s3(server_image, server_image_filename)
+        #     if 'url' not in uploadServerImage:
+        #         return jsonify(error=uploadServerImage), 400
+        #     server.server_image = uploadServerImage['url']
+
+        # banner_image = form.data['banner_image']
+        # if banner_image:
+        #     banner_image_filename = ''
+        #     if server.banner_image:
+        #         banner_image_filename = server.banner_image
+        #     else:
+        #         banner_image_filename = get_unique_filename(banner_image.get('filename'))
+        #     uploadBannerImage = upload_file_to_s3(banner_image, banner_image_filename)
+        #     if 'url' not in uploadBannerImage:
+        #         return jsonify(error=uploadBannerImage), 400
+        #     server.banner_image = uploadBannerImage['url']
         print('put2', server.name, server.description)
         try:
             db.session.commit()

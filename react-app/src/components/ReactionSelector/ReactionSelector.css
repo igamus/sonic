@@ -16,4 +16,5 @@
 
 .panel-reaction:hover {
     background-color: #944bd3;
+    cursor: pointer;
 }

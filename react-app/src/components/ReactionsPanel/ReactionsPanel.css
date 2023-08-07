@@ -12,6 +12,10 @@
 
 .reaction:hover {
     cursor: pointer;
+}
+
+.reaction:hover {
+    cursor: pointer;
     background-color: white;
 }
 
