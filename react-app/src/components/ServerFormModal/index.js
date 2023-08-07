@@ -83,7 +83,7 @@ export default function ServerFormModal({ }) {
                         placeholder="Please describe this server." />
 
 
-                    <label for='server-form-server-image'>Choose a Server Image</label>
+                    <label for='server-form-server-image'>Enter a Server Image Url</label>
                     <input
                         type='text'
                         id='server-form-server-image'
@@ -94,7 +94,7 @@ export default function ServerFormModal({ }) {
                     />
 
 
-                    <label for='server-form-banner-image'>Choose a Banner Image</label>
+                    <label for='server-form-banner-image'>Enter a Banner Image Url</label>
                     <input
                         id='server-form-banner-image'
                         name='server-form-banner-image'
