@@ -93,7 +93,7 @@ const Chat = ({ channelId }) => {
                     channelMessages && msgList?.length > 0
                         ?
                     <>{msgList.map((message, ind) => (
-                        <div>
+                        <div key={`message-container-${ind}`}>
                             <MessageCard key={ind} message={message} userId={user.id} channelId={channelId} />
                             {message.owner_id === user.id ? <button onClick={deleteMessage} value={message.id} className="delete-message-button">Pretend this never happened (Delete)</button> : null}
                         </div>

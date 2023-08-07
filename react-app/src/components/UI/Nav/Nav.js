@@ -13,7 +13,7 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 import "./Nav.css";
 
-const Nav = ({isLoaded}) => {
+const Nav = ({ isLoaded }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   useEffect(() => {
@@ -51,10 +51,10 @@ const Nav = ({isLoaded}) => {
             </div>
           </NavLink>
 
-    <hr></hr>
+          <hr></hr>
 
           {servers.map((server) => (
-            <li className="squircle purple-boi">
+            <li className="squircle purple-boi" key={server.id}>
               <Link to={`/servers/${server.id}`}>
                 <img
                   src={server.serverImage}
@@ -185,13 +185,13 @@ const Nav = ({isLoaded}) => {
           <h2>Add Friend</h2>
           <div>Enter a Username#000 </div>
           <form>
-      <div className="input-group">
-        <input type="text" placeholder="You can add friends with their Discord username" />
-        <button type="submit" className="login-bttns" onClick={handleButtonClick}>
-          Send a Friend Request
-        </button>
-      </div>
-    </form>
+            <div className="input-group">
+              <input type="text" placeholder="You can add friends with their Discord username" />
+              <button type="submit" className="login-bttns" onClick={handleButtonClick}>
+                Send a Friend Request
+              </button>
+            </div>
+          </form>
         </section>
       </nav>
 

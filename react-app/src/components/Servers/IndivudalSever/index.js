@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { loadSingleServerThunk, leaveServerThunk, joinServerThunk } from '../../../store/servers';
 import { Link, useParams, useHistory } from 'react-router-dom/';
 import { loadServerChannelsThunk } from '../../../store/channels';
-
+import { clearMessages } from "../../../store/messages";
 
 import "./IndividualServer.css";
 
@@ -23,6 +23,7 @@ const SingleSpot = () => {
   useEffect(() => {
     dispatch(loadSingleServerThunk(serverId));
     dispatch(loadServerChannelsThunk(serverId));
+    dispatch(clearMessages());
   }, [dispatch, serverId]);
 
   const server = useSelector((state) => state.servers.singleServer);
@@ -102,7 +103,7 @@ const SingleSpot = () => {
             <img
               className="singleimgban"
               src={server.bannerImage}
-              alt="Server Image"
+              alt="Banner Image"
             />
             <img
               className="singleimg"
@@ -113,13 +114,15 @@ const SingleSpot = () => {
 
             <p>Owner: {ownerUser.username} {user.username === ownerUser.username ? "(you!)" : null}</p>
 
-            {!isOwner && serverUsers.includes(userId) ? <button onClick={leaveServer} className='leave-button'>Leave Server</button> : null }
+
+            {!isOwner && serverUsers.includes(userId) ? <button onClick={leaveServer} className='leave-button'>Leave Server</button> : null}
             {!serverUsers.includes(userId) ? <button onClick={joinServer} id='greenjoin'>Join Server</button> : null}
             {/* Display channels */}
           </div>
           <div className="mainzz">
             <h2 className="whitenme">Channels:</h2>
             <div className="fontzme">
+
             {channels.map((channel) => (
               <p key={channel.id}>
                 <Link to={`/servers/${serverId}/${channel.id}`}>
@@ -146,6 +149,7 @@ const SingleSpot = () => {
               {channels.length === 0 && (
                 <p className="whitenme">No channels available for this server.</p>
               )}
+
             </div>
           </div>
           <div className="statuszz">
