@@ -19,8 +19,8 @@ export default function ServerFormModal({ }) {
         e.preventDefault();
         const newErrors = [];
 
-        if (!name.length) newErrors.push("Name must be between 1 and 255 characters");
-        if (!description.length) newErrors.push("Name must be between 1 and 255 characters");
+        if (!name.length || name.length > 255) newErrors.push("Name must be between 1 and 255 characters");
+        if (!description.length || description.length > 255) newErrors.push("Name must be between 1 and 255 characters");
         if (newErrors.length) {
             setError(newErrors);
             setDisableButton(true);
@@ -57,7 +57,7 @@ export default function ServerFormModal({ }) {
     return (
         <div id='server-form-container'>
             <h1>Create a server</h1>
-            { error.length ? error.map(e => <p className="create-error">{e}</p>) : null}
+            {error.length ? error.map(e => <p className="create-error">{e}</p>) : null}
             <form id='server-form' onSubmit={handleSubmit} encType='multipart/form-data'>
                 <div id='server-form-text-row'>
                     <input
