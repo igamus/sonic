@@ -9,6 +9,10 @@
     flex-direction: column;
 }
 
+#explore-server-container:hover {
+    cursor: pointer;
+}
+
 #explore-server-banner {
     width: 280px;
     height: 200px;

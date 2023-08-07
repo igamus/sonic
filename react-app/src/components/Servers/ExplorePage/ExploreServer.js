@@ -6,19 +6,14 @@ import { useSelector } from "react-redux";
 
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import { NavLink, useHistory } from "react-router-dom/cjs/react-router-dom.min";
-
+import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 const ExploreServer = ({ server }) => {
     const user = useSelector((state) => state.session.user);
     const dispatch = useDispatch();
-    const history = useHistory();
 
     const join = () => {
-      try {
         dispatch(joinServerThunk(server.id));
-      } finally {
-        history.push(`/servers/${server.id}`);
-      }
+        setIsMember("hide-explore-server-join");
     };
 
     let memberFlag = false;
@@ -33,9 +28,13 @@ const ExploreServer = ({ server }) => {
     const [isMember, setIsMember] = useState(memberFlag ? "hide-explore-server-join" : "");
     useEffect(() => { }, [isMember]);
 
+    console.log(server.id, isMember)
+
+
+    console.log(server.id, isMember)
     return (
         <div className='greyyy'>
-            <div key={server.id} className="server" id="explore-server-container" onClick={join}>
+            <div key={server.id} className="server" id="explore-server-container">
                 <NavLink to={`/servers/${server.id}`}>
                     <h2>{server.name}</h2>
                     <img
@@ -52,6 +51,9 @@ const ExploreServer = ({ server }) => {
                         <p id="explore-server-description">{server.description}</p>
                     </div>
                 </NavLink>
+                <button class={isMember} id="greenjoin" onClick={join}>
+                    Join Server
+                </button>
             </div>
         </div>
     );
