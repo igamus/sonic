@@ -114,6 +114,7 @@ const SingleSpot = () => {
 
             <p>Owner: {ownerUser.username} {user.username === ownerUser.username ? "(you!)" : null}</p>
 
+
             {!isOwner && serverUsers.includes(userId) ? <button onClick={leaveServer} className='leave-button'>Leave Server</button> : null}
             {!serverUsers.includes(userId) ? <button onClick={joinServer} id='greenjoin'>Join Server</button> : null}
             {/* Display channels */}
@@ -121,29 +122,34 @@ const SingleSpot = () => {
           <div className="mainzz">
             <h2 className="whitenme">Channels:</h2>
             <div className="fontzme">
-              {channels.map((channel) => (
-                <p key={channel.id}>
-                  <Link to={`/servers/${serverId}/${channel.id}`}>
-                    {channel.name}
-                  </Link>
-                  {isOwner ? (
-                    <>
-                      <OpenModalButton
-                        modalComponent={<UpdateChannelModal channel={channel} />}
-                        buttonText="&#x1F4DD;"
-                        className={"server-emoji-button"}
-                      />
-                      <OpenModalButton
-                        modalComponent={
-                          <DeleteModal type={"channel"} id={channel.id} />
-                        }
-                        buttonText="&#128465;"
-                        className={"server-emoji-button"}
-                      />
-                    </>
-                  ) : null}
-                </p>
-              ))}
+
+            {channels.map((channel) => (
+              <p key={channel.id}>
+                <Link to={`/servers/${serverId}/${channel.id}`}>
+                  {channel.name}
+                </Link>
+                {isOwner ? (
+                  <>
+                    <OpenModalButton
+                      modalComponent={<UpdateChannelModal channel={channel} />}
+                      buttonText="&#x1F4DD;"
+                      className={"server-emoji-button"}
+                    />
+                    <OpenModalButton
+                      modalComponent={
+                        <DeleteModal type={"channel"} id={channel.id} />
+                      }
+                      buttonText="&#128465;"
+                      className={"server-emoji-button"}
+                    />
+                  </>
+                ) : null}
+              </p>
+            ))}
+              {channels.length === 0 && (
+                <p className="whitenme">No channels available for this server.</p>
+              )}
+
             </div>
           </div>
           <div className="statuszz">
@@ -155,9 +161,6 @@ const SingleSpot = () => {
                   <img id="logged-in-user-image" src={user.profilePic} />
                 </p>
               ))}
-              {channels.length === 0 && (
-                <p>No channels available for this server.</p>
-              )}
             </div>
           </div>
         </div>
