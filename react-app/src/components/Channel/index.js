@@ -20,6 +20,8 @@ const Channel = () => {
     dispatch(loadChannelMessagesThunk(channelId)); // Fetch messages for the channel
   }, [dispatch, channelId]);
 
+  console.log("channel:", channel)
+
 
   const back = () => {
     history.push(`/servers/${channel.server_id}`)
@@ -27,10 +29,9 @@ const Channel = () => {
 
   if (users && userId) {
     const userTest = users.filter(user => user.id === userId);
-    console.log("usertest:", userTest)
     if (!userTest.length) back();
   }
-  
+
   return (
     <div className='channel-page'>
       <div className='sidenavz'>
