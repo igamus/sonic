@@ -44,6 +44,7 @@ const SingleSpot = () => {
   console.log("o2", ownerUser);
   const userId = user.id;
   const isOwner = userId === server.ownerId;
+  const inServer = serverUsers.includes(userId);
   const leaveServer = async () => {
     dispatch(leaveServerThunk(serverId)).then((responseData) => {
       if (responseData.error) {
@@ -112,15 +113,15 @@ const SingleSpot = () => {
             <p>{server.description}</p>
 
             <p>Owner: {ownerUser.username} {user.username === ownerUser.username ? "(you!)" : null}</p>
-          
-            {!isOwner && serverUsers.includes(userId) ? <button onClick={leaveServer} className='leave-button'>Leave Server</button> : null }
-            {!serverUsers.includes(userId) ? <button onClick={joinServer} id='greenjoin'>Join Server</button> : null}
+
+            {!isOwner && inServer ? <button onClick={leaveServer} className='leave-button'>Leave Server</button> : null }
+            {!inServer ? <button onClick={joinServer} id='greenjoin'>Join Server</button> : null}
             {/* Display channels */}
           </div>
           <div className="mainzz">
             <h2 className="whitenme">Channels:</h2>
             <div className="fontzme">
-            {channels.map((channel) => (
+            {inServer ? channels.map((channel) => (
               <p key={channel.id}>
                 <Link to={`/servers/${serverId}/${channel.id}`}>
                   {channel.name}
@@ -142,7 +143,11 @@ const SingleSpot = () => {
                   </>
                 ) : null}
               </p>
-            ))}
+            )) :
+            <div>
+              <h2 className="whitenme">Join {server.name} to join the conversation!</h2>
+              <div className="whitenme">{channels.map((channel) => <p>{channel.name}</p>)}</div>
+            </div>}
             </div>
           </div>
           <div className="statuszz">

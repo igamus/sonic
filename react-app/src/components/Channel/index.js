@@ -30,7 +30,7 @@ const Channel = () => {
 
   if (users && userId) {
     const userTest = users.filter(user => user.id === userId);
-    if (!userTest.length) back();
+    if (!userTest.length) history.push(`/servers/${serverId}`);
   }
 
   return (
