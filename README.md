@@ -54,7 +54,7 @@ Sonic is a fast and dynamic communication platform inspired by Discord. It allow
 ## Contributors
 
 - Brian Freese - [@brianfreese](https://github.com/IceLordUlmo)
-- Issac Gamus - [@issacgamus](https://github.com/igamus)
+- Isaac Gamus - [@isaacgamus](https://github.com/igamus)
 - Oscar Alcantar - [@oscaralcantar](https://github.com/Oscar-999)
 
 We welcome contributions from the community. If you'd like to contribute to Sonic, feel free to open a pull request.

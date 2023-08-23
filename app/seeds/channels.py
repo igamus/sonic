@@ -72,7 +72,73 @@ def seed_channels():
             "server_id": 5,
             "description": "You have to stay awake, Eglantine, or the Pure Ones will moon-blink us",
             "name": "Guardians of Ga'Hoole"
-        }
+        },
+        {
+            "server_id": 6,
+            "description": "sage is op",
+            "name": "General"
+        },
+         {
+            "server_id": 7,
+            "description": "",
+            "name": "General"
+        },
+         {
+            "server_id": 8,
+            "description": "",
+            "name": "General"
+        },
+         {
+            "server_id": 9,
+            "description": "",
+            "name": "General"
+        },
+        {
+            "server_id": 10,
+            "description": "",
+            "name": "General"
+        },
+        {
+            "server_id": 11,
+            "description": "",
+            "name": "General"
+        },
+        {
+            "server_id": 12,
+            "description": "",
+            "name": "General"
+        },
+        {
+            "server_id": 13,
+            "description": "",
+            "name": "General"
+        },
+        {
+            "server_id": 14,
+            "description": "",
+            "name": "General"
+        },
+        {
+            "server_id": 15,
+            "description": "",
+            "name": "General"
+        },
+        {
+            "server_id": 16,
+            "description": "",
+            "name": "General"
+        },
+        {
+            "server_id": 17,
+            "description": "",
+            "name": "General"
+        },
+        {
+            "server_id": 18,
+            "description": "",
+            "name": "General"
+        },
+
     ]:
         db.session.add(Channel(**channel))
 
