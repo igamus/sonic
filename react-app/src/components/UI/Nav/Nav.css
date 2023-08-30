@@ -147,9 +147,10 @@ button {
 }
 
 .server-icon {
-	width: inherit;
-	border-radius: inherit;
-    width: 48px;
+	/* width: inherit;
+	border-radius: inherit; */
+    width: 58px;
+	height: 58px;
 	border-radius: 50%;
 }
 
