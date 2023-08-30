@@ -44,7 +44,22 @@ msmarvel = User(
 unknown = User(
     username='UNKNOWN', email='unknown@shield.gov', password='guest', profile_picture='http://sonic-aws.s3.amazonaws.com/c1aa63e918f1449e8d5f98cb746364ac.png'
 )
-
+neon = User(username='neon',email='neon@valorant.com', password='valorant', profile_picture='')
+bananaguy = User(username='banana', email="banana@fornite.com", password='fortnite', profile_picture='')
+npcguy = User(username='npcguy', email="terraria@gmail.com", password='terraria', profile_picture='')
+tracer = User(username='tracer', email="tracer@overwatch.com", password='overwatch', profile_picture='')
+dva = User(username='dva', email="dva@overawatch.com", password='overwatch', profile_picture='')
+ghost = User(username='ghost', email="ghost@phasmophobia.com", password='phasmophobia', profile_picture='')
+jett = User(username='jett', email="jett@valorant.com", password='valorant', profile_picture='')
+oscar = User(username='oscar', email="oscar@gmail.com", password='oscar123', profile_picture='')
+joe = User(username='joe', email="joe@gmail.com", password='joe123', profile_picture='')
+issac = User(username='issac', email="issac@gmail.com,", password='password', profile_picture='')
+luffy = User(username='luffy', email="luffy@onepiece.com", password='onepiece', profile_picture='')
+zoro = User(username='zoro', email="zorro@onepiece.com", password='onepiece', profile_picture='')
+johnathan= User(username='johnathan', email="jonathan@jojo.com", password='jojo1234', profile_picture='')
+felix = User(username='felix', email="felix@youtube.com", password='youtube', profile_picture='')
+bart = User(username='bart', email="bart@simpson.com", password='simpson', profile_picture='')
+batman = User(username='batman', email="batman@dc.com", password='dcbatman', profile_picture='')
 def seed_users():
     db.session.add(marnie) # 1
     db.session.add(bobbie) # 2
@@ -61,6 +76,25 @@ def seed_users():
     db.session.add(unknown) # 13
     db.session.add(demo1) # 14
     db.session.add(demo2) # 15
+    db.session.add(neon) # 16
+    db.session.add(bananaguy) # 17
+    db.session.add(npcguy) # 18
+    db.session.add(tracer) # 19
+    db.session.add(dva) # 20
+    db.session.add(ghost) # 21
+    db.session.add(jett) # 22
+    db.session.add(oscar) # 23
+    db.session.add(joe) # 24
+    db.session.add(issac) # 25
+    db.session.add(luffy) # 26
+    db.session.add(zoro) # 27
+    db.session.add(johnathan) # 28
+    db.session.add(felix) # 29
+    db.session.add(bart) # 30
+    db.session.add(batman) # 31
+
+
+
     db.session.commit()
 
 
