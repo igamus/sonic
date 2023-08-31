@@ -132,13 +132,7 @@ def seed_channels():
             "server_id": 17,
             "description": "",
             "name": "General"
-        },
-        {
-            "server_id": 18,
-            "description": "",
-            "name": "General"
-        },
-
+        }
     ]:
         db.session.add(Channel(**channel))
 
