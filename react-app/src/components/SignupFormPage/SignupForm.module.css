@@ -89,6 +89,7 @@
   .signuperror {
     color: red;
     margin-bottom: 10px;
+    line-height: normal;
   }
   .signback ul {
 color: red;
