@@ -38,29 +38,35 @@ function SignupFormPage() {
     })
 
     if (!username.length) newErrors.push("Must include username");
-    if (!password.length) newErrors.push("Must include password");
-    if (!email.length || !email.includes("@")) newErrors.push("Must include a valid email");
-    if (!profileImage.length || !isValidImage(profileImage)) newErrors.push("Image URL must end in .png, .jpg, or .jpeg");
-    if (username.length < 1 || 40 < username.length) newErrors.push("Username must be between 1 and 40 characters.");
-    if (password !== confirmPassword) newErrors.push("Passwords must match");
-    if (password.length < 1 || 255 < password.length) newErrors.push("Password must be between 1 and 255 characters");
-    if (profileImage.length > 255) newErrors.push("Max URL length exceeded (must be less than 255 characters)");
+    if (!password.length) newErrors.push("Password: Must include password");
+    if (!email.length || !email.includes("@")) newErrors.push("Email: Must include a valid email");
+    if (!profileImage.length || !isValidImage(profileImage)) newErrors.push("Profile Picture: Image URL must end in .png, .jpg, or .jpeg");
+    if (username.length < 1 || 40 < username.length) newErrors.push("Username: Username must be between 1 and 40 characters.");
+    if (password !== confirmPassword) newErrors.push("Password: Passwords must match");
+    if (password.length < 1 || 255 < password.length) newErrors.push("Password: Password must be between 1 and 255 characters");
+    if (profileImage.length > 255) newErrors.push("Profile Picture: Max URL length exceeded (must be less than 255 characters)");
 
-    if (!newErrors.length) {
-      const form = new FormData();
-      form.append("email", email);
-      form.append("username", username);
-      form.append("password", password);
-      form.append("profile_picture", profileImage);
+    if (newErrors.length) {
+      return setErrors(newErrors);
+    }
 
-      console.log(form);
+    // validated on front-end, so send to the back
+    const form = new FormData();
+    form.append("email", email);
+    form.append("username", username);
+    form.append("password", password);
+    form.append("profile_picture", profileImage);
+
+    try {
       const data = await dispatch(signUp(form));
       if (data) {
-        setErrors(data);
+        setErrors(data)
       }
-    };
-
-    setErrors(newErrors);
+      console.log('data in try:', data)
+    } catch (e) {
+      console.log('e in catch:', e);
+      setErrors(e);
+    }
   };
 
   return (
@@ -68,14 +74,13 @@ function SignupFormPage() {
       <div className={classes.signupbox}>
         <div className={classes.signiobox}>
           <div className={classes.siobox}>
-            <h2>Create an account</h2>
-            <form className={classes.formzbox} encType='multipart/form-data' onSubmit={handleSubmit}>
+            <h2 className="createacc">Create an account</h2>
             <ul className="signuperrorc">
-  {errors.map((error, idx) => (
-    <li className="signuperror" key={idx}>{error}</li>
-  ))}
-</ul>
-
+              {errors.map((error, idx) => (
+                <li className="signuperror" key={idx}>{error}</li>
+              ))}
+            </ul>
+            <form className={classes.formzbox} encType='multipart/form-data' onSubmit={handleSubmit}>
               <label>
                 <h5>
                   Email <i style={{ color: 'red' }}>*</i>
