@@ -25,7 +25,7 @@ function ReactionSelector({ channelId, userId, message }) {
             setTimeout(() => {
                 console.log("disconnected (reaction selector)");
                 socket.disconnect();
-            }, 30000)
+            }, 500)
         })
     }, [dispatch, channelId]);
 
