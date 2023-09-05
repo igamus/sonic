@@ -8,13 +8,21 @@
     background: url(1319211.png) no-repeat;
     background-size: cover;
     color: #8e9297;
-    line-height: 10px;
+    /* line-height: 10px; */
     font-family: "gg sans", "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-
 }
+
+.signback ul {
+    color: red;
+}
+
+.signback li {
+    margin-bottom: 10px;
+}
+
 .signupbox {
     width: 425px;
-    height: 640px;
+    /* height: 640px; */
     background-color: #36393f;
     position: absolute;
     top: 50%;
@@ -31,7 +39,6 @@
     flex-wrap: nowrap;
     flex-direction: row;
     align-items: center;
-
 }
 
 .siobox {
@@ -42,10 +49,12 @@
     color: white;
     text-align: center;
     font-family: "gg sans", "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    line-height: 10px;
 }
 
 .formzbox {
     font-size: 16px;
+    line-height: 10px;
 }
 
 .siobox input {
@@ -79,26 +88,16 @@
     background-color:#5d6aff
 }
 
-
 .signuperrorc {
     list-style: none;
     padding: 0;
-  }
-
-
-  .signuperror {
-    color: red;
-    margin-bottom: 10px;
-    line-height: normal;
-  }
-  .signback ul {
-color: red;
-
-
 }
 
-.signback li {
+.signuperrorc * {
+    line-height: normal;
+}
+
+.signuperror {
+    color: red;
     margin-bottom: 10px;
-
-
-    }
+}
