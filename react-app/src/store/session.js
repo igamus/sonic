@@ -77,13 +77,13 @@ export const logout = () => async (dispatch) => {
 };
 
 export const signUp = (formData) => async (dispatch) => {
-	console.log('formData in thunk', formData)
 	const response = await fetch("/api/auth/signup", {
 		method: "POST",
 		body: formData
 	});
 
 	const data = await response.json();
+	console.log("data in thunk:", data)
 
 	if (response.ok) {
 		dispatch(setUser(data));
