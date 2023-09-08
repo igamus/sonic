@@ -123,7 +123,7 @@ def seed_servers():
             "name" : "The One piece",
             "server_image" : "https://sonic-aws.s3.us-east-2.amazonaws.com/3f95f5b5160c45afa2380c943a0dffaf.png",
             "banner_image" : "https://sonic-aws.s3.us-east-2.amazonaws.com/9f4dd5422b494812bab8cfdb204648c9.png",
-            "server_memberships": [oscar, issac]
+            "server_memberships": [luffy,oscar, issac, zoro]
         },
         {
             "owner_id" : 28,
