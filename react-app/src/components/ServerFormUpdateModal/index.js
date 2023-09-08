@@ -72,11 +72,11 @@ export default function ServerFormUpdateModal({ server }) {
                         <label htmlFor="server-image">
                             New Server Image
                         </label>
-                        <input type='text' value={serverImage} onChange={(e) => setServerImage(e.target.value)} accept='image/*' />
+                        <input type='file' onChange={(e) => setServerImage(e.target.files[0])} accept='image/*' />
                         <label htmlFor="banner-image">
                             New Banner Image
                         </label>
-                        <input type='text' value={serverBannerImage} onChange={(e) => setServerBannerImage(e.target.value)} accept='image/*' />
+                        <input type='file' onChange={(e) => setServerBannerImage(e.target.files[0])} accept='image/*' />
                         <button className='signupbbtn' type='submit' disabled={disableButton}>
                             Update Server
                         </button>

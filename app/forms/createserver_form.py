@@ -15,7 +15,7 @@ def server_name_exists(form, field):
 class CreateServerForm(FlaskForm):
     name = StringField("Name", validators=[DataRequired(), server_name_exists])
     public = BooleanField("Public")
-    server_image = StringField("Server Image")
-    banner_image = StringField("Banner Image")
+    server_image = FileField("Server Image", validators=[ FileAllowed(list(ALLOWED_EXTENSIONS))])
+    banner_image = FileField("Banner Image", validators=[ FileAllowed(list(ALLOWED_EXTENSIONS))])
     description = StringField("Description")
     submit = SubmitField("Submit")
