@@ -32,8 +32,8 @@ export default function ServerFormUpdateModal({ server }) {
         const form = new FormData()
         form.append('name', name);
         form.append('description', description)
-        form.append('serverImage', serverImage)
-        form.append('bannerImage', serverBannerImage)
+        form.append('server_image', serverImage)
+        form.append('banner_image', serverBannerImage)
         form.append('id', server.id)
         console.log('update name', name)
         console.log(form);
@@ -72,11 +72,11 @@ export default function ServerFormUpdateModal({ server }) {
                         <label htmlFor="server-image">
                             New Server Image
                         </label>
-                        <input type='text' value={serverImage} onChange={(e) => setServerImage(e.target.value)} accept='image/*' />
+                        <input type='file' onChange={(e) => setServerImage(e.target.files[0])} accept='image/*' />
                         <label htmlFor="banner-image">
                             New Banner Image
                         </label>
-                        <input type='text' value={serverBannerImage} onChange={(e) => setServerBannerImage(e.target.value)} accept='image/*' />
+                        <input type='file' onChange={(e) => setServerBannerImage(e.target.files[0])} accept='image/*' />
                         <button className='signupbbtn' type='submit' disabled={disableButton}>
                             Update Server
                         </button>
