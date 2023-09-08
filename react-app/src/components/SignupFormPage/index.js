@@ -40,7 +40,7 @@ function SignupFormPage() {
     if (!username.length) newErrors.push("Must include username");
     if (!password.length) newErrors.push("Password: Must include password");
     if (!email.length || !email.includes("@")) newErrors.push("Email: Must include a valid email");
-    if (!profileImage.length || !isValidImage(profileImage)) newErrors.push("Profile Picture: Image URL must end in .png, .jpg, or .jpeg");
+    //if (!profileImage.length || !isValidImage(profileImage)) newErrors.push("Profile Picture: Image URL must end in .png, .jpg, or .jpeg");
     if (username.length < 1 || 40 < username.length) newErrors.push("Username: Username must be between 1 and 40 characters.");
     if (password !== confirmPassword) newErrors.push("Password: Passwords must match");
     if (password.length < 1 || 255 < password.length) newErrors.push("Password: Password must be between 1 and 255 characters");
@@ -105,10 +105,10 @@ function SignupFormPage() {
               <label>
                 <h5>ProfilePicture  <i style={{ color: 'red' }}>*</i></h5>
                 <input
-                  type="text"
+                  type="file"
                   required
-                  value={profileImage}
-                  onChange={(e) => setProfileImage(e.target.value)}
+                  onChange={(e) => setProfileImage(e.target.files[0])}
+                  accept="image/*"
                 />
               </label>
               <label>

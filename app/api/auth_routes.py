@@ -67,8 +67,7 @@ def sign_up():
         user = User(
             username=form.data['username'],
             email=form.data['email'],
-            password=form.data['password'],
-            profile_picture=form.data['profile_picture']
+            password=form.data['password']
         )
 
         print('sign up user', user)
@@ -76,18 +75,18 @@ def sign_up():
         print('sign up email', user.email)
         print('sign up password', user.password)
         print('profile picture url', user.profile_picture)
-        # profile_picture=form.data['profile_picture']
-        # print('profile picture', profile_picture)
-        # profile_picture.filename = get_unique_filename(profile_picture.filename)
-        # print('profile picture filename', profile_picture.filename)
-        # uploadProfileImage = upload_file_to_s3(profile_picture)
-        # print('upload result', uploadProfileImage)
-        # if 'url' not in uploadProfileImage:
-        #     print ('url was not in uploadProfileImage')
-        #     return  uploadProfileImage, 400
-        # else:
-        #    print ('url exists')
-        #    user.profile_picture = uploadProfileImage['url']
+        profile_picture=form.data['profile_picture']
+        print('profile picture', profile_picture)
+        profile_picture.filename = get_unique_filename(profile_picture.filename)
+        print('profile picture filename', profile_picture.filename)
+        uploadProfileImage = upload_file_to_s3(profile_picture)
+        print('upload result', uploadProfileImage)
+        if 'url' not in uploadProfileImage:
+            print ('url was not in uploadProfileImage')
+            return  uploadProfileImage, 400
+        else:
+           print ('url exists')
+           user.profile_picture = uploadProfileImage['url']
 
         print ('past the if statement')
         db.session.add(user)

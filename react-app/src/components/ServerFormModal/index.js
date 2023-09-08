@@ -32,8 +32,12 @@ export default function ServerFormModal({ }) {
         const form = new FormData()
         form.append('name', name);
         form.append('description', description)
-        form.append('server_image', serverImage)
-        form.append('banner_image', serverBannerImage)
+        if (serverImage.length > 0) {
+            form.append('server_image', serverImage)
+        }
+        if (serverBannerImage.length > 0) {
+            form.append('banner_image', serverBannerImage)
+        }
         console.log(form);
         console.log('create form')
         dispatch(createServerThunk(form)).then((responseData) => {
@@ -56,15 +60,15 @@ export default function ServerFormModal({ }) {
 
     return (
         <div className='servercreateback' id='server-form-container'>
-             <div className='wrapchanel'>
-            <h1>Create a server</h1>
+            <div className='wrapchanel'>
+                <h1>Create a server</h1>
 
-            {error.length ? error.map(e => <p className="create-error">{e}</p>) : null}
-            <form  className='specialchanform sol-box' id='server-form' onSubmit={handleSubmit} encType='multipart/form-data'>
+                {error.length ? error.map(e => <p className="create-error">{e}</p>) : null}
+                <form className='specialchanform sol-box' id='server-form' onSubmit={handleSubmit} encType='multipart/form-data'>
 
-                <label htmlFor="server-create-name">
-                  Server Name
-                </label>
+                    <label htmlFor="server-create-name">
+                        Server Name
+                    </label>
                     <input
                         id='server-form-text-field'
                         type='text'
@@ -72,9 +76,9 @@ export default function ServerFormModal({ }) {
                         required
                         onChange={(e) => setName(e.target.value)}
                         placeholder="What would you like to call this server?" />
-                         <label htmlFor="server-create-name">
-                  Server Description
-                </label>
+                    <label htmlFor="server-create-name">
+                        Server Description
+                    </label>
                     <input
                         id='server-form-text-field'
                         type='text'
@@ -86,12 +90,12 @@ export default function ServerFormModal({ }) {
 
                     <label for='server-form-server-image'>Enter a Server Image Url</label>
                     <input
-                        type='text'
+                        type='file'
                         id='server-form-server-image'
                         name='server-form-server-image'
                         required
-                        value={serverImage}
-                        onChange={(e) => setServerImage(e.target.value)}
+                        onChange={(e) => setServerImage(e.target.files[0])}
+                        accept='image/*'
                     />
 
 
@@ -99,16 +103,16 @@ export default function ServerFormModal({ }) {
                     <input
                         id='server-form-banner-image'
                         name='server-form-banner-image'
-                        type='text'
+                        type='file'
                         required
-                        value={serverBannerImage}
-                        onChange={(e) => setServerBannerImage(e.target.value)}
+                        onChange={(e) => setServerBannerImage(e.target.files[0])}
+                        accept='image/*'
                     />
 
-                <button className='signupbbtn' id='server-form-submit-button' type='submit' disabled={disableButton}>
-                    Create Server
-                </button>
-            </form>
+                    <button className='signupbbtn' id='server-form-submit-button' type='submit' disabled={disableButton}>
+                        Create Server
+                    </button>
+                </form>
             </div>
         </div>
     )
