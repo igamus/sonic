@@ -95,7 +95,7 @@ export default function ServerFormModal({ }) {
                         name='server-form-server-image'
                         required
                         onChange={(e) => setServerImage(e.target.files[0])}
-                        accept='.jpg, .jpeg, .png'
+                        accept='image/*'
                     />
 
 
@@ -106,7 +106,7 @@ export default function ServerFormModal({ }) {
                         type='file'
                         required
                         onChange={(e) => setServerBannerImage(e.target.files[0])}
-                        accept='.jpg, .jpeg, .png'
+                        accept='image/*'
                     />
 
                     <button className='signupbbtn' id='server-form-submit-button' type='submit' disabled={disableButton}>
