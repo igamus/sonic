@@ -32,8 +32,8 @@ export default function ServerFormUpdateModal({ server }) {
         const form = new FormData()
         form.append('name', name);
         form.append('description', description)
-        form.append('serverImage', serverImage)
-        form.append('bannerImage', serverBannerImage)
+        form.append('server_image', serverImage)
+        form.append('banner_image', serverBannerImage)
         form.append('id', server.id)
         console.log('update name', name)
         console.log(form);

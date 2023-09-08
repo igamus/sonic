@@ -179,25 +179,18 @@ def edit_server(serverId):
 
         server_image = form.data['server_image']
         if server_image:
-            server_image_filename = ''
-            if server.server_image:
-                server_image_filename = server.server_image
-            else:
-                server_image_filename = get_unique_filename(server_image.get('filename'))
+            
+            server_image.filename = get_unique_filename(server_image.filename)
 
-            uploadServerImage = upload_file_to_s3(server_image, server_image_filename)
+            uploadServerImage = upload_file_to_s3(server_image)
             if 'url' not in uploadServerImage:
                 return jsonify(error=uploadServerImage), 400
             server.server_image = uploadServerImage['url']
 
         banner_image = form.data['banner_image']
-        if banner_image:
-            banner_image_filename = ''
-            if server.banner_image:
-                banner_image_filename = server.banner_image
-            else:
-                banner_image_filename = get_unique_filename(banner_image.get('filename'))
-            uploadBannerImage = upload_file_to_s3(banner_image, banner_image_filename)
+        if banner_image:       
+            banner_image.filename = get_unique_filename(banner_image.filename)
+            uploadBannerImage = upload_file_to_s3(banner_image)
             if 'url' not in uploadBannerImage:
                 return jsonify(error=uploadBannerImage), 400
             server.banner_image = uploadBannerImage['url']
