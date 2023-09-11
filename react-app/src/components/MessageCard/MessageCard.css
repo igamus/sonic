@@ -15,16 +15,15 @@
     padding-right: 50px;
 }
 
-.react-button {
-    background-color: #5662e9;
-    border: 1px solid black;
+.reaction-panel-button {
+    all: unset;
+    padding: 0 10px;
     color: #e5ecf2;
-    border-radius: 5px;
 }
 
-.react-button:hover {
+.reaction-panel-button:hover {
     cursor: pointer;
-    background-color: #944bd3;
+    box-shadow: 0 0 10px black;
 }
 
 .message-text {

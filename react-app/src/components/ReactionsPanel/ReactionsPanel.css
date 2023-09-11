@@ -4,21 +4,57 @@
 }
 
 .reaction {
+    all: unset;
     border-radius: 10px;
-    background-color: #313338;
-    padding: 2.5px;
+    background-color: #2b2d31;
+    padding: 0 5px;
     margin: 0px 5px;
+    color: #b5bac1;
+    border: 1px solid #2b2d31;
 }
 
-/* .reaction:hover {
+.reaction:hover {
     cursor: pointer;
-} */
-
-/* .reaction:hover {
-    cursor: pointer;
-    background-color: white;
-} */
+    border: 1px solid #b5bac1;
+    background-color: rgba(56, 59, 64, 0.557)
+}
 
 .your-reaction {
-    background-color: #944bd3;
+    background-color: #3c4270;
+    border: 1px solid #4951a8;
+}
+
+.your-reaction:hover {
+    background-color: #3c4270;
+    border: 1px solid #4951a8;
+}
+
+.add-reaction {
+    padding: 2.5px 7.5px;
+    color: #b5bac1;
+}
+
+.add-reaction:hover {
+    color:white;
+    opacity: 1;
+}
+
+.add-title {
+    background-color: black;
+	padding: 0.68rem 1rem;
+	position: absolute;
+	top: -175%;
+    transform-origin: top;
+	width: max-content;
+	max-width: 256px;
+	border-radius: 4px;
+	opacity: 0;
+    pointer-events: none;
+    color: white;
+}
+
+.add-reaction:hover + .add-title {
+    opacity: 1;
+    transition-delay: 750ms;
+    transition-property: opacity;
 }

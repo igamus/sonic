@@ -1,33 +1,15 @@
 import "./ReactionSelector.css";
-import { useEffect } from "react";
 import { emojiList } from "../../utils/emojiList";
 import sanitizeHtml from "sanitize-html";
 import { useModal } from "../../context/Modal";
-import { io } from "socket.io-client";
-import { loadChannelMessagesThunk } from "../../store/messages";
-import { useDispatch } from "react-redux";
 
-let socket;
 
-function ReactionSelector({ channelId, userId, message }) {
+function ReactionSelector({ userId, message, socket }) {
     const { closeModal } = useModal();
-    const dispatch = useDispatch();
 
     console.log("message", message);
     const userReactions = message.reactions.filter(reaction => reaction.ownerId === userId).map(reaction => reaction.emoji)
     console.log("userReactions:", userReactions)
-
-    useEffect(() => {
-        socket = io();
-        console.log("connected (reaction selector)")
-        socket.on("react", (react) => dispatch(loadChannelMessagesThunk(channelId))); // take in channelId, message
-        return (() => {
-            setTimeout(() => {
-                console.log("disconnected (reaction selector)");
-                socket.disconnect();
-            }, 500)
-        })
-    }, [dispatch, channelId]);
 
     const handleClick = (e, emoji) => {
         e.preventDefault();

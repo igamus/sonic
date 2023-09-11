@@ -37,6 +37,8 @@ const Chat = ({ channelId }) => {
             setMessages([...msgArr]);
         })
 
+        socket.on("react", (react) => dispatch(loadChannelMessagesThunk(channelId)));
+
         return (() => {
             console.log('disconnect (chat)');
             socket.disconnect()
@@ -94,7 +96,7 @@ const Chat = ({ channelId }) => {
                         ?
                     <>{msgList.map((message, ind) => (
                         <div key={`message-container-${ind}`}>
-                            <MessageCard key={ind} message={message} userId={user.id} channelId={channelId} />
+                            <MessageCard key={ind} message={message} userId={user.id} channelId={channelId} socket={socket} />
                             {message.owner_id === user.id ? <button onClick={deleteMessage} value={message.id} className="delete-message-button">Pretend this never happened (Delete)</button> : null}
                         </div>
                     ))}</>
@@ -112,7 +114,7 @@ const Chat = ({ channelId }) => {
                 />
                 <button className='chat-button' disabled={!!disableButton} type="submit">Send</button>
                 {disableButton ? <p className='chat-error'>Messages must be less than 500 characters.</p> : null}
-                {enterWarning ? <p className='chat-error'> Note: Line breaks are not preserved</p> : null}
+                {/* {enterWarning ? <p className='chat-error'> Note: Line breaks are not preserved</p> : null} */}
                 <p className={inputClassName + " message-input"}>Character count: {chatInput.length}/500</p>
             </form>
         </div>
