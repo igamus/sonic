@@ -1,5 +1,5 @@
 import "./NewLandingPage.css";
-import logo from "./assets/images/d1.svg";
+import logo from "./assets/images/sonic-icon.svg";
 import Section1 from "./assets/images/Sec1.svg";
 import Section2 from "./assets/images/Sec2.svg";
 import Section3 from "./assets/images/Sec3.svg";
@@ -19,8 +19,8 @@ const NewLandingPage = () => {
 
             <ul className="nav-list">
               <li className="nav-item">
-                <a href="#" className="nav-link">
-                  Download
+                <a href="https://github.com/igamus/sonic" className="nav-link">
+                  Github
                 </a>
               </li>
               <li className="nav-item">
@@ -29,17 +29,23 @@ const NewLandingPage = () => {
                 </a>
               </li>
               <li className="nav-item">
-                <a href="#" className="nav-link">
+                <a href="#primary-title" className="nav-link">
                   Why Sonic
                 </a>
               </li>
               <li className="nav-item">
-                <a href="#" className="nav-link">
+                <a href="#" className="nav-link" onClick={e => {
+                  e.preventDefault();
+                  alert("Trust me");
+                }}>
                   Safety
                 </a>
               </li>
               <li className="nav-item">
-                <a href="#" className="nav-link">
+                <a href="#" className="nav-link" onClick={e => {
+                  e.preventDefault();
+                  alert("You can do it! We believe in you!");
+                }}>
                   Support
                 </a>
               </li>
@@ -62,7 +68,7 @@ const NewLandingPage = () => {
 
         <div className="row container">
           <div className="hero-content-wrap">
-            <h1 className="title primary-title">IMAGINE A PLACE...</h1>
+            <h1 className="title primary-title" id="primary-title">IMAGINE A PLACE...</h1>
             <p className="hero-description">
               ...where you can belong to a school club, a gaming group, or a
               worldwide art community. Where just you and a handful of friends
@@ -70,9 +76,9 @@ const NewLandingPage = () => {
               day and hang out more often.
             </p>
             <div className="hero-btn-group">
-              <a href="#" className="btn btn-large btn-light">
-                <i className="bx bx-download"></i> Download for Windows
-              </a>
+              {/* <a href="/me" className="btn btn-large btn-light">
+                Open Sonic in your browser
+              </a> */}
               <NavLink to="/me" className="btn btn-large btn-dark">
                 Open Sonic in your browser
               </NavLink>
@@ -81,7 +87,7 @@ const NewLandingPage = () => {
         </div>
       </section>
 
-      <section className="collaboration">
+      <section id="collaboration" className="collaboration">
         <div className="row container">
           <img src={Section1} alt="" className="grid-image" />
           <div className="text-group">
@@ -187,7 +193,7 @@ const NewLandingPage = () => {
           <img src={Section5} alt="" className="sparkles" />
           <h2>Ready to start your journey</h2>
           <NavLink to="/me" className="btn btn-large btn-brand">
-            <i className="bx bx-download"></i> Open Sonic
+            <i className="bx bx-link-external"></i> Open Sonic
           </NavLink>
         </div>
       </section>
@@ -198,13 +204,13 @@ const NewLandingPage = () => {
             <h4 className="footer-title">Your place to talk</h4>
             <div className="languages">
               <img src={Flag} alt="" />
-              <span>English, USA</span> <i className="bx bx-chevron-down"></i>
+              <span>English, USA</span>
             </div>
             <div className="social-media">
               <a href="https://github.com/Oscar-999" className="sm-link">
                 <i className="bx bxl-github bx-flashing"></i>
               </a>
-              <a href="https://github.com/igamus/sonic" className="sm-link">
+              <a href="https://github.com/igamus" className="sm-link">
                 <i className="bx bxl-github bx-flashing"></i>
               </a>
               <a href="https://github.com/IceLordUlmo" className="sm-link">
@@ -215,30 +221,23 @@ const NewLandingPage = () => {
           <div className="spacer"></div>
 
           <div className="footer-links-group">
-            <h5 className="footer-title">Product</h5>
-            <a href="#bottom" className="footer-link">
-              Click
+            <h5 className="footer-title">Oscar Alcantar</h5>
+            <a target="_blank" href="https://github.com/Oscar-999" className="footer-link">
+                Visit Oscar's Github
             </a>
           </div>
 
           <div className="footer-links-group">
-            <h5 className="footer-title">Product</h5>
-            <a href="#bottom" className="footer-link">
-              Each
+            <h5 className="footer-title">Isaac Gamus</h5>
+            <a target="_blank" href="https://github.com/igamus" className="footer-link">
+              Visit Isaac's Github
             </a>
           </div>
 
           <div className="footer-links-group">
-            <h5 className="footer-title">Product</h5>
-            <a href="#bottom" className="footer-link">
-              Github
-            </a>
-          </div>
-
-          <div className="footer-links-group">
-            <h5 className="footer-title">Product</h5>
-            <a href="#bottom" className="footer-link">
-              Icon
+            <h5 className="footer-title">Brian Freese</h5>
+            <a target="_blank" href="https://github.com/IceLordUlmo" className="footer-link">
+              Visit Brian's Github
             </a>
           </div>
 
@@ -246,8 +245,8 @@ const NewLandingPage = () => {
         </div>
 
         <div className="row container remove-grid">
-          <a href="#bottom" className="logo">
-            <img src={logo} alt="" />
+          <a href="#" className="logo">
+            <img src={logo} alt="" className="logo-center" />
           </a>
           <NavLink to="/login" className="btn btn-small btn-brand">
             Login

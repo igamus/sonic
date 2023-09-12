@@ -103,8 +103,8 @@ function LoginFormPage() {
           </div>
           <div className="sag-box">
             <img src={Barcode} alt="test" />
-            <h2>Log in with QR Code</h2>
-            <div>Scan this with the <strong>Discord mobile app</strong> to login in instantly</div>
+            <h2>We have a QR Code</h2>
+            <div>Because the <strong>Sonic dev team</strong> has a surprise.</div>
           </div>
         </div>
       </div>

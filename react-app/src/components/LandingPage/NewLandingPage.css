@@ -17,6 +17,7 @@
   /* font-size: 62.5%; */
   font-size: var(--general-font-size);
   font-family: var(--main-font-family-light);
+  scroll-behavior: smooth;
 }
 
 body {
@@ -52,11 +53,14 @@ body {
 #imgg {
   max-width: 100%;
   display: block;
+  width: 3.5rem;
+  height: 3.5rem;
+  background-color: white;
+  border-radius: 5rem;
 }
 /* header.png */
 .hero {
   background: url("./assets/images/header.png") center/cover;
-
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -78,8 +82,20 @@ body {
   justify-content: space-between;
 }
 .logo {
-  width: 12.4rem;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 5rem;
 }
+
+.logo-center {
+  max-width: 100%;
+  display: block;
+  width: 3.5rem;
+  height: 3.5rem;
+  background-color: white;
+  border-radius: 5rem;
+}
+
 .nav-list {
   display: none;
 }
@@ -350,7 +366,7 @@ FOot */
 .footer-links-group {
     font-size: 1.6rem;
     margin-bottom: 4rem;
-    grid-column: span 2;
+    grid-column: span 3;
 
 }
 
@@ -446,7 +462,7 @@ FOot */
 
 @media screen and (min-width: 1024px) {
     :root {
-        --num-of-grid-columns: 12;
+        --num-of-grid-columns: 13;
         --section-spacing: 12rem 4rem;
       }
 
