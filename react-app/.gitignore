@@ -21,3 +21,6 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# one of the devs has this locally to futz with emojis :eye-roll:
+react-app/src/utils/script.js

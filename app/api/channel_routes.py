@@ -85,7 +85,7 @@ def update_channel(channelId):
 @channel_routes.route('/<int:channelId>', methods=["GET"])
 def get_single_channel(channelId):
     channel = Channel.query.get(channelId)
-    
+
     if channel is None:
         return jsonify({'message': "Channel doesn't exist"}), 404
 
