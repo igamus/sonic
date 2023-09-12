@@ -23,6 +23,7 @@ class Reaction(db.Model):
         return {
             'id': self.id,
             'ownerId': self.owner_id,
+            'ownerUsername': self.user.username,
             'messagesId': self.message_id,
             'emoji': self.emoji
         }
