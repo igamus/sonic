@@ -18,20 +18,15 @@ def seed_reactions():
             "message_id": 37,
             "emoji": "1F621"
         },
-        { # hopefully rejects
-            "owner_id": 13,
-            "message_id": 37,
-            "emoji": "1F621"
-        },
         {
             "owner_id": 11,
             "message_id": 34,
-            "emoji": "2764"
+            "emoji": "2764;&#xfe0f"
         },
         {
             "owner_id": 12,
             "message_id": 35,
-            "emoji": "2764"
+            "emoji": "2764;&#xfe0f"
         }
     ]:
         db.session.add(Reaction(**reaction))

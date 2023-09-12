@@ -1845,13 +1845,12 @@ const emojiJSON = require("./normalizedEmojis.json");
 
 // console.log("emojijson:", emojiJSON);
 
-// for (const group in emojiJSON) {
-//     console.log(group);
-//     const emojis = [];
-//     Object.values(emojiJSON[group]).forEach(emoji => {
-//         emojis.push(emoji.code);
-//     });
-//     console.log(emojis);
-// }
+for (const group in emojiJSON) {
+    console.log(group);
+    const emojis = [];
+    Object.values(emojiJSON[group]).forEach(emoji => {
+        emojis.push(emoji.code);
+    });
+    console.log(emojis);
+}
 
-console.log(Object.keys(emojiJSON))
