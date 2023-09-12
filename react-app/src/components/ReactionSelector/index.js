@@ -23,13 +23,16 @@ function ReactionSelector({ userId, message, socket }) {
         }
         closeModal();
     };
+
+    const emojisList = emojiList.map(emoji => emoji.code);
+
     return (
         <div className="panel-selector">
-            {emojiList.map(emoji => {
+            {emojisList.map(emoji => {
                 let className = "panel-reaction";
                 if (userReactions.includes(emoji)) className += " user-owns";
                 const val = "&#x" + emoji + ";"
-                return (<span key={`emoji-panel-${emoji}`} className={className} onClick={(e) => handleClick(e, emoji)} value={`${emoji}`} dangerouslySetInnerHTML={{__html: sanitizeHtml(val)}} />)
+                return (<span key={`emoji-panel-${emoji}`} className={className} onClick={(e) => handleClick(e, emoji)} value={`${emoji}`} dangerouslySetInnerHTML={{__html: sanitizeHtml(val)}} style={{fontSize:"1.75rem"}} />)
             })}
         </div>
     );
