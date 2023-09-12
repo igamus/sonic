@@ -1,16 +1,9 @@
 import './ReactionsPanel.css'
 import sanitizeHtml from 'sanitize-html';
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { io } from "socket.io-client";
-import { loadChannelMessagesThunk } from "../../store/messages";
 import ReactionSelector from '../ReactionSelector';
 import OpenModalButton from '../OpenModalButton';
 
-let socket;
-
 function ReactionsPanel({ message, userId, channelId, socket }) {
-    const dispatch = useDispatch();
 
     const reactions = message.reactions;
     const reducedReactions = reactions.reduce((acc, cv) => {

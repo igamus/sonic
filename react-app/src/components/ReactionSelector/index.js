@@ -1,5 +1,5 @@
 import "./ReactionSelector.css";
-import { emojiList } from "../../utils/emojiList";
+import normalizedEmojis from "../../utils/normalizedEmojis.json";
 import sanitizeHtml from "sanitize-html";
 import { useModal } from "../../context/Modal";
 
@@ -24,16 +24,25 @@ function ReactionSelector({ userId, message, socket }) {
         closeModal();
     };
 
-    const emojisList = emojiList.map(emoji => emoji.code);
+    const emojiGroups = Object.keys(normalizedEmojis);
 
     return (
         <div className="panel-selector">
-            {emojisList.map(emoji => {
-                let className = "panel-reaction";
-                if (userReactions.includes(emoji)) className += " user-owns";
-                const val = "&#x" + emoji + ";"
-                return (<span key={`emoji-panel-${emoji}`} className={className} onClick={(e) => handleClick(e, emoji)} value={`${emoji}`} dangerouslySetInnerHTML={{__html: sanitizeHtml(val)}} style={{fontSize:"1.75rem"}} />)
-            })}
+            {emojiGroups.map(group => (
+                <>
+                    <section key={group} className="reaction-group">
+                        <h2 key={`${group}-header`} className="reaction-group-header">{group.toUpperCase()}</h2>
+                        <div key={`${group}-container`} className="reaction-group-container">
+                            {Object.values(normalizedEmojis[group]).map(emoji => {
+                                let className = "panel-reaction";
+                                if (userReactions.includes(emoji.code)) className += " user-owns";
+                                const val = "&#x" + emoji.code + ";"
+                                return (<span key={`emoji-panel-${emoji.code}`} title={emoji.name} className={className} onClick={(e) => handleClick(e, emoji.code)} value={`${emoji.code}`} dangerouslySetInnerHTML={{__html: sanitizeHtml(val)}} />)
+                            })}
+                        </div>
+                    </section>
+                </>
+            ))}
         </div>
     );
 };

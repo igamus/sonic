@@ -1,30 +1,65 @@
+#modal-content {
+    background-color: rgba(0,0,0,0);
+}
+
 .panel-selector {
     background-color: #2b2d31;
     display: flex;
     flex-direction: row;
-    padding: 5px;
+    padding: 25px;
     width: 50vh;
     height: 50vh;
     flex-wrap: wrap;
     overflow-y: auto;
+    border-radius: 25px;
+}
+
+.panel-selector::-webkit-scrollbar {
+    width: 0.5rem;
+}
+
+.panel-selector::-webkit-scrollbar-track {
+    background: #1e1f22;
+    margin: 20px 0;
+}
+
+.panel-selector::-webkit-scrollbar-thumb {
+    background-color: #dedfe2;
+    border-radius: 20px;
 }
 
 .panel-reaction {
     border-radius: 5px;
     padding: 5px;
+    font-size: 1.75rem;
 }
 
 .panel-reaction:hover {
-    background-color: #944bd3;
+    background-color: #4951a8;
     cursor: pointer;
 }
 
 .user-owns {
-    background-color: #944bd3;
+    background-color: #4951a8;
     cursor: pointer;
 }
 
 .panel-reaction:hover {
-    background-color: white;
+    background-color: #dedfe2;
     cursor: pointer;
+}
+
+.reaction-group {
+    margin-left: 2rem;
+}
+
+.reaction-group-header {
+    color: #dedfe2;
+	font-family: "Open Sans", sans-serif;
+}
+
+.reaction-group-container {
+    max-width: 48vh;
+    flex-wrap: wrap;
+    display: flex;
 }
