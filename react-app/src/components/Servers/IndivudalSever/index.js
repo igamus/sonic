@@ -153,9 +153,9 @@ const SingleSpot = () => {
             ) : null}
             {/* Display channels */}
           </div>
-          <div className="mainzz">
-            <h2 className="whitenme">Channels:</h2>
-            <div className="fontzme">
+          <div className="mainzz" >
+            <h2 className="whitenme" id="chancontrl">Channels:</h2>
+            <div className="fontzme" id="chancontrl">
               {inServer ? (
                 channels.map((channel) => (
                   <p key={channel.id}>
