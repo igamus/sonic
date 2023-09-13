@@ -95,4 +95,9 @@ width: 100%;
     text-overflow: ellipsis;
     overflow: hidden;
     width: 100%;
+    text-align: center;
   }
+.server-desx {
+  margin-top: 0px;
+  text-align: left;
+}

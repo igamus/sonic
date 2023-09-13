@@ -27,10 +27,11 @@ const ExploreServer = ({ server }) => {
     useEffect(() => { }, [isMember]);
 
     return (
-        <div className='greyyy'>
+        // <div className='greyyy'>
+            <div className="wrapcard">
             <div key={server.id} className="server" id="explore-server-container">
                 <NavLink to={`/servers/${server.id}`}>
-                    <h2>{server.name}</h2>
+                    <h2 className="explore-server-name">{server.name}</h2>
                     <img
                         id="explore-server-banner"
                         src={server.bannerImage}
@@ -49,7 +50,8 @@ const ExploreServer = ({ server }) => {
                     Join Server
                 </button>
             </div>
-        </div>
+            </div>
+        // </div>
     );
 };
 
