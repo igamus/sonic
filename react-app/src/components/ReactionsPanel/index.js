@@ -26,9 +26,8 @@ function ReactionsPanel({ message, userId, channelId, socket }) {
 
         return acc;
     }, []);
-    console.log('reactions',reducedReactions);
 
-    return (
+    return reducedReactions.length ? (
         <div className='reactions-panel'>
             {reducedReactions.map(reaction => {
                 let className = "reaction";
@@ -50,11 +49,11 @@ function ReactionsPanel({ message, userId, channelId, socket }) {
             }
             )}
             <div style={{position: "sticky"}}>
-                <OpenModalButton buttonText={"+"} className="reaction add-reaction" modalComponent={<ReactionSelector message={message} userId={userId} channelId={channelId} socket={socket} />} />
+                <OpenModalButton buttonText={<span className='add-reaction-button'><i className="fas fa-smile"></i> +</span>} className="reaction add-reaction" modalComponent={<ReactionSelector message={message} userId={userId} channelId={channelId} socket={socket} />} />
                 <div className='add-title'><div className='popper-text'>Add Reaction</div></div>
             </div>
         </div>
-    );
+    ) : null;
 };
 
 export default ReactionsPanel;

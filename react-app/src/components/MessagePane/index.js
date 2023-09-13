@@ -72,11 +72,6 @@ const Chat = ({ channelId }) => {
         setChatInput("")
     }
 
-    const deleteMessage = (e) => {
-        e.preventDefault();
-        socket.emit("delete_message", {"message_id": parseInt(e.target.value)})
-    }
-
     const handleEnter = (e) => {
         e.preventDefault();
         if (e.shiftKey) {
@@ -95,10 +90,7 @@ const Chat = ({ channelId }) => {
                     channelMessages && msgList?.length > 0
                         ?
                     <>{msgList.map((message, ind) => (
-                        <div key={`message-container-${ind}`}>
-                            <MessageCard key={ind} message={message} userId={user.id} channelId={channelId} socket={socket} />
-                            {message.owner_id === user.id ? <button onClick={deleteMessage} value={message.id} className="delete-message-button">Pretend this never happened (Delete)</button> : null}
-                        </div>
+                        <MessageCard key={ind} message={message} userId={user.id} channelId={channelId} socket={socket} />
                     ))}</>
                         :
                     <p>Be the first to say something!</p>

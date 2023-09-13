@@ -19,12 +19,12 @@
 }
 
 .panel-selector::-webkit-scrollbar-track {
-    background: #1e1f22;
+    background: #2b2d31;
     margin: 20px 0;
 }
 
 .panel-selector::-webkit-scrollbar-thumb {
-    background-color: #dedfe2;
+    background-color: #1a1b1e;
     border-radius: 20px;
 }
 
