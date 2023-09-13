@@ -65,8 +65,7 @@ const Channel = () => {
           </div>
 
           <div className='mainz'>
-            <h2>Messages:</h2>
-            <Chat channelId={channel.id} />
+            <Chat channel={channel} />
           </div>
         </>
       )}

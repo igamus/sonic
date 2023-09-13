@@ -1,6 +1,50 @@
+.message-header {
+    font-family: sans-serif;
+    max-height: 3vh;
+    padding-left: 1.5rem;
+}
+
+.fa-hashtag {
+    color: #80848e;
+}
+
 .chatbox {
-    width: 90%;
+    width: calc(100% - 2.5rem);
     resize: vertical;
+    color: #dbdee1;
+    background-color: #383a40;
+    border-radius: 10px;
+    font-size: 1rem;
+    padding: 1rem;
+}
+
+.chatbox::placeholder {
+    color: #6d6f78;
+}
+
+.chatbox:focus {
+    outline: 1px solid #6d6f78;
+}
+
+.chatbox::-webkit-resizer {
+    display: none;
+}
+
+.chatbox::-webkit-scrollbar {
+    width: 1rem;
+}
+
+.chatbox::-webkit-scrollbar-track {
+    background: #2b2d31;
+}
+
+.chatbox::-webkit-scrollbar-thumb {
+    background-color: #1a1b1e;
+    border-radius: 20px;
+}
+
+.chatbox::-webkit-scrollbar-corner {
+    display: none;
 }
 
 .message-main::-webkit-scrollbar {
@@ -18,10 +62,22 @@
 
 .message-input {
     color: #e5ecf2;
+    position: fixed;
+    bottom: 0.25vh;
+    right: 3rem;
+    font-family: sans-serif;
+}
+
+.yes-error {
+    display: none;
 }
 
 .chat-error {
-    color: red
+    color: #cf383b;
+    position: fixed;
+    bottom: 0.25vh;
+    right: 3rem;
+    font-family: sans-serif;
 }
 
 .chat-button {
@@ -36,12 +92,12 @@
 }
 
 .message-form {
-    margin-top: 30px;
+    max-height: 5vh;
+    padding: 0 2.5rem 0 1.5rem;
 }
 
 .message-main {
-    margin-bottom: 100px;
-    height: 80vh;
+    height: 82vh;
     overflow-y: scroll;
 }
 

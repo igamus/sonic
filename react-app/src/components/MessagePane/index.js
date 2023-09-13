@@ -7,7 +7,7 @@ import MessageCard from '../MessageCard';
 
 let socket;
 
-const Chat = ({ channelId }) => {
+const Chat = ({ channel }) => {
     const dispatch = useDispatch();
     const [chatInput, setChatInput] = useState("");
     const [messages, setMessages] = useState([]);
@@ -17,10 +17,10 @@ const Chat = ({ channelId }) => {
     const [inputClassName, setInputClassName] = useState("");
     const [enterWarning, setEnterWarning] = useState(false);
 
-    if (channelId !== savedChannelId) {
+    if (channel.id !== savedChannelId) {
         setChatInput("");
-        dispatch(loadChannelMessagesThunk(channelId))
-        setSavedChannelId(channelId);
+        dispatch(loadChannelMessagesThunk(channel.id))
+        setSavedChannelId(channel.id);
     };
 
     const user = useSelector(state => state.session.user)
@@ -32,18 +32,18 @@ const Chat = ({ channelId }) => {
         socket = io();
         console.log('connect (chat)');
         socket.on("chat", (chat) => {
-            let msg = dispatch(loadChannelMessagesThunk(channelId));
+            let msg = dispatch(loadChannelMessagesThunk(channel.id));
             let msgArr = Object.values(msg)
             setMessages([...msgArr]);
         })
 
-        socket.on("react", (react) => dispatch(loadChannelMessagesThunk(channelId)));
+        socket.on("react", (react) => dispatch(loadChannelMessagesThunk(channel.id)));
 
         return (() => {
             console.log('disconnect (chat)');
             socket.disconnect()
         })
-    }, [channelId]);
+    }, [channel.id]);
 
     useEffect(() => {
         setDisableButton(false);
@@ -52,7 +52,7 @@ const Chat = ({ channelId }) => {
 
         if (chatInput.length > 500) {
             setDisableButton(true);
-            setInputClassName("chat-error");
+            setInputClassName("yes-error");
         }
 
         if (chatInput.indexOf("\n") > 0) {
@@ -67,7 +67,7 @@ const Chat = ({ channelId }) => {
     const sendChat = (e) => {
         e.preventDefault()
         setisSending(true);
-        socket.emit("chat", { owner_id: user.id, text: chatInput, channel_id: channelId });
+        socket.emit("chat", { owner_id: user.id, text: chatInput, channel_id: channel.id });
         setisSending(false);
         setChatInput("")
     }
@@ -84,13 +84,14 @@ const Chat = ({ channelId }) => {
     }
 
     return (messages && (
-        <div className='message-main'>
-            <div>
+        <>
+            <h2 className='message-header'><i className="fas fa-hashtag"></i> {channel.name}</h2>
+            <div className='message-main'>
                 {
                     channelMessages && msgList?.length > 0
                         ?
                     <>{msgList.map((message, ind) => (
-                        <MessageCard key={ind} message={message} userId={user.id} channelId={channelId} socket={socket} />
+                        <MessageCard key={ind} message={message} userId={user.id} channelId={channel.id} socket={socket} />
                     ))}</>
                         :
                     <p>Be the first to say something!</p>
@@ -98,18 +99,18 @@ const Chat = ({ channelId }) => {
             </div>
             <form className='message-form' onSubmit={sendChat}>
                 <textarea
-                    rows={3}
+                    rows={1}
                     className='chatbox'
+                    placeholder={`Message #${channel.name}`}
                     value={chatInput}
                     onChange={updateChatInput}
                     onKeyUp={(e) => handleEnter(e)}
                 />
-                <button className='chat-button' disabled={!!disableButton} type="submit">Send</button>
                 {disableButton ? <p className='chat-error'>Messages must be less than 500 characters.</p> : null}
                 {/* {enterWarning ? <p className='chat-error'> Note: Line breaks are not preserved</p> : null} */}
                 <p className={inputClassName + " message-input"}>Character count: {chatInput.length}/500</p>
             </form>
-        </div>
+        </>
     )
     )
 };

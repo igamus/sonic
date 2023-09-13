@@ -2,6 +2,7 @@
     color: #e5ecf2;
     padding: 1.5rem;
     border-top: 1px solid #3a3c41;
+    font-family: sans-serif;
 }
 
 .message-card:hover {
