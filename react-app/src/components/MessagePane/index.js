@@ -21,7 +21,7 @@ const Chat = ({ channel }) => {
 
     if (channel.id !== savedChannelId) {
         setChatInput("");
-        dispatch(loadChannelMessagesThunk(channel.id)).then(() => setMessagesLoaded(true))
+        dispatch(loadChannelMessagesThunk(channel.id)).then(() => setMessagesLoaded(true));
         setSavedChannelId(channel.id);
     };
 
@@ -76,10 +76,12 @@ const Chat = ({ channel }) => {
 
     const sendChat = (e) => {
         e.preventDefault()
-        setisSending(true);
-        socket.emit("chat", { owner_id: user.id, text: chatInput, channel_id: channel.id });
-        setisSending(false);
-        setChatInput("")
+        if (!(chatInput.trim().length === 0)) {
+            setisSending(true);
+            socket.emit("chat", { owner_id: user.id, text: chatInput.slice(0,-2), channel_id: channel.id });
+            setisSending(false);
+            setChatInput("")
+        }
     }
 
     const handleEnter = (e) => {
@@ -88,9 +90,8 @@ const Chat = ({ channel }) => {
             return setEnterWarning(true);
         }
         if (e.key === "Enter" && !disableButton) {
-            console.log("keypress is Enter")
             sendChat(e);
-        }
+        } else return;
     }
 
     return (setMessagesLoaded && (
@@ -117,7 +118,7 @@ const Chat = ({ channel }) => {
                     onChange={updateChatInput}
                     onKeyUp={(e) => handleEnter(e)}
                 />
-                {disableButton ? <p className='chat-error'>Messages must be less than 500 characters.</p> : null}
+                {disableButton ? <p className='chat-error'>Messages must be less than 500 characters ({chatInput.length}/500).</p> : null}
                 {/* {enterWarning ? <p className='chat-error'> Note: Line breaks are not preserved</p> : null} */}
                 <p className={inputClassName + " message-input"}>Character count: {chatInput.length}/500</p>
             </form>
