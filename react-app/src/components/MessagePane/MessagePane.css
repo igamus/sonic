@@ -105,5 +105,5 @@
     display: flex;
     flex-direction: column;
     margin-bottom: 100px;
-    justify-content: space-between;
+    /* justify-content: space-between; */
 }

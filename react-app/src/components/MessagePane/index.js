@@ -1,5 +1,5 @@
 import './MessagePane.css';
-import React, { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { io } from 'socket.io-client';
 import { loadChannelMessagesThunk } from "../../store/messages";
@@ -9,8 +9,10 @@ let socket;
 
 const Chat = ({ channel }) => {
     const dispatch = useDispatch();
+    const endRef = useRef(null);
     const [chatInput, setChatInput] = useState("");
     const [messages, setMessages] = useState([]);
+    const [messagesLoaded, setMessagesLoaded] = useState(false);
     const [isSending, setisSending]= useState(false);
     const [savedChannelId, setSavedChannelId] = useState(0);
     const [disableButton, setDisableButton] = useState(false);
@@ -19,7 +21,7 @@ const Chat = ({ channel }) => {
 
     if (channel.id !== savedChannelId) {
         setChatInput("");
-        dispatch(loadChannelMessagesThunk(channel.id))
+        dispatch(loadChannelMessagesThunk(channel.id)).then(() => setMessagesLoaded(true))
         setSavedChannelId(channel.id);
     };
 
@@ -27,6 +29,14 @@ const Chat = ({ channel }) => {
     const channelMessages = useSelector(state => Object.values(state.messages))
     let msgList;
     if (channelMessages.length) msgList = [...channelMessages];
+
+    const scrollDown = () => {
+        endRef.current?.scrollIntoView({behavior: "smooth"})
+    };
+
+    useEffect(() => {
+        scrollDown();
+    }, [msgList]);
 
     useEffect(() => {
         socket = io();
@@ -83,7 +93,7 @@ const Chat = ({ channel }) => {
         }
     }
 
-    return (messages && (
+    return (setMessagesLoaded && (
         <>
             <h2 className='message-header'><i className="fas fa-hashtag"></i> {channel.name}</h2>
             <div className='message-main'>
@@ -96,6 +106,7 @@ const Chat = ({ channel }) => {
                         :
                     <p>Be the first to say something!</p>
                 }
+                <div ref={endRef} />
             </div>
             <form className='message-form' onSubmit={sendChat}>
                 <textarea
