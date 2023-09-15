@@ -203,13 +203,15 @@ const SingleSpot = () => {
           </div>
           <div className="statuszz">
             <div className="wrapperzz">
-              <h3 className="whitenme">Users:</h3>
-              {server.users?.map((user) => (
-                <p>
-                  <p className="whitenme">Name: {user.username} </p>
-                  <img id="logged-in-user-image" src={user.profilePic} />
-                </p>
-              ))}
+              <div className='fix-gap'>
+                <h3 className="whitenme">Users:</h3>
+                {server.users?.map((user) => (
+                  <p id='single-user-in-sidebar'>
+                    <img id="logged-in-user-image" src={user.profilePic} />
+                    <p className="whitenme" id='server-user-name-text'>{user.username} </p>
+                  </p>
+                ))}
+              </div>
             </div>
           </div>
         </div>

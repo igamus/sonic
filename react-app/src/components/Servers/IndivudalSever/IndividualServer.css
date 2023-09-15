@@ -77,6 +77,11 @@
   width: 100%;
 }
 
+.fix-gap {
+  gap: 0px;
+  grid-gap: 0px;
+}
+
 .singleimgban {
   margin-top: none;
   width: 100%;
@@ -106,4 +111,15 @@
 #chancontrl {
   font-family: var(--main-font-family-bold);
   margin-left: 15px;
+}
+
+#single-user-in-sidebar {
+  margin: 0px;
+  display: flex;
+  flex-direction: row;
+  padding: 10px
+}
+
+#server-user-name-text {
+  padding: 10px;
 }
