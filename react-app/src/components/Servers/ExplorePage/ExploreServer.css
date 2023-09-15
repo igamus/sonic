@@ -7,6 +7,7 @@
     height: 500px;
     display: flex;
     flex-direction: column;
+    
 }
 
 #explore-server-container:hover {
@@ -14,14 +15,16 @@
 }
 
 #explore-server-banner {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
     width: 280px;
     height: 200px;
     padding: 10px;
 }
 
 #explore-server-icon {
-    width: 100px;
-    height: 100px;
+    width: 75px;
+    height: 75px;
     object-fit: contain;
     border-radius: 50%;
 }
@@ -35,9 +38,11 @@
 }
 
 #explore-server-description {
+    margin-bottom: 5px;
+    margin-left: 15px;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     color: white;
-    height: 80px;
+    height: 70px;
 }
 
 
@@ -68,6 +73,8 @@
     touch-action: manipulation;
     vertical-align: middle;
     white-space: nowrap;
+    width: 150px;
+    align-items: center;
 }
 
 #greenjoin:focus:not(:focus-visible):not(.focus-visible) {
@@ -82,4 +89,13 @@
 #greenjoin:focus {
     box-shadow: rgba(46, 164, 79, .4) 0 0 0 3px;
 
+}
+
+.wrapcard {
+    margin-left: 15px;
+}
+
+.explore-server-name {
+    margin-left: 5px;
+    text-align: center;
 }

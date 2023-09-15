@@ -1,6 +1,7 @@
 .reactions-panel {
     display: flex;
     flex-wrap: wrap;
+    margin-left: -7.5px;
 }
 
 .reaction {
@@ -29,9 +30,14 @@
     border: 1px solid #4951a8;
 }
 
+.add-reaction-button {
+    font-size: 0.8rem;
+}
+
 .add-reaction {
     padding: 2.5px 7.5px;
     color: #b5bac1;
+    opacity: 0;
 }
 
 .add-reaction:hover {

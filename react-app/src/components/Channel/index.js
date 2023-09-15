@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
-import { loadChannelMessagesThunk } from '../../store/messages';
 import { loadSingleChannelThunk } from '../../store/channels';
 import Chat from '../MessagePane';
 import './Channel.css'
@@ -21,7 +20,6 @@ const Channel = () => {
   useEffect(() => {
     dispatch(loadSingleServerThunk(serverId));
     dispatch(loadSingleChannelThunk(channelId));
-    dispatch(loadChannelMessagesThunk(channelId)); // Fetch messages for the channel
   }, [dispatch, channelId]);
 
   const back = () => {
@@ -65,8 +63,7 @@ const Channel = () => {
           </div>
 
           <div className='mainz'>
-            <h2>Messages:</h2>
-            <Chat channelId={channel.id} />
+            <Chat channel={channel} />
           </div>
         </>
       )}

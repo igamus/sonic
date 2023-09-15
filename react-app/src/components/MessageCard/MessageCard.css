@@ -1,7 +1,50 @@
 .message-card {
     color: #e5ecf2;
-    margin-top: 30px;
+    padding: 1.5rem;
+    border-top: 1px solid #3a3c41;
+    font-family: sans-serif;
 }
+
+.message-card:hover {
+    background-color: #2b2d31;
+}
+
+.delete-message-button {
+    background-color: transparent;
+    border: none;
+    color: #cf383b;
+    margin-left: 7.5px;
+}
+
+.reaction-panel-button {
+    all: unset;
+    margin: 0 10px;
+    color: #e5ecf2;
+}
+
+.reaction-panel-button:hover {
+    cursor: pointer;
+    box-shadow: 0 0 10px black;
+}
+
+.features {
+    opacity: 0;
+    color: #e5ecf2;
+    font-size: 1.2rem;
+}
+
+.message-card:hover .features {
+    opacity: 1;
+}
+
+
+.delete-message-button:hover {
+    cursor: pointer;
+    /* background-color: #404249; */
+    box-shadow: 0 0 10px black;
+    opacity: 1;
+}
+
 
 .message-username {
     color: #e5ecf2;
@@ -12,18 +55,6 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-right: 50px;
-}
-
-.reaction-panel-button {
-    all: unset;
-    padding: 0 10px;
-    color: #e5ecf2;
-}
-
-.reaction-panel-button:hover {
-    cursor: pointer;
-    box-shadow: 0 0 10px black;
 }
 
 .message-text {

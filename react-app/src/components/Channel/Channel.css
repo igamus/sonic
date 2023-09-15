@@ -92,10 +92,6 @@
 .back-button:hover {
   cursor: pointer;
 }
-.mainz h2 {
-  text-align: center;
-  color: white;
-}
 
   .flexbacker {
     display: flex;

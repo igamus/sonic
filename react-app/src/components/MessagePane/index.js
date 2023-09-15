@@ -1,5 +1,5 @@
 import './MessagePane.css';
-import React, { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { io } from 'socket.io-client';
 import { loadChannelMessagesThunk } from "../../store/messages";
@@ -7,20 +7,22 @@ import MessageCard from '../MessageCard';
 
 let socket;
 
-const Chat = ({ channelId }) => {
+const Chat = ({ channel }) => {
     const dispatch = useDispatch();
+    const endRef = useRef(null);
     const [chatInput, setChatInput] = useState("");
     const [messages, setMessages] = useState([]);
+    const [messagesLoaded, setMessagesLoaded] = useState(false);
     const [isSending, setisSending]= useState(false);
     const [savedChannelId, setSavedChannelId] = useState(0);
     const [disableButton, setDisableButton] = useState(false);
     const [inputClassName, setInputClassName] = useState("");
     const [enterWarning, setEnterWarning] = useState(false);
 
-    if (channelId !== savedChannelId) {
+    if (channel.id !== savedChannelId) {
         setChatInput("");
-        dispatch(loadChannelMessagesThunk(channelId))
-        setSavedChannelId(channelId);
+        dispatch(loadChannelMessagesThunk(channel.id)).then(() => setMessagesLoaded(true));
+        setSavedChannelId(channel.id);
     };
 
     const user = useSelector(state => state.session.user)
@@ -28,22 +30,30 @@ const Chat = ({ channelId }) => {
     let msgList;
     if (channelMessages.length) msgList = [...channelMessages];
 
+    const scrollDown = () => {
+        endRef.current?.scrollIntoView({behavior: "smooth"})
+    };
+
+    useEffect(() => {
+        scrollDown();
+    }, [msgList]);
+
     useEffect(() => {
         socket = io();
         console.log('connect (chat)');
         socket.on("chat", (chat) => {
-            let msg = dispatch(loadChannelMessagesThunk(channelId));
+            let msg = dispatch(loadChannelMessagesThunk(channel.id));
             let msgArr = Object.values(msg)
             setMessages([...msgArr]);
         })
 
-        socket.on("react", (react) => dispatch(loadChannelMessagesThunk(channelId)));
+        socket.on("react", (react) => dispatch(loadChannelMessagesThunk(channel.id)));
 
         return (() => {
             console.log('disconnect (chat)');
             socket.disconnect()
         })
-    }, [channelId]);
+    }, [channel.id]);
 
     useEffect(() => {
         setDisableButton(false);
@@ -52,7 +62,7 @@ const Chat = ({ channelId }) => {
 
         if (chatInput.length > 500) {
             setDisableButton(true);
-            setInputClassName("chat-error");
+            setInputClassName("yes-error");
         }
 
         if (chatInput.indexOf("\n") > 0) {
@@ -66,15 +76,12 @@ const Chat = ({ channelId }) => {
 
     const sendChat = (e) => {
         e.preventDefault()
-        setisSending(true);
-        socket.emit("chat", { owner_id: user.id, text: chatInput, channel_id: channelId });
-        setisSending(false);
-        setChatInput("")
-    }
-
-    const deleteMessage = (e) => {
-        e.preventDefault();
-        socket.emit("delete_message", {"message_id": parseInt(e.target.value)})
+        if (!(chatInput.trim().length === 0)) {
+            setisSending(true);
+            socket.emit("chat", { owner_id: user.id, text: chatInput.slice(0,-2), channel_id: channel.id });
+            setisSending(false);
+            setChatInput("")
+        }
     }
 
     const handleEnter = (e) => {
@@ -83,41 +90,39 @@ const Chat = ({ channelId }) => {
             return setEnterWarning(true);
         }
         if (e.key === "Enter" && !disableButton) {
-            console.log("keypress is Enter")
             sendChat(e);
-        }
+        } else return;
     }
 
-    return (messages && (
-        <div className='message-main'>
-            <div>
+    return (setMessagesLoaded && (
+        <>
+            <h2 className='message-header'><i className="fas fa-hashtag"></i> {channel.name}</h2>
+            <div className='message-main'>
                 {
                     channelMessages && msgList?.length > 0
                         ?
                     <>{msgList.map((message, ind) => (
-                        <div key={`message-container-${ind}`}>
-                            <MessageCard key={ind} message={message} userId={user.id} channelId={channelId} socket={socket} />
-                            {message.owner_id === user.id ? <button onClick={deleteMessage} value={message.id} className="delete-message-button">Pretend this never happened (Delete)</button> : null}
-                        </div>
+                        <MessageCard key={ind} message={message} userId={user.id} channelId={channel.id} socket={socket} />
                     ))}</>
                         :
                     <p>Be the first to say something!</p>
                 }
+                <div ref={endRef} />
             </div>
             <form className='message-form' onSubmit={sendChat}>
                 <textarea
-                    rows={3}
+                    rows={1}
                     className='chatbox'
+                    placeholder={`Message #${channel.name}`}
                     value={chatInput}
                     onChange={updateChatInput}
                     onKeyUp={(e) => handleEnter(e)}
                 />
-                <button className='chat-button' disabled={!!disableButton} type="submit">Send</button>
-                {disableButton ? <p className='chat-error'>Messages must be less than 500 characters.</p> : null}
+                {disableButton ? <p className='chat-error'>Messages must be less than 500 characters ({chatInput.length}/500).</p> : null}
                 {/* {enterWarning ? <p className='chat-error'> Note: Line breaks are not preserved</p> : null} */}
                 <p className={inputClassName + " message-input"}>Character count: {chatInput.length}/500</p>
             </form>
-        </div>
+        </>
     )
     )
 };

@@ -322,6 +322,7 @@ button {
     left: 0;
   }
   .wraps {
+	margin-left: 50px;
     margin-right: 105px;
   }
  .wraps input {
@@ -339,10 +340,11 @@ button {
  }
 
 
-  /* .input-group {
-    position: relative;
-    display: inline-block;
-  } */
+  .input-group {
+    /* position: relative;
+    display: inline-block; */
+
+  }
 
   /* .input-group input {
     padding-right: 40px;

@@ -1,98 +1,125 @@
 .server-emoji-button {
-    background-color: transparent;
-    border: none;
+  background-color: transparent;
+  border: none;
 }
 
 .server-emoji-button:hover {
-    cursor: pointer;
-    background-color: rgb(202, 202, 202);
-    border-radius: 15px
+  cursor: pointer;
+  background-color: rgb(202, 202, 202);
+  border-radius: 15px
 }
 
 .leave-button {
-    background-color: red;
-    border-color: red;
-    color: white;
-    border-radius: 15px
+  background-color: red;
+  border-color: red;
+  color: white;
+  border-radius: 15px
 }
 
 .leave-button:hover {
-    cursor: pointer;
-    background-color: red;
-    color: transparent;
-    border-color: black;
-    box-shadow: inset 2.5px 2.5px rgb(163, 40, 40);
-    text-shadow: 1.5px 1.5px white;
+  cursor: pointer;
+  background-color: red;
+  color: transparent;
+  border-color: black;
+  box-shadow: inset 2.5px 2.5px rgb(163, 40, 40);
+  text-shadow: 1.5px 1.5px white;
 }
 
 .back {
-    background-color: transparent;
-    border: none;
+  background-color: transparent;
+  border: none;
 }
 
 .back:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .singleimg {
-    width: 150px;
-    height: 150px;
+  width: 150px;
+  height: 150px;
 }
 
 .mainzz {
-    justify-content: flex-start;
-    height: 100%;
-    width: 60%;
-    position: fixed;
-    overflow-x: hidden;
-    padding-top: 20px;
-    background-color: #313338;
-    margin-left: 19%;
-    top: 0;
-    left: 0;
-  }
+  justify-content: flex-start;
+  height: 100%;
+  width: 60%;
+  position: fixed;
+  overflow-x: hidden;
+  padding-top: 20px;
+  background-color: #313338;
+  margin-left: 19%;
+  top: 0;
+  left: 0;
+}
 
 
-  .statuszz {
-    font-family: var(--main-font-family-bold);
-    justify-content: flex-start;
-    height: 100%;
-    width: 21%;
-    position: fixed;
-    overflow-x: hidden;
-    padding-top: 20px;
-    background-color: #313338;
-    margin-left: 69%;
-    top: 0;
-    right: 0;
-    border-left: 2px solid #000000;
-  }
+.statuszz {
+  font-family: var(--main-font-family-bold);
+  justify-content: flex-start;
+  height: 100%;
+  width: 21%;
+  position: fixed;
+  overflow-x: hidden;
+  padding-top: 20px;
+  background-color: #313338;
+  margin-left: 69%;
+  top: 0;
+  right: 0;
+  border-left: 2px solid #000000;
+}
 
-  .wrapperzz {
-    font-family: var(--main-font-family-bold);
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    flex-direction: column;
-    width: 100%;
-  }
+.wrapperzz {
+  font-family: var(--main-font-family-bold);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-direction: column;
+  width: 100%;
+}
 
-  .singleimgban {
-    margin-top: none;
-width: 100%;
-  }
+.fix-gap {
+  gap: 0px;
+  grid-gap: 0px;
+}
 
-  .whitenme {
-    color: white;
-  }
+.singleimgban {
+  margin-top: none;
+  width: 100%;
+}
 
-  .fontzme {
-    font-size: xx-large;
-  }
+.whitenme {
+  color: white;
+}
 
-  .server-name {
-    white-space: break-spaces;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    width: 100%;
-  }
+.fontzme {
+  font-size: xx-large;
+}
+
+.server-name {
+  white-space: break-spaces;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 100%;
+  text-align: center;
+}
+
+.server-desx {
+  margin-top: 0px;
+  text-align: left;
+}
+
+#chancontrl {
+  font-family: var(--main-font-family-bold);
+  margin-left: 15px;
+}
+
+#single-user-in-sidebar {
+  margin: 0px;
+  display: flex;
+  flex-direction: row;
+  padding: 10px
+}
+
+#server-user-name-text {
+  padding: 10px;
+}
