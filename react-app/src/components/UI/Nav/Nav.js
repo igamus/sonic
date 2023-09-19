@@ -221,7 +221,7 @@ const Nav = ({ isLoaded }) => {
                   </span>
                 </h3>
                 <div className="dev-blurb-container">
-                  <p className="dev-blurb">My name is Isaac Gamus, and I make full stack web applications using JavaScript and Python! I love puzzles. Word puzzles. Sudoku. You name it. I find that asking, “How do these pieces come together?”, thinking through the process, and testing your hypothesis results in new knowledge, self-improvement, and a huge dopamine rush. It drove my creative process in the theatre, brought me to the biochem lab, and fuels my spiritual journey. In theatre, I loved the process of sprinting with my team to bring an idea to life, how that process transformed us, and how what we created transformed our audience. I’m looking forward to bringing that passion into the apps we’ll build together!</p>
+                  <p className="dev-blurb">I love puzzles. Word puzzles. Sudoku. You name it. I find that asking, “How do these pieces come together?”, thinking through the process, and testing your hypothesis results in new knowledge, self-improvement, and a huge dopamine rush. It drove my creative process in the theatre, brought me to the biochem lab, and fuels my spiritual journey. In theatre, I loved the process of sprinting with my team to bring an idea to life, how that process transformed us, and how what we created transformed our audience. I’m looking forward to bringing that passion into the apps we’ll build together!</p>
                   <img src="https://avatars.githubusercontent.com/u/80405823?v=4" alt="handsome boi" className="dev-icon" />
                 </div>
               </li>

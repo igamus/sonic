@@ -401,6 +401,11 @@ button {
     width: 29px;
 	height: 29px;
 	border-radius: 50%;
+	color: #b5bac1;
+}
+
+.ex-link-icon:hover {
+	box-shadow: 0 0 10px black;
 }
 
 .dev-blurb {
