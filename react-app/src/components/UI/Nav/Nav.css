@@ -386,3 +386,49 @@ button {
 .hideng {
 	display: none;
 }
+
+.dev-icon {
+	/* width: inherit;
+	border-radius: inherit; */
+    width: 116px;
+	height: 116px;
+	border-radius: 50%;
+}
+
+.ex-link-icon {
+	/* width: inherit;
+	border-radius: inherit; */
+    width: 29px;
+	height: 29px;
+	border-radius: 50%;
+	color: #b5bac1;
+}
+
+.ex-link-icon:hover {
+	box-shadow: 0 0 10px black;
+}
+
+.dev-blurb {
+	width: 50vw;
+	overflow-wrap: normal;
+	margin-top: 0;
+}
+
+.dev-list {
+	width: 55vw;
+}
+
+.dev-header {
+	display: flex;
+    justify-content: space-between;
+}
+
+.dev-links {
+	display: flex;
+    gap: 10px;
+}
+
+.dev-blurb-container {
+    display: flex;
+    gap: 25px;
+}

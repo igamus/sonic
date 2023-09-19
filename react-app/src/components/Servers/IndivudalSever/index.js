@@ -46,9 +46,7 @@ const SingleSpot = () => {
     return null;
   }
 
-  console.log("o1", ownerUser);
   ownerUser = ownerUser[0];
-  console.log("o2", ownerUser);
   const userId = user.id;
   const isOwner = userId === server.ownerId;
   const inServer = serverUsers.includes(userId);
@@ -119,7 +117,7 @@ const SingleSpot = () => {
               {isOwner ? (
                 <OpenModalButton
                   modalComponent={<ServerManagerModal server={server} />}
-                  buttonText="&#x2699;"
+                  buttonText={<i className="fas fa-cog" />}
                   className={"server-emoji-button"}
                 />
               ) : null}
@@ -158,8 +156,8 @@ const SingleSpot = () => {
             <div className="fontzme" id="chancontrl">
               {inServer ? (
                 channels.map((channel) => (
-                  <p key={channel.id}>
-                    <Link to={`/servers/${serverId}/${channel.id}`}>
+                  <p key={channel.id} className="channel-list-item">
+                    <Link className="channel-link" to={`/servers/${serverId}/${channel.id}`}>
                       {channel.name}
                     </Link>
                     {isOwner ? (
@@ -168,15 +166,15 @@ const SingleSpot = () => {
                           modalComponent={
                             <UpdateChannelModal channel={channel} />
                           }
-                          buttonText="&#x1F4DD;"
-                          className={"server-emoji-button"}
+                          buttonText={<i className="fas fa-edit channel-action" />}
+                          className={"channel-button"}
                         />
                         <OpenModalButton
                           modalComponent={
                             <DeleteModal type={"channel"} id={channel.id} />
                           }
-                          buttonText="&#128465;"
-                          className={"server-emoji-button"}
+                          buttonText={<i className="fas fa-trash channel-action" />}
+                          className={"channel-button"}
                         />
                       </>
                     ) : null}

@@ -195,6 +195,53 @@ const Nav = ({ isLoaded }) => {
             </div>
           </form>
         </section>
+        <section className="wraps">
+          <h2>Meet our devs!</h2>
+          <div className="devs-container">
+            <ul className="dev-list">
+              <li>
+                <h3 className="dev-header">
+                  <span className="dev-links">
+                    <span>Oscar Alcantar</span>
+                    <a href="https://www.linkedin.com/in/oscaralcantar/" target="_blank" rel="noreferrer"><img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/linkedin-round-icon.png" className="ex-link-icon" /></a>
+                    <a href="https://github.com/Oscar-999" target="_blank" rel="noreferrer"><img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/github-icon.png" className="ex-link-icon" /></a>
+                  </span>
+                </h3>
+                  <div className="dev-blurb-container">
+                    <img src="https://avatars.githubusercontent.com/u/123038205?v=4" className="dev-icon"/>
+                    <p className="dev-blurb">I'm a software developer from the Hispanic Latino community, proud graduate of App Academy. Skilled in JavaScript, HTML5, CSS3, Express.js, Flask, Postgres, and NodeJS, I have experience deploying robust web applications. Passionate about exploring the intricacies of coding, I thrive on embracing challenges and am on the hunt for a role that fuels my unending desire to learn and push boundaries. Ready to bring my dedication and drive to an innovative team.</p>
+                  </div>
+              </li>
+              <li>
+                <h3 className="dev-header">
+                  <span className="dev-links">
+                    <span>Isaac Gamus</span>
+                    <a href="https://www.linkedin.com/in/isaac-gamus/" target="_blank" rel="noreferrer"><img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/linkedin-round-icon.png" className="ex-link-icon" /></a>
+                    <a href="https://github.com/igamus/" target="_blank" rel="noreferrer"><img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/github-icon.png" className="ex-link-icon" /></a>
+                  </span>
+                </h3>
+                <div className="dev-blurb-container">
+                  <p className="dev-blurb">I love puzzles. Word puzzles. Sudoku. You name it. I find that asking, “How do these pieces come together?”, thinking through the process, and testing your hypothesis results in new knowledge, self-improvement, and a huge dopamine rush. It drove my creative process in the theatre, brought me to the biochem lab, and fuels my spiritual journey. In theatre, I loved the process of sprinting with my team to bring an idea to life, how that process transformed us, and how what we created transformed our audience. I’m looking forward to bringing that passion into the apps we’ll build together!</p>
+                  <img src="https://avatars.githubusercontent.com/u/80405823?v=4" alt="handsome boi" className="dev-icon" />
+                </div>
+              </li>
+              <li>
+                <h3 className="dev-header">
+                  <span className="dev-links">
+                    <span>Brian Freese</span>
+                    <a href="https://www.linkedin.com/in/brian-freese-47875b10b/" target="_blank" rel="noreferrer"><img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/linkedin-round-icon.png" className="ex-link-icon" /></a>
+                    <a href="https://github.com/IceLordUlmo" target="_blank" rel="noreferrer"><img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/github-icon.png" className="ex-link-icon" /></a>
+                  </span>
+                </h3>
+                <div className="dev-blurb-container">
+                  <img src="https://avatars.githubusercontent.com/u/123122343?v=4" className="dev-icon"/>
+                  <p className="dev-blurb">My interest in programming started at a young age, when my family acquired a floppy disk with a few games on it from a garage sale for our 386/25mhz Gateway 2000 computer. It had four megabytes of RAM; who could ever dream of needing more? After poking around on the hard drive for a bit I discovered GORILLAS.BAS, and found out how to take the safeties off the velocity and angle parameters for the exploding bananas. From there I went on to check out every book I could find at the library concerning programming.</p>
+                </div>
+              </li>
+            </ul>
+
+          </div>
+        </section>
       </nav>
 
     </div>
