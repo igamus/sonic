@@ -1,12 +1,14 @@
 .server-emoji-button {
   background-color: transparent;
   border: none;
+  color: #b5bac1;
+  font-size: 0.75em;
 }
 
 .server-emoji-button:hover {
   cursor: pointer;
-  background-color: rgb(202, 202, 202);
-  border-radius: 15px
+  border-radius: 50%;
+  box-shadow: 0 0 10px black;
 }
 
 .leave-button {
@@ -122,4 +124,37 @@
 
 #server-user-name-text {
   padding: 10px;
+}
+
+.channel-list-item:hover {
+  background-color: #383a40;
+}
+
+.channel-list-item:hover .channel-action {
+  opacity: 1;
+}
+
+.channel-link, .channel-link:visited {
+  color: #80848e;
+  text-decoration: none;
+  margin-right: 5px;
+}
+
+.channel-action {
+  color: #b5bac1;
+  opacity: 0;
+}
+
+.channel-button {
+  background-color: transparent;
+  border: none;
+  font-size: 0.5em;
+  padding: 0;
+  margin: 5px;
+}
+
+.channel-button:hover {
+  cursor: pointer;
+  border-radius: 50%;
+  box-shadow: 0 0 10px black;
 }
