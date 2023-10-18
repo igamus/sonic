@@ -62,10 +62,12 @@
 
 .message-input {
     color: #e5ecf2;
-    position: fixed;
-    bottom: 0.25vh;
-    right: 3rem;
+    position: absolute;
     font-family: sans-serif;
+    right: 0;
+    width: fit-content;
+    margin-right: 3rem;
+    margin-top: 7.5px;
 }
 
 .yes-error {
@@ -74,9 +76,11 @@
 
 .chat-error {
     color: #cf383b;
-    position: fixed;
-    bottom: 0.25vh;
-    right: 3rem;
+    position: absolute;
+    right: 0;
+    width: fit-content;
+    margin-right: 3rem;
+    margin-top: 7.5px;
     font-family: sans-serif;
 }
 
@@ -92,8 +96,9 @@
 }
 
 .message-form {
-    max-height: 5vh;
     padding: 0 2.5rem 0 1.5rem;
+    margin-bottom: 3rem;
+    height: 72.5px;
 }
 
 .message-main {
