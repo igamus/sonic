@@ -118,7 +118,7 @@ const Chat = ({ channel }) => {
                     onChange={updateChatInput}
                     onKeyUp={(e) => handleEnter(e)}
                 />
-                {disableButton ? <p className='chat-error'>Messages must be less than 500 characters ({chatInput.length}/500).</p> : null}
+                {disableButton ? <p className='chat-error'>Messages must be less than 500 characters ({chatInput.length}/500)</p> : null}
                 {/* {enterWarning ? <p className='chat-error'> Note: Line breaks are not preserved</p> : null} */}
                 <p className={inputClassName + " message-input"}>Character count: {chatInput.length}/500</p>
             </form>
