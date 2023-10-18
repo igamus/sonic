@@ -1,3 +1,5 @@
+import li from "./icons/li.webp";
+import gh from "./icons/gh.webp";
 import React from "react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -203,8 +205,8 @@ const Nav = ({ isLoaded }) => {
                 <h3 className="dev-header">
                   <span className="dev-links">
                     <span>Oscar Alcantar</span>
-                    <a href="https://www.linkedin.com/in/oscaralcantar/" target="_blank" rel="noreferrer"><img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/linkedin-round-icon.png" className="ex-link-icon" /></a>
-                    <a href="https://github.com/Oscar-999" target="_blank" rel="noreferrer"><img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/github-icon.png" className="ex-link-icon" /></a>
+                    <a href="https://www.linkedin.com/in/oscaralcantar/" target="_blank" rel="noreferrer"><img src={li} className="ex-link-icon" /></a>
+                    <a href="https://github.com/Oscar-999" target="_blank" rel="noreferrer"><img src={gh} className="ex-link-icon" /></a>
                   </span>
                 </h3>
                   <div className="dev-blurb-container">
@@ -216,8 +218,8 @@ const Nav = ({ isLoaded }) => {
                 <h3 className="dev-header">
                   <span className="dev-links">
                     <span>Isaac Gamus</span>
-                    <a href="https://www.linkedin.com/in/isaac-gamus/" target="_blank" rel="noreferrer"><img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/linkedin-round-icon.png" className="ex-link-icon" /></a>
-                    <a href="https://github.com/igamus/" target="_blank" rel="noreferrer"><img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/github-icon.png" className="ex-link-icon" /></a>
+                    <a href="https://www.linkedin.com/in/isaac-gamus/" target="_blank" rel="noreferrer"><img src={li} className="ex-link-icon" /></a>
+                    <a href="https://github.com/igamus/" target="_blank" rel="noreferrer"><img src={gh} className="ex-link-icon" /></a>
                   </span>
                 </h3>
                 <div className="dev-blurb-container">
@@ -229,8 +231,8 @@ const Nav = ({ isLoaded }) => {
                 <h3 className="dev-header">
                   <span className="dev-links">
                     <span>Brian Freese</span>
-                    <a href="https://www.linkedin.com/in/brian-freese-47875b10b/" target="_blank" rel="noreferrer"><img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/linkedin-round-icon.png" className="ex-link-icon" /></a>
-                    <a href="https://github.com/IceLordUlmo" target="_blank" rel="noreferrer"><img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/github-icon.png" className="ex-link-icon" /></a>
+                    <a href="https://www.linkedin.com/in/brian-freese-47875b10b/" target="_blank" rel="noreferrer"><img src={li} className="ex-link-icon" /></a>
+                    <a href="https://github.com/IceLordUlmo" target="_blank" rel="noreferrer"><img src={gh} className="ex-link-icon" /></a>
                   </span>
                 </h3>
                 <div className="dev-blurb-container">
