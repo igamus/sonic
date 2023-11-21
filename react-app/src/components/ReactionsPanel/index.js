@@ -38,10 +38,8 @@ function ReactionsPanel({ message, userId, channelId, socket }) {
                 return (
                         <button title={reaction.ownerUsernames.join("\n")} dangerouslySetInnerHTML={{__html: sanitizeHtml(val) + " " + reaction.frequency}} className={className} value={reaction.emoji} onClick={(e) => {
                             if (e.target.className.includes("your-reaction")) {
-                                console.log("removing", reaction.emoji)
                                 socket.emit("delete_reaction", {"message_id": parseInt(message.id), "owner_id": parseInt(userId), emoji: reaction.emoji})
                             } else {
-                                console.log("adding", reaction.emoji)
                                 socket.emit("react", {owner_id: parseInt(userId), message_id: parseInt(message.id), emoji: reaction.emoji})
                             }
                         }} />

@@ -11,7 +11,6 @@ const LoggedInUserDisplay = ({ user }) => {
         dispatch(logout());
         history.push('/me');
     };
-    console.log('user display', user, user.profilePic, user.username)
     return (
         <div id='logged-in-user-display'>
             <div>

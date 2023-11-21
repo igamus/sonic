@@ -38,8 +38,6 @@ export default function ServerFormModal({ }) {
         if (serverBannerImage.length > 0) {
             form.append('banner_image', serverBannerImage)
         }
-        console.log(form);
-        console.log('create form')
         dispatch(createServerThunk(form)).then((responseData) => {
             if (responseData.error) {
                 setError(responseData.error)

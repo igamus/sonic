@@ -83,7 +83,6 @@ export const signUp = (formData) => async (dispatch) => {
 	});
 
 	const data = await response.json();
-	console.log("data in thunk:", data)
 
 	if (response.ok) {
 		dispatch(setUser(data));
