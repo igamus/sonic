@@ -78,7 +78,7 @@ const Chat = ({ channel }) => {
         e.preventDefault()
         if (!(chatInput.trim().length === 0)) {
             setisSending(true);
-            socket.emit("chat", { owner_id: user.id, text: chatInput.slice(0,-2), channel_id: channel.id });
+            socket.emit("chat", { owner_id: user.id, text: chatInput, channel_id: channel.id });
             setisSending(false);
             setChatInput("")
         }
