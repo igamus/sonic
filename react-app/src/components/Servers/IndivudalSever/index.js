@@ -38,7 +38,6 @@ const SingleSpot = () => {
     (state) => state.servers.singleServer.users
   );
   const serverUsers = serverUserObjects?.map((user) => user.id) || "";
-  console.log("serverusrers:", serverUsers);
 
   const user = useSelector((state) => state.session.user);
   let ownerUser = server.users?.filter((user) => user.id == server.ownerId);

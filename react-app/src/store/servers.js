@@ -80,7 +80,6 @@ export const createServerThunk = (formData) => async (dispatch) => {
 
 
 export const updateServerThunk = (form) => async (dispatch) => {
-  console.log('server form dispatch', form)
   const res = await fetch(`/api/servers/${form.get('id')}`, {
     method: "PUT",
     body: form,

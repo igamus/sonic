@@ -40,7 +40,6 @@ const Chat = ({ channel }) => {
 
     useEffect(() => {
         socket = io();
-        console.log('connect (chat)');
         socket.on("chat", (chat) => {
             let msg = dispatch(loadChannelMessagesThunk(channel.id));
             let msgArr = Object.values(msg)
@@ -50,7 +49,6 @@ const Chat = ({ channel }) => {
         socket.on("react", (react) => dispatch(loadChannelMessagesThunk(channel.id)));
 
         return (() => {
-            console.log('disconnect (chat)');
             socket.disconnect()
         })
     }, [channel.id]);

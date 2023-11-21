@@ -17,7 +17,6 @@ export default function ServerFormUpdateModal({ server }) {
     const [disableButton, setDisableButton] = useState(true);
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('update prep', name, description, serverImage, serverBannerImage, 'x')
 
         const newErrors = [];
 
@@ -35,8 +34,6 @@ export default function ServerFormUpdateModal({ server }) {
         form.append('server_image', serverImage)
         form.append('banner_image', serverBannerImage)
         form.append('id', server.id)
-        console.log('update name', name)
-        console.log(form);
         dispatch(updateServerThunk(form)).then((responseData) => {
             if (responseData.error) {
                 setError(responseData.error)

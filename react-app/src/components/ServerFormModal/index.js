@@ -27,19 +27,15 @@ export default function ServerFormModal({ }) {
             return;
         };
 
-
-
         const form = new FormData()
         form.append('name', name);
         form.append('description', description)
-
-        form.append('server_image', serverImage)
-
-
-        form.append('banner_image', serverBannerImage)
-
-        console.log(form);
-        console.log('create form')
+        if (serverImage.length > 0) {
+            form.append('server_image', serverImage)
+        }
+        if (serverBannerImage.length > 0) {
+            form.append('banner_image', serverBannerImage)
+        }
         dispatch(createServerThunk(form)).then((responseData) => {
             if (responseData.error) {
                 setError(responseData.error)

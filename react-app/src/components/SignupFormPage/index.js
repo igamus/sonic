@@ -28,14 +28,6 @@ function SignupFormPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const newErrors = [];
-    console.log({
-      "username": username,
-      "password": password,
-      "email": email,
-      "profileImage": profileImage,
-      "confirmPassword": confirmPassword,
-      "errors": errors
-    })
 
     if (!username.length) newErrors.push("Must include username");
     if (!password.length) newErrors.push("Password: Must include password");
@@ -62,9 +54,7 @@ function SignupFormPage() {
       if (data) {
         setErrors(data)
       }
-      console.log('data in try:', data)
     } catch (e) {
-      console.log('e in catch:', e);
       setErrors(e);
     }
   };
