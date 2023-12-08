@@ -100,7 +100,7 @@ const Chat = ({ channel }) => {
                     channelMessages && msgList?.length > 0
                         ?
                     <>{msgList.map((message, ind) => (
-                        <MessageCard key={ind} message={message} userId={user.id} channelId={channel.id} socket={socket} />
+                        <MessageCard key={ind} message={message} user={user} channelId={channel.id} socket={socket} />
                     ))}</>
                         :
                     <p>Be the first to say something!</p>
